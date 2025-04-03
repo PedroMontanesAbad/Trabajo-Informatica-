@@ -1,4 +1,9 @@
+while (fscanf(pf, "%s %s %d %d %d %d %d %d %d %d", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , &cuenca[j].mes , &cuenca[j].2012 ) != EOF)
+{
+	j++;
 
+
+}
 
 printf("Pedro");
 
