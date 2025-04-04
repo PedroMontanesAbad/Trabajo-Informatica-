@@ -5,24 +5,24 @@
 //contar embalses, sabemos que cada embalse se repite 12 veces, la cosa, me falta separar las cuencas
 //introducimos función que cuenta los embalses
 int  contarembalses(char *dataset){
-	FILE *pdata = fopen(dataset, "r");
+	FILE *fdata = fopen(dataset, "r");
 //vemos que se abrió bien el fichero
-	if (pdata == NULL){
+	if (fdata == NULL){
 		printf("Problema al leer el archivo %s. Termina el programa.\n", dataset);
 		return -1;
 	}
 	int n = 0; //cantidad de embalses (número de líneas que dividiremos entre 12)
 
-	char c = fgetc(pdata);
+	char c = fgetc(fdata);
 	
-	while (!feof(pdata)){
+	while (!feof(fdata)){
 		
 		if (c == '\n'){
 			n++;
 		}
-			c = fgetc(pdata);		
+			c = fgetc(fdata);		
 	}
-	fclose(pdata);
+	fclose(fdata);
 	return n-1; //en la primera línea están los datos iniciales.
 }
 int main (){
@@ -32,15 +32,18 @@ int main (){
 	
 /*
 //Leer fichero entero línea a línea, te lo imprime tal cual
+FILE * ftabla = fopen(tabla, "r");
+	if (ftabla == NULL){
+		printf("Problema al leer el archivo %s. Termina el programa.\n", tabla);
+		return -1;
+	}
 char buffer [4];
 printf("Contenido del archivo es:\n");
 while(fgets(buffer,4,ftabla) != NULL) {
    printf("%s", buffer); //imprime cada línea leída
-}	
-*/
-	fclose(ftabla);
-	return 0;
 }
-
 fclose(ftabla);
-return 0;
+
+*/
+return 0;	
+}
