@@ -1,7 +1,67 @@
+#include <stdio.h>
+/*
+typedef struct{
+	char cuenca_hidrografica;
+	char embalse_nombre;
+	int mes;
+// no sé como meter el numerin, porque 2011, ahora lo miraré
+	// y tampoco está bien la estructura, ahora me veo un vídeo
+}datos;
+*/
+int main(){
+/* int j;
+	
+	datos cuenca[100];
+	cuenca[100].cuenca_hidrografica;
+	cuenca[100].embalse_nombre;
+	cuenca[100].mes;
+	//faltan años
+*/
+  FILE *ftabla;
+ 
+  
+
+  ftabla = fopen("dataset.csv", "r");
+
+//comprobar que me abre
+if (ftabla == NULL) 
+  {
+    printf("Error al abrir el archivo.\n");
+    return -1;
+  }
 
 
-printf("Celia");
+	/*
+	while (fscanf(ftabla, "%s %s %d %d %d %d %d %d %d %d %d %d %d %d", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , &cuenca[j].mes ) != EOF)
+	{
+	printf("a\n");
+	j++;
+	//lo he modificado, no tener en cuenta, ahora lo intentaré
+	}	
+	*/
+	
+	//Leer fichero
+	char buffer [4];
+	printf("Contenido del archivo es:\n");
+	while(fgets(buffer,4,ftabla) != NULL) {
+	   printf("%s", buffer); //imprime cada línea leída
+	}	
+	
+	if(feof(ftabla)){
+	 printf("Se alcanzo el final del fichero de texto.\n");
+	
+	}
+	
 
 
+//cerrar
+fclose(ftabla);
+return 0;
+//comprobar que cierra
+if(fclose(ftabla) !=0 ){
+	printf("Error al cerrar el fichero");
+}
+
+}
 
 
