@@ -26,24 +26,87 @@ int  contarembalses(char *dataset){
 	return n-1; //en la primera línea están los datos iniciales.
 }
 int main (){
-	char tabla[] = "dataset.csv";
-	int n = contarembalses(tabla)/12; //cantidad de embalses que hay
-	printf ("la cantidad de embalses es de: %d\n",n);
+char tabla[] = "dataset.csv";
+int n = contarembalses(tabla)/12; //cantidad de embalses que hay
+printf ("\tla cantidad de embalses es de: %d\n\n\n",n);
 	
-/*
-//Leer fichero entero línea a línea, te lo imprime tal cual
-FILE * ftabla = fopen(tabla, "r");
-	if (ftabla == NULL){
+char fila[1000],cuenca_hidrografica [50], embalse_nombre [50];
+
+char anio [10], mes[12];
+char *buffer;
+
+FILE *fdata = fopen(tabla, "r");
+
+	if (fdata == NULL){
 		printf("Problema al leer el archivo %s. Termina el programa.\n", tabla);
 		return -1;
 	}
-char buffer [4];
-printf("Contenido del archivo es:\n");
-while(fgets(buffer,4,ftabla) != NULL) {
-   printf("%s", buffer); //imprime cada línea leída
-}
-fclose(ftabla);
+	else{
+	
+int i=0;
 
-*/
-return 0;	
+while (!feof(fdata)){
+		int j=0;
+		fgets(fila, 100, fdata);
+		buffer=strtok(fila,",");
+		 
+		while(buffer){
+			switch (j){
+				case 0:
+					printf("\t cuenca: %s\n", buffer);
+					break;
+				case 1:
+					printf("\t embalse: %s\n", buffer);
+					break;
+				case 2:
+					printf("\t mes: %s\n",buffer);
+					break;
+				case 3:
+					printf("\t anio: %s ", buffer);
+					break;
+				case 4:
+					printf(" %s ", buffer);
+					break;
+				case 5:
+					printf(" %s ", buffer);
+					break;
+				case 6:
+					printf(" %s ", buffer);
+					break;
+				case 7:
+					printf(" %s ", buffer);
+					break;
+				case 8:
+					printf(" %s ", buffer);
+					break;
+				case 9:
+					printf(" %s ", buffer);
+					break;
+				case 10:
+					printf(" %s ", buffer);
+					break;
+				case 11:
+					printf(" %s ", buffer);
+					break;
+				case 12:
+					printf(" %s ", buffer);
+					break;
+				case 13:
+					printf(" %s\n", buffer);
+					break;	
+					
+			}
+			buffer=strtok(NULL, ",");
+			j++;
+		}
+	}
+		i++;
+	
+		
+	
+fclose(fdata);
+}
+
+return 0;
+}	
 }
