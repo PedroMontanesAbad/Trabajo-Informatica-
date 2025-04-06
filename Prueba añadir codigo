@@ -1,3 +1,24 @@
+typedef struct {
+	char cuenca_hidrografica[50];
+	char embalse_nombre[50];
+	double mes;
+	double 2012;
+	double 2013;
+	double 2014;
+	double 2015;
+	double 2016;
+	double 2017;
+	double 2018;
+	double 2019;
+	double 2020;
+	double 2021;
+
+	
+	
+} ficha;
+
+
+
 while (fscanf(pf, "%s %s %d %d %d %d %d %d %d %d", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , &cuenca[j].mes , &cuenca[j].2012 ) != EOF)
 {
 	j++;
