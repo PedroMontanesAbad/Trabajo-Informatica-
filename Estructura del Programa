@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <string.h>
 
 typedef struct {
 	char cuenca_hidrografica[50];
@@ -22,7 +22,9 @@ typedef struct {
 
 int main()
 {
-int j=0,i,anyo;
+int j=0,i,anyo,num_cuenca,num_embalse;
+int f=0;
+int posiciones_cuencas[15];
 float media,suma=0;
 linea cuenca[4236];
 FILE *tabla;
@@ -34,16 +36,19 @@ return -1;
 }
 while (fscanf(tabla, "%s\t%s\t%i\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , &cuenca[j].mes , &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho,  &cuenca[j].dosmildiecinueve,  &cuenca[j].dosmilveinte,  &cuenca[j].dosmilveintiuno ) != EOF)
 {
-	printf("Linea %i:\n", j);
-	printf("%s\t%s\t%i\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , cuenca[j].mes , cuenca[j].dosmildoce, cuenca[j].dosmiltrece, cuenca[j].dosmilcatorce, cuenca[j].dosmilquince, cuenca[j].dosmildieciseis, cuenca[j].dosmildiecisiete, cuenca[j].dosmildieciocho,  cuenca[j].dosmildiecinueve,  cuenca[j].dosmilveinte,  cuenca[j].dosmilveintiuno );
+	//printf("Linea %i:\n", j);
+	//printf("%s\t%s\t%i\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , cuenca[j].mes , cuenca[j].dosmildoce, cuenca[j].dosmiltrece, cuenca[j].dosmilcatorce, cuenca[j].dosmilquince, cuenca[j].dosmildieciseis, cuenca[j].dosmildiecisiete, cuenca[j].dosmildieciocho,  cuenca[j].dosmildiecinueve,  cuenca[j].dosmilveinte,  cuenca[j].dosmilveintiuno );
 	j++;
 }
 
+
+
 //Representar los nombres de los embalses
-//Aparece uno distinta cada 12
+//Aparece una distinta cada 12
 for (i=0;i<j;i++){
 	if (i%12==0){
 		//printf("%s\n", cuenca[i].embalse_nombre);
+		
 	}
 }
 
@@ -54,11 +59,12 @@ for (i=0;i<j;i++){
 	
 	if (strcmp(cuenca[i].cuenca_hidrografica,cuenca[i-1].cuenca_hidrografica)!=0){
 		//printf("%s\n", cuenca[i].cuenca_hidrografica);
+		posiciones_cuencas[f]=i;
+		f++;
 	}
 }
-
 //Calcular media de un año
-scanf("%i", &anyo);
+//scanf("%i", &anyo);
 switch(anyo){
 	case(2012):
 		for (i=0;i<j;i++){
@@ -67,6 +73,25 @@ switch(anyo){
 		media = suma / j;
 		//printf("%f,%i", media,j);
 		
+}
+
+//Calcular media de un año de un embalse en concreto
+//scanf("%i", &anyo);
+//scanf("%i", &num_cuenca); // Estos datos se pediran en el menu
+//scanf("%i", &num_embalse);
+switch(anyo){
+	case(2012):
+		for (i=posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12;i<posiciones_cuencas[num_cuenca-1]+(num_embalse)*12;i++){
+			suma = suma + cuenca[i].dosmildoce;
+			printf("dato:%f\n", cuenca[i].dosmildoce);
+			printf("linea:%i\n",i);
+		}
+		media = suma / 12;
+		printf("%f", media);
+}
+
+}
+
 }
 
 }
