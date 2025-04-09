@@ -22,7 +22,8 @@ typedef struct {
 
 int main()
 {
-int j=0;
+int j=0,i,anyo;
+float media,suma=0;
 linea cuenca[4236];
 FILE *tabla;
 tabla = fopen("texto_proyecto.txt","r");
@@ -36,6 +37,37 @@ while (fscanf(tabla, "%s\t%s\t%i\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", cue
 	printf("Linea %i:\n", j);
 	printf("%s\t%s\t%i\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , cuenca[j].mes , cuenca[j].dosmildoce, cuenca[j].dosmiltrece, cuenca[j].dosmilcatorce, cuenca[j].dosmilquince, cuenca[j].dosmildieciseis, cuenca[j].dosmildiecisiete, cuenca[j].dosmildieciocho,  cuenca[j].dosmildiecinueve,  cuenca[j].dosmilveinte,  cuenca[j].dosmilveintiuno );
 	j++;
+}
+
+//Representar los nombres de los embalses
+//Aparece uno distinta cada 12
+for (i=0;i<j;i++){
+	if (i%12==0){
+		//printf("%s\n", cuenca[i].embalse_nombre);
+	}
+}
+
+
+//Representar los nombres de las cuencas
+//Aparecen irregularmente debemos compararlas para no repetir
+for (i=0;i<j;i++){
+	
+	if (strcmp(cuenca[i].cuenca_hidrografica,cuenca[i-1].cuenca_hidrografica)!=0){
+		//printf("%s\n", cuenca[i].cuenca_hidrografica);
+	}
+}
+
+//Calcular media de un año
+//printf()
+scanf("%i", &anyo);
+switch(anyo){
+	case(2012):
+		for (i=0;i<j;i++){
+			suma = suma + cuenca[i].dosmildoce;
+		}
+		media = suma / j;
+		//printf("%f,%i", media,j);
+		
 }
 
 }
