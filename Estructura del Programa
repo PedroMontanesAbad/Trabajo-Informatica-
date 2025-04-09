@@ -58,7 +58,6 @@ for (i=0;i<j;i++){
 }
 
 //Calcular media de un año
-//printf()
 scanf("%i", &anyo);
 switch(anyo){
 	case(2012):
