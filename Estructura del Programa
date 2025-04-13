@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
-
+#include <iostream>
+#include <math.h>
 
 
 void gotoxy(int x, int y)
@@ -144,7 +145,7 @@ void Texto0()
 			x = 61;
 			y = 9;
 			gotoxy(x, y);
-			printf("CAUDAL");
+			printf("CUENCAS");
 			gotoxy(x, 14);
 			printf("Press ( 2 )");
 
@@ -560,7 +561,7 @@ void Texto5()
 	//Titulo// 
 	{
 		gotoxy(55, 4);
-		printf("-----------------");
+		printf("EASTER EGGS");
 	}
 
 
@@ -571,7 +572,7 @@ void Texto5()
 			x = 20;
 			y = 9;
 			gotoxy(x, y);
-			printf("-----------------");
+			printf("MODO DIABLO👿");
 			gotoxy(x, 14);
 			printf("Press ( 1 )");
 
@@ -581,7 +582,7 @@ void Texto5()
 			x = 61;
 			y = 9;
 			gotoxy(x, y);
-			printf("-----------------");
+			printf("sorpresa");
 			gotoxy(x, 14);
 			printf("Press ( 2 )");
 
@@ -591,7 +592,7 @@ void Texto5()
 			x = 20;
 			y = 16;
 			gotoxy(x, y);
-			printf("-----------------");
+			printf("?????????");
 			gotoxy(x, 21);
 			printf("Press ( 3 )");
 
@@ -601,7 +602,7 @@ void Texto5()
 			x = 61;
 			y = 16;
 			gotoxy(x, y);
-			printf("-----------------");
+			printf("¿¿¿¿¿¿¿¿¿¿¡");
 			gotoxy(x, 21);
 			printf("Press ( 4 )");
 
@@ -611,7 +612,7 @@ void Texto5()
 			x = 20;
 			y = 23;
 			gotoxy(x, y);
-			printf("-----------------");
+			printf("Volver al menu");
 			gotoxy(x, 28);
 			printf("Press ( 5 )");
 
@@ -762,7 +763,7 @@ int main(void)
 {
 	int n;
 	system("color 0A");
-
+	
 	do
 	{
 		system("cls");
@@ -803,6 +804,7 @@ int main(void)
 			{
 				DibujarMenu();
 				Texto2();
+
 				scanf_s("%d", &n);
 				if (n == 5)
 				{
@@ -867,7 +869,11 @@ int main(void)
 				DibujarMenu();
 				Texto5();
 				scanf_s("%d", &n);
-				if (n == 5)
+
+				if (n == 1)
+					system("color 46");
+			
+				else if (n == 5)
 				{
 					n = 0;
 					break;
@@ -886,6 +892,7 @@ int main(void)
 			exit(-1);
 		default:
 			break;
+		
 		}
 	} while (n < 1 || n>6);
 
@@ -893,4 +900,3 @@ int main(void)
 
 	return 0;
 }
-
