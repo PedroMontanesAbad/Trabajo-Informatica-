@@ -3,6 +3,9 @@
 #include <windows.h>
 #include <iostream>
 #include <math.h>
+#include <time.h>
+#include <stdint.h>
+#include <string.h>
 
 
 void gotoxy(int x, int y)
@@ -321,7 +324,7 @@ void Texto2()
 	//Titulo// 
 	{
 		gotoxy(55, 4);
-		printf("-----------------");
+		printf("CUENCAS");
 	}
 
 
@@ -332,7 +335,7 @@ void Texto2()
 			x = 20;
 			y = 9;
 			gotoxy(x, y);
-			printf("-----------------");
+			printf("Buscar datos");
 			gotoxy(x, 14);
 			printf("Press ( 1 )");
 		}
@@ -572,9 +575,17 @@ void Texto5()
 			x = 20;
 			y = 9;
 			gotoxy(x, y);
-			printf("MODO DIABLO👿");
+			printf("MODO DIABLO👿:1");
+			x = 20;
+			y = 10;
+			gotoxy(x, y);
+			printf("Color Violeta:12");
+			x = 20;
+			y = 11;
+			gotoxy(x, y);
+			printf("Color azul:13");
 			gotoxy(x, 14);
-			printf("Press ( 1 )");
+			printf("");
 
 		}
 		////// Segundo cuadrado/////
@@ -632,6 +643,226 @@ void Texto5()
 	gotoxy(55, 7);
 	printf("Ir a: ");
 	gotoxy(65, 7);
+}
+
+
+typedef struct {
+	char cuenca_hidrografica[50];
+	char embalse_nombre[50];
+	int mes;
+	float dosmildoce;
+	float dosmiltrece;
+	float dosmilcatorce;
+	float dosmilquince;
+	float dosmildiecisiete;
+	float dosmildieciocho;
+	float dosmildiecinueve;
+	float dosmilveinte;
+	float dosmilveintiuno;
+	float dosmildiecisix; // Corrección de errata en el nombre del campo
+
+} linea;
+
+int cuencas()
+{
+	int j = 0, i, anyo, num_cuenca, num_embalse;
+	int f = 0;
+	int posiciones_cuencas[15];
+	float media, suma = 0;
+	linea cuenca[4236];
+	FILE* tabla;
+	errno_t error;
+
+	error = fopen_s(&tabla, "texto_proyecto.txt", "r");
+	if (error != 0) // Si el resultado es diferente de 0, hubo un error
+	{
+		printf("Error al abrir el fichero.\n");
+		return -1;
+	}
+
+	while (fscanf_s(tabla, "%49s\t%49s\t%i\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",
+		cuenca[j].cuenca_hidrografica, sizeof(cuenca[j].cuenca_hidrografica),
+		cuenca[j].embalse_nombre, sizeof(cuenca[j].embalse_nombre),
+		&cuenca[j].mes,
+		&cuenca[j].dosmildoce,
+		&cuenca[j].dosmiltrece,
+		&cuenca[j].dosmilcatorce,
+		&cuenca[j].dosmilquince,
+		&cuenca[j].dosmildiecisix, // Usando el nombre de campo corregido
+		&cuenca[j].dosmildiecisiete,
+		&cuenca[j].dosmildieciocho,
+		&cuenca[j].dosmildiecinueve,
+		&cuenca[j].dosmilveinte,
+		&cuenca[j].dosmilveintiuno) == 13) // Esperamos leer 13 elementos
+	{
+		//printf("Linea %i:\n", j);
+		//printf("%s\t%s\t%i\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , cuenca[j].mes , cuenca[j].dosmildoce, cuenca[j].dosmiltrece, cuenca[j].dosmilcatorce, cuenca[j].dosmilquince, cuenca[j].dosmildiecisix, cuenca[j].dosmildiecisiete, cuenca[j].dosmildieciocho,  cuenca[j].dosmildiecinueve,  cuenca[j].dosmilveinte,  cuenca[j].dosmilveintiuno );
+		j++;
+		if (j >= 4236) break; // Evitar desbordamiento del array cuenca
+	}
+
+	if (tabla != NULL) {
+		fclose(tabla);
+	}
+
+	//Representar los nombres de los embalses
+	//Aparece una distinta cada 12
+	for (i = 0; i < j; i++) {
+		if (i % 12 == 0) {
+			//printf("%s\n", cuenca[i].embalse_nombre);
+		}
+	}
+
+	//Representar los nombres de las cuencas
+	//Aparecen irregularmente debemos compararlas para no repetir
+	if (j > 0) {
+		posiciones_cuencas[f] = 0; // La primera cuenca siempre está en la posición 0
+		f++;
+		for (i = 1; i < j; i++) {
+			if (strcmp(cuenca[i].cuenca_hidrografica, cuenca[i - 1].cuenca_hidrografica) != 0 && f < 15) {
+				//printf("%s\n", cuenca[i].cuenca_hidrografica);
+				posiciones_cuencas[f] = i;
+				f++;
+			}
+		}
+	}
+
+	//Calcular media de un año
+	printf("Introduce el año para calcular la media: ");
+	if (scanf("%i", &anyo) == 1) {
+		suma = 0;
+		media = 0;
+		int contador = 0;
+		switch (anyo) {
+		case 2012:
+			for (i = 0; i < j; i++) {
+				suma += cuenca[i].dosmildoce;
+				contador++;
+			}
+			if (contador > 0) {
+				media = suma / contador;
+				printf("Media de 2012: %f, Número de datos: %i\n", media, contador);
+			}
+			else {
+				printf("No hay datos para el año 2012.\n");
+			}
+			break;
+			// Añade casos para otros años si es necesario
+		default:
+			printf("Año no soportado para el cálculo de la media general.\n");
+			break;
+		}
+	}
+	else {
+		printf("Entrada inválida para el año.\n");
+		// Limpiar el buffer de entrada
+		while (getchar() != '\n');
+	}
+
+
+	//Calcular media de un año de un embalse en concreto
+	printf("\nIntroduce el año para calcular la media del embalse: ");
+	if (scanf("%i", &anyo) == 1) {
+		printf("Introduce el número de cuenca (1 en adelante): ");
+		if (scanf("%i", &num_cuenca) == 1) {
+			printf("Introduce el número de embalse dentro de la cuenca (1 en adelante): ");
+			if (scanf("%i", &num_embalse) == 1) {
+				suma = 0;
+				media = 0;
+				int contador_embalse = 0;
+
+				if (num_cuenca >= 1 && num_cuenca <= f && num_embalse >= 1) {
+					int inicio = (num_cuenca > 1 ? posiciones_cuencas[num_cuenca - 1] : 0) + (num_embalse - 1) * 12;
+					int fin = (num_cuenca < f ? posiciones_cuencas[num_cuenca] : j);
+					if (fin > inicio) fin = inicio + 12; // Considerar solo 12 meses por embalse
+
+					switch (anyo) {
+					case 2012:
+						for (i = inicio; i < fin && i < j; i++) {
+							suma += cuenca[i].dosmildoce;
+							//printf("dato 2012 embalse %i cuenca %i: %f en linea %i\n", num_embalse, num_cuenca, cuenca[i].dosmildoce, i);
+							contador_embalse++;
+						}
+						if (contador_embalse > 0) {
+							media = suma / contador_embalse;
+							printf("Media de 2012 para el embalse %i de la cuenca %i: %f\n", num_embalse, num_cuenca, media);
+						}
+						else {
+							printf("No se encontraron datos para ese embalse y cuenca en 2012.\n");
+						}
+						break;
+						// Añade casos para otros años si es necesario
+					default:
+						printf("Año no soportado para el cálculo de la media por embalse.\n");
+						break;
+					}
+				}
+				else {
+					printf("Número de cuenca o embalse inválido.\n");
+				}
+			}
+			else {
+				printf("Entrada inválida para el número de embalse.\n");
+				while (getchar() != '\n');
+			}
+		}
+		else {
+			printf("Entrada inválida para el número de cuenca.\n");
+			while (getchar() != '\n');
+		}
+	}
+	else {
+		printf("Entrada inválida para el año.\n");
+		while (getchar() != '\n');
+	}
+
+	return 0;
+}
+
+
+
+int donut() {
+	float A = 0, B = 0;
+	float i, j;
+	int k;
+	float z[1760];
+	char b[1760];
+	printf("\x1b[2J");
+	for (;;) {
+		memset(b, 32, 1760);
+		memset(z, 0, 7040);
+		for (j = 0; j < 6.28; j += 0.07) {
+			for (i = 0; i < 6.28; i += 0.02) {
+				float c = sin(i);
+				float d = cos(j);
+				float e = sin(A);
+				float f = sin(j);
+				float g = cos(A);
+				float h = d + 2;
+				float D = 1 / (c * h * e + f * g + 5);
+				float l = cos(i);
+				float m = cos(B);
+				float n = sin(B);
+				float t = c * h * g - f * e;
+				int x = 40 + 30 * D * (l * h * m - t * n);
+				int y = 12 + 15 * D * (l * h * n + t * m);
+				int o = x + 80 * y;
+				int N = 8 * ((f * e - c * d * g) * m - c * d * e - f * g - l * d * n);
+				if (22 > y && y > 0 && x > 0 && 80 > x && D > z[o]) {
+					z[o] = D;
+					b[o] = ".,-~:;=!*#$@"[N > 0 ? N : 0];
+				}
+			}
+		}
+		printf("\x1b[H");
+		for (k = 0; k < 1761; k++) {
+			putchar(k % 80 ? b[k] : 10);
+			A += 0.00004;
+			B += 0.00002;
+		}
+		Sleep(30); // Usamos Sleep() en lugar de usleep(). El argumento está en milisegundos.
+	}
+	return 0;
 }
 
 
@@ -759,11 +990,11 @@ void CuatroCuadrados()
 	}
 }
 
-int main(void)
+int main(void)//system pause y cls importantes antes de cada funcion
 {
 	int n;
 	system("color 0A");
-	
+
 	do
 	{
 		system("cls");
@@ -784,6 +1015,7 @@ int main(void)
 			{
 				Texto1();
 				scanf_s("%d", &n);
+
 				if (n == 3)
 				{
 					n = 0;
@@ -806,7 +1038,13 @@ int main(void)
 				Texto2();
 
 				scanf_s("%d", &n);
-				if (n == 5)
+				if (n == 1)
+				{
+					system("cls");
+					cuencas();
+				;
+				}
+				else if (n == 5)
 				{
 					n = 0;
 					break;
@@ -863,7 +1101,7 @@ int main(void)
 			} while (n != 5);
 
 			break;
-		case 5:
+		case 5://AJUSTES
 			do
 			{
 				DibujarMenu();
@@ -872,7 +1110,17 @@ int main(void)
 
 				if (n == 1)
 					system("color 46");
-			
+				if (n == 12)
+					system("color 56");
+				if (n == 13)
+					system("color 97");
+				else if (n == 2)
+				{
+					system("cls");
+					donut();
+					//system("pause");
+			//pause solo necesario para los printf, para funciones no parece ser necesarios
+				}
 				else if (n == 5)
 				{
 					n = 0;
@@ -892,7 +1140,7 @@ int main(void)
 			exit(-1);
 		default:
 			break;
-		
+
 		}
 	} while (n < 1 || n>6);
 
@@ -900,3 +1148,4 @@ int main(void)
 
 	return 0;
 }
+
