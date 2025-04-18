@@ -97,7 +97,7 @@ printf("Selecciona el embalse de la cuenca elegida\n");
 nombres_cuencas_embalse(j,num_cuenca,cuenca,posiciones_cuencas);
 scanf("%i", &num_embalse);
 media = media_anyo_embalse(j,anyo,num_cuenca,num_embalse,cuenca,posiciones_cuencas);
-printf("La media es %f", media);
+printf("La media de %i de la cuenca %s, embalse %s es %f", anyo, cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica,cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre, media);
 
 
 }
