@@ -2,22 +2,6 @@
 #include <string.h>
 #include "funciones_embalses.h" 
 
-typedef struct {
-	char cuenca_hidrografica[50];
-	char embalse_nombre[50];
-	int mes;
-	float dosmildoce;
-	float dosmiltrece;
-	float dosmilcatorce;
-	float dosmilquince;
-	float dosmildieciseis;
-	float dosmildiecisiete;
-	float dosmildieciocho;
-	float dosmildiecinueve;
-	float dosmilveinte;
-	float dosmilveintiuno;
-	
-} linea;
 
 
 int main(){
@@ -33,7 +17,7 @@ float media;
 linea cuenca[4236];
 
 FILE *tabla;
-tabla = fopen("texto_proyecto.txt","r");
+tabla = fopen("texto_proyecto_actualizado.txt","r");
 if (tabla == NULL) // Si el resultado es NULL mensaje de error
 {
 printf("Error al abrir el fichero.\n");
@@ -70,7 +54,8 @@ for (i=0;i<j;i++){
 
 //Media de un año en concreto:
 //scanf("%i", &anyo);
-//media_anyo(j, anyo, cuenca);
+//media = media_anyo(j, anyo, cuenca);
+//printf("La media en %i fue de %f", anyo, media)
 
 //Media de un embalse un año en concreto:
 //scanf("%i", &anyo);
@@ -97,7 +82,11 @@ printf("Selecciona el embalse de la cuenca elegida\n");
 nombres_cuencas_embalse(j,num_cuenca,cuenca,posiciones_cuencas);
 scanf("%i", &num_embalse);
 media = media_anyo_embalse(j,anyo,num_cuenca,num_embalse,cuenca,posiciones_cuencas);
+//printf("La media es %f", media);
 printf("La media de %i de la cuenca %s, embalse %s es %f", anyo, cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica,cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre, media);
+
+
+
 
 
 }
