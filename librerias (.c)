@@ -23,7 +23,7 @@ void nombres_cuencas(int j,linea vector[]){			// Vector 1 es cuencas y vector 2 
 }
 
 
-void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[]){    // Vector 1 es cuencas y vector 2 posiciones cuencas
+void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[]){
 	int i,f=0;
 	for (i=vector2[num_cuenca-1];i<vector2[num_cuenca];i++){
 		if (i%12==0){
@@ -97,3 +97,4 @@ float max_y_min_embalse(int j,int anyo, int num_cuenca, int num_embalse, linea v
 	//printf("El maximo es %f en el mes %i, el minimo es %f en el mes %i", vector3[0],vector3[1],vector3[2],vector3[3]);
 	
 }
+
