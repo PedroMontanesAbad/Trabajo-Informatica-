@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <string.h>
+#include "funciones_embalses.h" 
+
+typedef struct {
+	char cuenca_hidrografica[50];
+	char embalse_nombre[50];
+	int mes;
+	float dosmildoce;
+	float dosmiltrece;
+	float dosmilcatorce;
+	float dosmilquince;
+	float dosmildieciseis;
+	float dosmildiecisiete;
+	float dosmildieciocho;
+	float dosmildiecinueve;
+	float dosmilveinte;
+	float dosmilveintiuno;
+	
+} linea;
+
+
+int main(){
+
+int i,j=0,anyo,num_cuenca,num_embalse,f=0;
+
+int maxmin[4];
+
+int posiciones_cuencas[15];
+
+float media;
+
+linea cuenca[4236];
+
+FILE *tabla;
+tabla = fopen("texto_proyecto.txt","r");
+if (tabla == NULL) // Si el resultado es NULL mensaje de error
+{
+printf("Error al abrir el fichero.\n");
+return -1;
+}
+
+
+while (fscanf(tabla, "%s\t%s\t%i\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , &cuenca[j].mes , &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho,  &cuenca[j].dosmildiecinueve,  &cuenca[j].dosmilveinte,  &cuenca[j].dosmilveintiuno ) != EOF)
+{
+	j++;
+}
+
+//Almacenar posiciones cuencas
+//Aparecen irregularmente debemos compararlas para no repetir
+for (i=0;i<j;i++){
+	
+	if (strcmp(cuenca[i].cuenca_hidrografica, cuenca[i-1].cuenca_hidrografica) != 0){
+		posiciones_cuencas[f]=i;
+		f++;
+	}
+}
+
+
+
+//Nombres cuencas numeradas:
+//nombres_cuencas(j,cuenca);
+
+//Nombres embalses numerados:
+//nombres_embalses(j,cuenca);
+
+//Nombres de los embalses de una cuenca en concreto:
+//scanf("%i", &num_cuenca);
+//nombres_cuencas_embalse( j, num_cuenca, cuenca, posiciones_cuencas);
+
+//Media de un año en concreto:
+//scanf("%i", &anyo);
+//media_anyo(j, anyo, cuenca);
+
+//Media de un embalse un año en concreto:
+//scanf("%i", &anyo);
+//scanf("%i", &num_cuenca);
+//scanf("%i", &num_embalse);
+//media = media_anyo_embalse(j, anyo, num_cuenca, num_embalse, cuenca, posiciones_cuencas);
+//printf("La media de %i de la cuenca %s, embalse %s es %f", anyo, cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica,cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre);
+
+
+//Máximo y minimo de un embalse un año en concreto:
+//scanf("%i", &anyo);
+//scanf("%i", &num_cuenca);
+//scanf("%i", &num_embalse);
+//max_y_min_embalse(j, anyo, num_cuenca, num_embalse, cuenca, posiciones_cuencas, maxmin);
+
+
+}
