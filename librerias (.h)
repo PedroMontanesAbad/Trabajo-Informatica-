@@ -1,0 +1,25 @@
+typedef struct {
+	char cuenca_hidrografica[50];
+	char embalse_nombre[50];
+	int mes;
+	float dosmildoce;
+	float dosmiltrece;
+	float dosmilcatorce;
+	float dosmilquince;
+	float dosmildieciseis;
+	float dosmildiecisiete;
+	float dosmildieciocho;
+	float dosmildiecinueve;
+	float dosmilveinte;
+	float dosmilveintiuno;
+	
+} linea;
+
+
+
+void nombres_embalses(int j,linea vector[]);
+void nombres_cuencas(int j,linea vector[]);
+void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[]);
+float media_anyo(int j,int anyo, linea vector[]);
+float media_anyo_embalse(int j,int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[]);
+float max_y_min_embalse(int j,int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[], int vector3[]);
