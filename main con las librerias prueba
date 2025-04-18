@@ -85,6 +85,6 @@ for (i=0;i<j;i++){
 //scanf("%i", &num_cuenca);
 //scanf("%i", &num_embalse);
 //max_y_min_embalse(j, anyo, num_cuenca, num_embalse, cuenca, posiciones_cuencas, maxmin);
-
+//printf("El maximo es %f en el mes %i, el minimo es %f en el mes %i", maxmin[0],maxmin[1],maxmin[2],maxmin[3]);
 
 }
