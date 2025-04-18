@@ -87,4 +87,17 @@ for (i=0;i<j;i++){
 //max_y_min_embalse(j, anyo, num_cuenca, num_embalse, cuenca, posiciones_cuencas, maxmin);
 //printf("El maximo es %f en el mes %i, el minimo es %f en el mes %i", maxmin[0],maxmin[1],maxmin[2],maxmin[3]);
 
+
+//Ejemplo programa para 2012;
+anyo = 2012;
+printf("Para calcular la media seleccione una cuenca\n");
+nombres_cuencas(j,cuenca);
+scanf("%i", &num_cuenca);
+printf("Selecciona el embalse de la cuenca elegida\n");
+nombres_cuencas_embalse(j,num_cuenca,cuenca,posiciones_cuencas);
+scanf("%i", &num_embalse);
+media = media_anyo_embalse(j,anyo,num_cuenca,num_embalse,cuenca,posiciones_cuencas);
+printf("La media es %f", media);
+
+
 }
