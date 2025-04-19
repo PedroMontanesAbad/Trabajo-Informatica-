@@ -1,13 +1,168 @@
-#include <stdio.h>
-int main {
 
-printf("Hola");
+#include "lib.h"
 
 
+int main(void)//system cls importantes antes de cada funcion
+{
+	int n;
+	system("color 0A");
+
+	do
+	{
+		system("cls");
+		printf("\a");
+		gotoxy(80, 2);
+		Fecha();
+		DibujarMenu();
+		Texto0();
+		scanf_s("%d", &n);
+		system("cls");
 
 
 
+		switch (n)
+		{
+		case 1:
+			do
+			{
+				Texto1();
+				scanf_s("%d", &n);
 
+				if (n == 3)
+				{
+					n = 0;
+					break;
 
+				}
+				else if (n == 4)
+				{
+					system("cls");
+					exit(-1);
+				}
+				system("cls");
+			} while (n != 5);
 
+			break;
+		case 2:
+			do
+			{
+				DibujarMenu();
+				Texto2();
+
+				scanf_s("%d", &n);
+				if (n == 1)
+				{
+					system("cls");
+					
+				;
+				}
+				else if (n == 5)
+				{
+					n = 0;
+					break;
+
+				}
+				else if (n == 6)
+				{
+					system("cls");
+					exit(-1);
+				}
+				system("cls");
+			} while (n != 5);
+
+			break;
+		case 3://Analisis de datos
+			do
+			{
+				DibujarMenu();
+				Texto3();
+				scanf_s("%d", &n);
+				if (n == 1)
+				{
+					system("cls");
+					calcular_media();
+				}
+				if (n == 5)
+				{
+					n = 0;
+					break;
+
+				}
+				else if (n == 6)
+				{
+					system("cls");
+					exit(-1);
+				}
+				system("cls");
+			} while (n != 5);
+
+			break;
+		case 4:
+			do
+			{
+				DibujarMenu();
+				Texto4();
+				scanf_s("%d", &n);
+				if (n == 5)
+				{
+					n = 0;
+					break;
+
+				}
+				else if (n == 6)
+				{
+					system("cls");
+					exit(-1);
+				}
+				system("cls");
+			} while (n != 5);
+
+			break;
+		case 5://AJUSTES
+			do
+			{
+				DibujarMenu();
+				Texto5();
+				scanf_s("%d", &n);
+
+				if (n == 1)
+					system("color 46");
+				if (n == 12)
+					system("color 56");
+				if (n == 13)
+					system("color 97");
+				else if (n == 2)
+				{
+					system("cls");
+					donut();
+					//system("pause");
+			//pause solo necesario para los printf, para funciones no parece ser necesarios
+				}
+				else if (n == 5)
+				{
+					n = 0;
+					break;
+
+				}
+				else if (n == 6)
+				{
+					system("cls");
+					exit(-1);
+				}
+				system("cls");
+			} while (n != 5);
+
+			break;
+		case 6:
+			exit(-1);
+		default:
+			break;
+
+		}
+	} while (n < 1 || n>6);
+
+	scanf_s("%d", &n);
+
+	return 0;
 }
+
