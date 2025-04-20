@@ -83,7 +83,7 @@ for (i=0;i<j;i++){
 		
 		a = a/12;
 		printf("%i- ", p);
-		printf("(%i,%i)%s\n", i,a,cuenca[i].cuenca_hidrografica);
+		printf("%s\n",cuenca[i].cuenca_hidrografica);
 		posiciones_cuencas[f]=i;
 		f++;
 	}
@@ -117,7 +117,7 @@ for (i=0;i<j;i++){
 		
 		p++;
 		printf("%i- ", p);
-		printf("(%i)%s\n", a,cuenca[i].embalse_nombre);
+		printf("%s\n", cuenca[i].embalse_nombre);
 		
 	}
 }
