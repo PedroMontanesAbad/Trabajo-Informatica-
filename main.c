@@ -13,10 +13,11 @@ int main(){
 
 	linea cuenca[4236], embalse [353];
 		
-//ABRIMOS FICHEROS
+//ABRIMOS FICHEROS:
 	
 	FILE *tabla;
 	tabla = fopen("texto_proyecto.txt","r");
+	
 	if (tabla == NULL) // Si el resultado es NULL mensaje de error
 	{
 	printf("Error al abrir el fichero.\n");
@@ -25,13 +26,14 @@ int main(){
 
 	FILE *lista;
 	lista = fopen("Embalses_capacidad.txt","r");
+	
 	if (lista == NULL) // Si el resultado es NULL mensaje de error
 	{
 	printf("Error al abrir el fichero 2.\n");
 	return -1;
 	}
 
-//LEO EL PRIMER FICHERO
+//SE LEE EL PRIMER FICHERO:
 	
 	while (fscanf(tabla, "%s\t%s\t%i\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , &cuenca[j].mes , &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho,  &cuenca[j].dosmildiecinueve,  &cuenca[j].dosmilveinte,  &cuenca[j].dosmilveintiuno ) != EOF)
 	{
@@ -43,6 +45,7 @@ int main(){
 	}
 	
 	// las comparamos para no repetir
+	
 	for (i=0;i<j;i++){
 	
 	if (strcmp(cuenca[i].cuenca_hidrografica, cuenca[i-1].cuenca_hidrografica) != 0){
@@ -52,9 +55,6 @@ int main(){
 		f++;
 	}
 }
-
-
-
 
 //NOMBRES DE CUENCAS ENNUMERADAS
 
@@ -71,6 +71,7 @@ nombres_cuencas_embalse( j, num_cuenca, cuenca, posiciones_cuencas, &c);
 //SELECCIONA EL NÚMERO DE EMBALSE
 
 num_embalse = seleccion_embalse(num_embalse, c);
+
 
 //IMPRIME CUENCA Y EMBALSE, PARA VER COMO VAS.
 
@@ -95,7 +96,8 @@ for(i=posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12;i<posiciones_cuencas[n
 
 	}
 	
-	//PEDIMOS FECHA 
+//PEDIMOS FECHA 
+
 printf("\n\nAhora vamos a seleccionar la fecha: \n");
 
 anyo = seleccion_anyo(anyo);
@@ -107,21 +109,9 @@ mes = seleccion_mes(mes);
 porcentaje = porcentaje_embalse (anyo, mes, num_cuenca, posiciones_cuencas, b, num_embalse, cuenca, embalse);
 printf("El embalse %s de la cuenca %s estaba al %.2f%% de su capadidad, en %s del anyo %i.", cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre, cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica, porcentaje, meses_nombres(mes), anyo);
 
+//SÓLO SI HAY SEQÍA
 
-		if ((50<porcentaje) && (porcentaje<70)){
-			printf("\n\nPeriodo de sequia leve.");
-		}		
-		else if ((30<porcentaje) && (porcentaje<50)){
-			printf("\n\nPeriodo de sequia moderada.");
-		}
-		else if (porcentaje<30){
-			printf("\n\nPeriodo de sequia grave.");
-		}
-		else if (porcentaje>100){
-			printf("\n\nEmbalse en maximos, posiblemente debordado.");
-		}
-		
-		
+sequia (porcentaje);
 
 fclose(tabla);
 fclose(lista);
