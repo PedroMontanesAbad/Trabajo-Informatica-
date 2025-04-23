@@ -1,4 +1,4 @@
-ttypedef struct {
+typedef struct {
 	char cuenca_hidrografica[50];
 	char embalse_nombre[50];
 	int mes;
@@ -21,6 +21,16 @@ ttypedef struct {
 
 void nombres_cuencas(int j,linea cuenca[]);
 
+int seleccion_cuenca(int num_cuenca);
+
 void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[],int *c);
+
+int seleccion_embalse(int num_embalse, int c);
+
+int seleccion_anyo(int anyo);
+
+int seleccion_mes(int mes);
+
+char *meses_nombres(int mes);
 
 float porcentaje_embalse (int anyo, int mes, int num_cuenca, int vector2[], int b, int num_embalse, linea vector[], linea vector1[]);
