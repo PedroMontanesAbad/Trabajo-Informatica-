@@ -12,7 +12,7 @@ int main(){
 	float porcentaje, capacidad_max, capacidad_actual;
 
 	linea cuenca[4236], embalse [353];
-	
+		
 	//abrimos ficheros
 	
 	FILE *tabla;
@@ -46,7 +46,9 @@ int main(){
 	for (i=0;i<j;i++){
 	
 	if (strcmp(cuenca[i].cuenca_hidrografica, cuenca[i-1].cuenca_hidrografica) != 0){
+		
 		posiciones_cuencas[f]=i;
+		//printf("\ni es %i",posiciones_cuencas[f]);
 		f++;
 	}
 }
@@ -54,46 +56,32 @@ int main(){
 
 
 
-//Nombres cuencas numeradas:
+//NOMBRES DE CUENCAS ENNUMERADAS
+
 nombres_cuencas(j,cuenca);
-//num cuenca
-do{
-	printf("\nIntroduce el numero de la cuenca: ");
-	scanf("%i", &num_cuenca);
 
-	if((0 >= num_cuenca) || ( num_cuenca > 16 )){
-		printf ("\nNumero no valido, repite:\n");
-	}
+//NÚMERO DE CUENCA
 
-}
+num_cuenca = seleccion_cuenca(num_cuenca);
 
-while ((0 >= num_cuenca) || ( num_cuenca > 16 ));
-
-
-//Nombres de los embalses de una cuenca en concreto:
+//IMPRIME EMBALSES DE UNA CUENCA EN CONCRETO
 
 nombres_cuencas_embalse( j, num_cuenca, cuenca, posiciones_cuencas, &c);
 
-//num embalse
+//SELECCIONA EL NÚMERO DE EMBALSE
 
-do{
-	printf("\nIntroduce el numero del embalse: " );	
-	
-	
-	scanf("%i", &num_embalse);
+num_embalse = seleccion_embalse(num_embalse, c);
 
-	if((0 > num_embalse) || ( num_embalse > c )){
-		printf ("\nNumero no valido, repite:\n");
-	}
-
-}
-while ((0 > num_embalse) || ( num_embalse > c));
-
-system("cls");
+//IMPRIME CUENCA Y EMBALSE, PARA VER COMO VAS.
 
 for(i=posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12;i<posiciones_cuencas[num_cuenca-1]+(num_embalse)*12;i++)
-	{}printf("Tu embalse es: %s\n",cuenca[i-1].embalse_nombre) ;
+	{} printf("Tu embalse es %s, de la cuenca %s \n",cuenca[i-1].embalse_nombre,cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica) ;
 	
+	
+//ESCANEA EL SEGUNDO FICHERO; 
+//Y COMPARA SUS LINEAS (LAS DEL SEGUNDO FICHERO) CON EL NOMBRE DEL EMBALSE ESCOGIDO EN EL PRIMER FICHERO.
+//CUANDO COINCIDEN SE CUMPLE EL IF, Y DAMOS EL VALOR NÚMERICO A b, k+1 POR SER VECTOR. ESE VALOR NOS PERMITE CONOCER LA LÍNEA DEL
+//SECUNDO FICHERO DONDE ESTÁ EL EMBALSE QUE COINCIDE CON EL PRIMER FICHERO, Y POR TANTO SU CAPACIDAD TOTAL.
 	
 	while ( fscanf(lista, "%s\t%f\n", embalse[k].embalse_nom , &embalse[k].etotal) !=EOF )
 	{
@@ -104,44 +92,33 @@ for(i=posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12;i<posiciones_cuencas[n
 		b = k+1;
 	}
 	k++;	
-	}
 
+	}
 	
-	
-printf("\n\nAhora vamos a seleccionar la fecha: ");
+	//PEDIMOS FECHA 
+printf("\n\nAhora vamos a seleccionar la fecha: \n");
 
-do{
-	printf("\nIntroduce el anyo deseado 2012-2021: ");
-		scanf("%i", &anyo);
-	if((2012 > anyo) || ( anyo > 2021 )){
-		printf ("\nNumero no valido, repite:\n");
-	}
-}
+anyo = seleccion_anyo(anyo);
 
-while ((2012 > anyo) || ( anyo > 2021 ));
+mes = seleccion_mes(mes);
 
-do{
-	printf("\nIntroduce el mes deseado: ");
-		scanf("%i", &mes);
-	if((1 > mes) || ( mes > 12 )){
-		printf ("\nNumero no valido, repite:\n");
-	}
-}
-while ((1 > mes) || ( mes > 12 ));
+//MOSTRAMOS TEXTO FINAL CON TODOS LOS DATOS
 
 porcentaje = porcentaje_embalse (anyo, mes, num_cuenca, posiciones_cuencas, b, num_embalse, cuenca, embalse);
-printf("El embalse %s de la cuenca %s tiene una capadidad del %.2f%%, en el mes %i del anyo %i", cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre, cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica, porcentaje, mes, anyo);
+printf("El embalse %s de la cuenca %s estaba al %.2f%% de su capadidad, en %s del anyo %i.", cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre, cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica, porcentaje, meses_nombres(mes), anyo);
 
-//printf("\n%.2f, %.2f",capacidad_max,capacidad_actual);
 
 		if ((50<porcentaje) && (porcentaje<70)){
-			printf("\nPeriodo de sequia leve.");
+			printf("\n\nPeriodo de sequia leve.");
 		}		
 		else if ((30<porcentaje) && (porcentaje<50)){
-			printf("\nPeriodo de sequia moderada.");
+			printf("\n\nPeriodo de sequia moderada.");
 		}
 		else if (porcentaje<30){
-			printf("\nPeriodo de sequia grave.");
+			printf("\n\nPeriodo de sequia grave.");
+		}
+		else if (porcentaje>100){
+			printf("\n\nEmbalse en maximos, posiblemente debordado.");
 		}
 		
 		
