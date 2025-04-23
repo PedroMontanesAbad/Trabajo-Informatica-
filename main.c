@@ -13,7 +13,7 @@ int main(){
 
 	linea cuenca[4236], embalse [353];
 		
-	//abrimos ficheros
+//ABRIMOS FICHEROS
 	
 	FILE *tabla;
 	tabla = fopen("texto_proyecto.txt","r");
@@ -31,7 +31,7 @@ int main(){
 	return -1;
 	}
 
-	//leo el primer fichero	
+//LEO EL PRIMER FICHERO
 	
 	while (fscanf(tabla, "%s\t%s\t%i\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , &cuenca[j].mes , &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho,  &cuenca[j].dosmildiecinueve,  &cuenca[j].dosmilveinte,  &cuenca[j].dosmilveintiuno ) != EOF)
 	{
