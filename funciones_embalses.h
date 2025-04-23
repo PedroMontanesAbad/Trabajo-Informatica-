@@ -34,3 +34,5 @@ int seleccion_mes(int mes);
 char *meses_nombres(int mes);
 
 float porcentaje_embalse (int anyo, int mes, int num_cuenca, int vector2[], int b, int num_embalse, linea vector[], linea vector1[]);
+
+void sequia (int porcentaje);
