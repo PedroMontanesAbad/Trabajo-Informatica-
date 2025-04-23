@@ -227,13 +227,32 @@ switch(anyo){
 	case(2021):
 		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(mes-1);
 			capacidad_actual =  vector[i].dosmilveintiuno;
-			capacidad_max = vector1[b-1].etotal;		
+			capacidad_max = vector1[b-1].etotal;	
 		
 		porcentaje = capacidad_actual*100/capacidad_max;
 		break;
 
 }
 return porcentaje;
+}
+
+void sequia (int porcentaje){
+	
+
+		if ((50<porcentaje) && (porcentaje<70)){
+			printf("\n\nPeriodo de sequia leve.");
+		}		
+		else if ((30<porcentaje) && (porcentaje<50)){
+			printf("\n\nPeriodo de sequia moderada.");
+		}
+		else if (porcentaje<30){
+			printf("\n\nPeriodo de sequia grave.");
+		}
+		else if (porcentaje>100){
+			printf("\n\nEmbalse en maximos, posiblemente debordado.");
+		}
+		
+		
 }
 
 
