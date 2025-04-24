@@ -38,18 +38,17 @@ int seleccion_cuenca(int num_cuenca){
 	if((0 >= num_cuenca) || ( num_cuenca > 16 )){
 		printf ("\nNumero no valido, repite:\n");
 	}
-	
-	return num_cuenca;
 }
 
 while ((0 >= num_cuenca) || ( num_cuenca > 16 ));
 
+return num_cuenca;
 
 }
 
 //NOMBRES DE EMBALSES:
 
-void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[], int *c){
+void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[]){
 	int i,f=0, m;
 		
 	for (i=vector2[num_cuenca-1];i<vector2[num_cuenca];i++){
@@ -63,12 +62,11 @@ void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[
 	
 	}
 
-	*c = m;
 }
 
 // SELECCIÓN DE EMBALSES:
 
-int seleccion_embalse(int num_embalse, int c){
+int seleccion_embalse(int num_embalse, int vector2[], int num_cuenca){
 
 	do{
 	printf("\nIntroduce el numero del embalse: " );	
@@ -76,12 +74,12 @@ int seleccion_embalse(int num_embalse, int c){
 	
 	scanf("%i", &num_embalse);
 
-	if((0 > num_embalse) || ( num_embalse > c)){
+	if((0 > num_embalse) || ( num_embalse > ((vector2[num_cuenca]-vector2[num_cuenca-1])/12))){
 		printf ("\nNumero no valido, repite:\n");
 	}
 
 }
-while ((0 > num_embalse) || ( num_embalse > c));
+while ((0 > num_embalse) || ( num_embalse > ((vector2[num_cuenca]-vector2[num_cuenca-1])/12)));
 
 	return num_embalse;
 
