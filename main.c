@@ -2,7 +2,6 @@
 #include <string.h>
 #include "funciones_embalses.h" 
 
-
 int main(){
 	
 	int f=0,j=0, k=0, b=0, c,i;
@@ -70,11 +69,11 @@ num_cuenca = seleccion_cuenca(num_cuenca);
 
 //IMPRIME EMBALSES DE UNA CUENCA EN CONCRETO
 
-nombres_cuencas_embalse( j, num_cuenca, cuenca, posiciones_cuencas, &c);
+nombres_cuencas_embalse( j, num_cuenca, cuenca, posiciones_cuencas);
 
 //SELECCIONA EL NÚMERO DE EMBALSE
 
-num_embalse = seleccion_embalse(num_embalse, c);
+num_embalse = seleccion_embalse(num_embalse,posiciones_cuencas,num_cuenca);
 
 
 //IMPRIME CUENCA Y EMBALSE, PARA VER COMO VAS.
@@ -119,3 +118,4 @@ sequia (porcentaje);
 fclose(tabla);
 fclose(lista);
 }
+
