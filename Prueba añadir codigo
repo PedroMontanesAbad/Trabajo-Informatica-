@@ -44,6 +44,7 @@ int main(){
 int vb=0, vc=0, vco=0,i;//for y ficheros
 
 int ncuenca,n_embalse,l_r_embalse;//embalse1
+//l_r_embalse, se refiere a la posicion real que tiene el embalse en la lista base (la que dio el profe) incluyendo los meses, viene de lista_real_embalse//
 int ncuenca2,n_embalse2,l_r_embalse2;//embalse2
 int mes_anyo, anyo,mes;//fechas y meses
 	
