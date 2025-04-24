@@ -65,7 +65,7 @@ capacidad=fopen("Embalses_capacidad.txt","r");
 			return -1;
 		}
 FILE *F_comparacion;
-F_comparacion=fopen("comparacion.txt","r");
+F_comparacion=fopen("comparacion2.txt","r");
 	    if(F_comparacion==NULL){
 			printf("Error al abrir el fichero de comparación.\n");
 			return -1;
@@ -83,7 +83,7 @@ while(fscanf(capacidad,"%s\t%f\n",embalse[vc].embalse_nom,&embalse[vc].etotal)!=
 	
 		vc++;
 	}
-while(fscanf(F_comparacion,"%s\t%f\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n",comp[vco].nombre_embalse,&comp[vco].superficie,comp[vco].tipo_presa,comp[vco].uso_abastecimiento,comp[vco].uso_riego,comp[vco].uso_electricidad,comp[vco].uso_industrial,comp[vco].uso_pesca,comp[vco].uso_navegacion,comp[vco].uso_banyo,comp[vco].uso_picnic,comp[vco].uso_restaurante)!=EOF){
+while(fscanf(F_comparacion,"%99[^,],%f,%99[^,],%4[^,],%4[^,],%4[^,],%4[^,],%4[^,],%4[^,],%4[^,],%4[^,],%4[^\n]\n",comp[vco].nombre_embalse,&comp[vco].superficie,comp[vco].tipo_presa,comp[vco].uso_abastecimiento,comp[vco].uso_riego,comp[vco].uso_electricidad,comp[vco].uso_industrial,comp[vco].uso_pesca,comp[vco].uso_navegacion,comp[vco].uso_banyo,comp[vco].uso_picnic,comp[vco].uso_restaurante)!=EOF){
 	    vco++;
 	}
 	
@@ -897,8 +897,8 @@ if(comp[l_r_embalse2/12-1].superficie>comp[l_r_embalse/12-1].superficie){
 	printf("La diferencia de superficies entre %s y %s es de %.2f hm.\n",cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,dif_sup=max_sup-min_sup);
    }
 if(comp[l_r_embalse/12-1].superficie>comp[l_r_embalse2/12-1].superficie){
-	max_sup=embalse[l_r_embalse/12-1].etotal;
-	min_sup=embalse[l_r_embalse2/12-1].etotal;
+	max_sup=comp[l_r_embalse/12-1].superficie;
+	min_sup=comp[l_r_embalse2/12-1].superficie;
 	printf("La diferencia de superficies entre %s y %s es de %.2f hm.\n",cuenca[l_r_embalse-1].embalse_nombre,cuenca[l_r_embalse2-1].embalse_nombre,dif_sup=max_sup-min_sup);
    }
 if(comp[l_r_embalse/12-1].superficie==comp[l_r_embalse2/12-1].superficie){
@@ -917,96 +917,96 @@ if(strcmp(comp[l_r_embalse/12-1].tipo_presa,comp[l_r_embalse2/12-1].tipo_presa)!
 //
 
 if(strcmp(comp[l_r_embalse/12-1].uso_abastecimiento,comp[l_r_embalse2/12-1].uso_abastecimiento)!=0){
-	if(comp[l_r_embalse/12-1].uso_abastecimiento=="Si"){
+	if(strcmp(comp[l_r_embalse/12-1].uso_abastecimiento,"Si")==0){
 		printf("Solo el embalse, %s, se usa para abastecimiento.\n",cuenca[l_r_embalse-1].embalse_nombre );
 	}else{
-		printf("Solo el embalse, %s, se usa para abastecimiento.\n",cuenca[l_r_embalse2-1].embalse_nombre );
+		printf("Solo el embalse, %s, se usa para abastecimiento.\n",cuenca[l_r_embalse2-1].embalse_nombre);
 	}
 }else{
-	if(comp[l_r_embalse/12-1].uso_restaurante=="Si"){
-	printf("Ambos embalses se usan para abastecimiento.\n");
-}}
+	if(strcmp(comp[l_r_embalse/12-1].uso_abastecimiento,"Si")==0){
+		printf("Ambos embalses se usan para abastecimiento.\n" );
+	}}
+
 if(strcmp(comp[l_r_embalse/12-1].uso_riego,comp[l_r_embalse2/12-1].uso_riego)!=0){
-	if(comp[l_r_embalse/12-1].uso_riego=="Si"){
+	if(strcmp(comp[l_r_embalse/12-1].uso_riego,"Si")==0){
 		printf("Solo el embalse, %s, se usa para riego.\n",cuenca[l_r_embalse-1].embalse_nombre );
 	}else{
-		printf("Solo el embalse, %s, se usa para riego.\n",cuenca[l_r_embalse2-1].embalse_nombre );
+		printf("Solo el embalse, %s, se usa para riego.\n",cuenca[l_r_embalse2-1].embalse_nombre);
 	}
 }else{
-	if(comp[l_r_embalse/12-1].uso_restaurante=="Si"){
-	printf("Ambos embalses se usan para riego.\n");
-}}
+	if(strcmp(comp[l_r_embalse/12-1].uso_riego,"Si")==0){
+		printf("Ambos embalses se usan para riego.\n" );
+	}}
 if(strcmp(comp[l_r_embalse/12-1].uso_electricidad,comp[l_r_embalse2/12-1].uso_electricidad)!=0){
-	if(comp[l_r_embalse/12-1].uso_electricidad=="Si"){
-		printf("Solo el embalse, %s, se usa para electricidad.\n",comp[l_r_embalse/12-1].nombre_embalse );
+	if(strcmp(comp[l_r_embalse/12-1].uso_electricidad,"Si")==0){
+		printf("Solo el embalse, %s, se usa para electricidad.\n",cuenca[l_r_embalse-1].embalse_nombre );
 	}else{
-		printf("Solo el embalse, %s, se usa para electricidad.\n",comp[l_r_embalse2/12-1].nombre_embalse );
+		printf("Solo el embalse, %s, se usa para electricidad.\n",cuenca[l_r_embalse2-1].embalse_nombre);
 	}
 }else{
-	if(comp[l_r_embalse/12-1].uso_restaurante=="Si"){
-	printf("Ambos embalses se usan para electricidad.\n");
-}}
+	if(strcmp(comp[l_r_embalse/12-1].uso_electricidad,"Si")==0){
+		printf("Ambos embalses se usan para electricidad.\n" );
+	}}
 if(strcmp(comp[l_r_embalse/12-1].uso_industrial,comp[l_r_embalse2/12-1].uso_industrial)!=0){
-	if(comp[l_r_embalse/12-1].uso_industrial=="Si"){
-		printf("Solo el embalse, %s, se usa para industrial.\n",comp[l_r_embalse/12-1].nombre_embalse );
+	if(strcmp(comp[l_r_embalse/12-1].uso_industrial,"Si")==0){
+		printf("Solo el embalse, %s, se usa para industrial.\n",cuenca[l_r_embalse-1].embalse_nombre );
 	}else{
-		printf("Solo el embalse, %s, se usa para industrial.\n",comp[l_r_embalse2/12-1].nombre_embalse );
+		printf("Solo el embalse, %s, se usa para industrial.\n",cuenca[l_r_embalse2-1].embalse_nombre);
 	}
 }else{
-	if(comp[l_r_embalse/12-1].uso_restaurante=="Si"){
-	printf("Ambos embalses se usan para industrial.\n");
-}}
+	if(strcmp(comp[l_r_embalse/12-1].uso_industrial,"Si")==0){
+		printf("Ambos embalses se usan para industrial.\n" );
+	}}
 if(strcmp(comp[l_r_embalse/12-1].uso_pesca,comp[l_r_embalse2/12-1].uso_pesca)!=0){
-	if(comp[l_r_embalse/12-1].uso_pesca=="Si"){
-		printf("Solo el embalse, %s, se usa para pesca.\n",comp[l_r_embalse/12-1].nombre_embalse );
+	if(strcmp(comp[l_r_embalse/12-1].uso_pesca,"Si")==0){
+		printf("Solo el embalse, %s, se usa para pesca.\n",cuenca[l_r_embalse-1].embalse_nombre );
 	}else{
-		printf("Solo el embalse, %s, se usa para pesca.\n",comp[l_r_embalse2/12-1].nombre_embalse);
+		printf("Solo el embalse, %s, se usa para pesca.\n",cuenca[l_r_embalse2-1].embalse_nombre);
 	}
 }else{
-	if(comp[l_r_embalse/12-1].uso_restaurante=="Si"){
-	printf("Ambos embalses se usan para pesca.\n");
-}}
+	if(strcmp(comp[l_r_embalse/12-1].uso_pesca,"Si")==0){
+		printf("Ambos embalses se usan para pesca.\n" );
+	}}
 if(strcmp(comp[l_r_embalse/12-1].uso_navegacion,comp[l_r_embalse2/12-1].uso_navegacion)!=0){
-	if(comp[l_r_embalse/12-1].uso_navegacion=="Si"){
-		printf("Solo el embalse, %s, se usa para navegacion.\n",comp[l_r_embalse/12-1].nombre_embalse );
+	if(strcmp(comp[l_r_embalse/12-1].uso_navegacion,"Si")==0){
+		printf("Solo el embalse, %s, se usa para navegacion.\n",cuenca[l_r_embalse-1].embalse_nombre );
 	}else{
-		printf("Solo el embalse, %s, se usa para navegacion.\n",comp[l_r_embalse2/12-1].nombre_embalse );
+		printf("Solo el embalse, %s, se usa para navegacion.\n",cuenca[l_r_embalse2-1].embalse_nombre);
 	}
 }else{
-	if(comp[l_r_embalse/12-1].uso_restaurante=="Si"){
-	printf("Ambos embalses se usan para navegacion.\n");
-}}
+	if(strcmp(comp[l_r_embalse/12-1].uso_navegacion,"Si")==0){
+		printf("Ambos embalses se usan para navegacion.\n" );
+	}}
 if(strcmp(comp[l_r_embalse/12-1].uso_banyo,comp[l_r_embalse2/12-1].uso_banyo)!=0){
-	if(comp[l_r_embalse/12-1].uso_banyo=="Si"){
-		printf("Solo el embalse, %s, se usa para banyo.\n",comp[l_r_embalse/12-1].nombre_embalse );
+	if(strcmp(comp[l_r_embalse/12-1].uso_banyo,"Si")==0){
+		printf("Solo el embalse, %s, se usa para banyos.\n",cuenca[l_r_embalse-1].embalse_nombre );
 	}else{
-		printf("Solo el embalse, %s, se usa para banyo.\n",comp[l_r_embalse2/12-1].nombre_embalse );
+		printf("Solo el embalse, %s, se usa para banyos.\n",cuenca[l_r_embalse2-1].embalse_nombre);
 	}
 }else{
-	if(comp[l_r_embalse/12-1].uso_restaurante=="Si"){
-	printf("Ambos embalses se usan para banyo.\n");
-}}
+	if(strcmp(comp[l_r_embalse/12-1].uso_banyo,"Si")==0){
+		printf("Ambos embalses se usan para banyos.\n" );
+	}}
 if(strcmp(comp[l_r_embalse/12-1].uso_picnic,comp[l_r_embalse2/12-1].uso_picnic)!=0){
-	if(comp[l_r_embalse/12-1].uso_picnic=="Si"){
-		printf("Solo el embalse, %s, se usa para picnic.\n",comp[l_r_embalse/12-1].nombre_embalse );
+	if(strcmp(comp[l_r_embalse/12-1].uso_picnic,"Si")==0){
+		printf("Solo el embalse, %s, se usa para picnic.\n",cuenca[l_r_embalse-1].embalse_nombre );
 	}else{
-		printf("Solo el embalse, %s, se usa para picnic.\n",comp[l_r_embalse2/12-1].nombre_embalse );
+		printf("Solo el embalse, %s, se usa para picnic.\n",cuenca[l_r_embalse2-1].embalse_nombre);
 	}
 }else{
-	if(comp[l_r_embalse/12-1].uso_restaurante=="Si"){
-	printf("Ambos embalses se usan para picnic.\n");}}
-
+	if(strcmp(comp[l_r_embalse/12-1].uso_picnic,"Si")==0){
+		printf("Ambos embalses se usan para picnic.\n" );
+	}}
 if(strcmp(comp[l_r_embalse/12-1].uso_restaurante,comp[l_r_embalse2/12-1].uso_restaurante)!=0){
-	if(comp[l_r_embalse/12-1].uso_restaurante=="Si"){
-		printf("Solo el embalse, %s, se usa para restaurantes.\n",comp[l_r_embalse/12-1].nombre_embalse );
+	if(strcmp(comp[l_r_embalse/12-1].uso_restaurante,"Si")==0){
+		printf("Solo el embalse, %s, se usa para restaurantes.\n",cuenca[l_r_embalse-1].embalse_nombre );
 	}else{
-		printf("Solo el embalse, %s, se usa para restaurantes.\n",comp[l_r_embalse2/12-1].nombre_embalse );
+		printf("Solo el embalse, %s, se usa para restaurantes.\n",cuenca[l_r_embalse2-1].embalse_nombre);
 	}
 }else{
-	if(comp[l_r_embalse/12-1].uso_restaurante=="Si"){
-	printf("Ambos embalses se usan para restaurantes.\n");}
-}
-
+	if(strcmp(comp[l_r_embalse/12-1].uso_restaurante,"Si")==0){
+		printf("Ambos embalses se usan para restaurantes.\n" );
+	}}
 
 
 
