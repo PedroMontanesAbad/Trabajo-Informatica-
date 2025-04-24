@@ -10,22 +10,22 @@ int i,j=0,anyo,num_cuenca,num_embalse,f=0;
 
 int maxmin[4];
 
-int posiciones_cuencas[15];
+int posiciones_cuencas[16];
 
 float media;
 
 linea cuenca[4236];
 
 FILE *tabla;
-tabla = fopen("texto_proyecto_actualizado.txt","r");
+tabla = fopen("texto_proyecto_actualizado.csv","r");
 if (tabla == NULL) // Si el resultado es NULL mensaje de error
 {
 printf("Error al abrir el fichero.\n");
 return -1;
 }
+//Poner que el puntero avance una linea
 
-
-while (fscanf(tabla, "%s\t%s\t%i\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , &cuenca[j].mes , &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho,  &cuenca[j].dosmildiecinueve,  &cuenca[j].dosmilveinte,  &cuenca[j].dosmilveintiuno ) != EOF)
+while (fscanf(tabla, "%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , &cuenca[j].mes , &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho,  &cuenca[j].dosmildiecinueve,  &cuenca[j].dosmilveinte,  &cuenca[j].dosmilveintiuno ) != EOF)
 {
 	j++;
 }
@@ -40,6 +40,7 @@ for (i=0;i<j;i++){
 	}
 }
 posiciones_cuencas[f]=j; //Añadimos un ultimo valor señalando el fin de los datos
+
 
 
 //Nombres cuencas numeradas:
@@ -73,8 +74,9 @@ posiciones_cuencas[f]=j; //Añadimos un ultimo valor señalando el fin de los da
 //printf("El maximo es %f en el mes %i, el minimo es %f en el mes %i", maxmin[0],maxmin[1],maxmin[2],maxmin[3]);
 
 
-//Ejemplo programa para 2012;
-anyo = 2012;
+//Ejemplo programa:
+printf("De que anyo necesitas informacion\n");
+scanf("%i", &anyo);
 printf("Para calcular la media seleccione una cuenca\n");
 nombres_cuencas(j,cuenca);
 scanf("%i", &num_cuenca);
