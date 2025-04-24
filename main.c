@@ -56,7 +56,9 @@ int main(){
 	}
 }
 
-posiciones_cuencas[f]=j;
+	//añadimos la número 16
+
+	posiciones_cuencas[f]=j;
 
 //NOMBRES DE CUENCAS ENNUMERADAS
 
