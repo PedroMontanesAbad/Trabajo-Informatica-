@@ -56,6 +56,8 @@ int main(){
 	}
 }
 
+posiciones_cuencas[f]=j;
+
 //NOMBRES DE CUENCAS ENNUMERADAS
 
 nombres_cuencas(j,cuenca);
@@ -75,8 +77,7 @@ num_embalse = seleccion_embalse(num_embalse, c);
 
 //IMPRIME CUENCA Y EMBALSE, PARA VER COMO VAS.
 
-for(i=posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12;i<posiciones_cuencas[num_cuenca-1]+(num_embalse)*12;i++)
-	{} printf("Tu embalse es %s, de la cuenca %s \n",cuenca[i-1].embalse_nombre,cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica) ;
+printf("Tu embalse es %s, de la cuenca %s \n",cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre,cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica) ;
 	
 	
 //ESCANEA EL SEGUNDO FICHERO; 
@@ -89,7 +90,7 @@ for(i=posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12;i<posiciones_cuencas[n
 
 	//printf("%s\t%.2f\n", embalse[k].embalse_nom, embalse[k].etotal );
 	
-	if  (strcmp(cuenca[i-1].embalse_nombre , embalse[k].embalse_nom) == 0){
+	if  (strcmp(cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre , embalse[k].embalse_nom) == 0){
 		b = k+1;
 	}
 	k++;	
