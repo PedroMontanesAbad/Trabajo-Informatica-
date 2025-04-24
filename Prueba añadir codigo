@@ -145,6 +145,7 @@ while ((0 > num_embalse) || ( num_embalse > 353 ));
 for(i=posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12;i<posiciones_cuencas[num_cuenca-1]+(num_embalse)*12;i++)
 	{}printf("Tu embalse es: %s\n",cuenca[i-1].embalse_nombre) ;
 
+//printf("Tu embalse es: %s\n",cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre) ;
 
 //fecha
 
