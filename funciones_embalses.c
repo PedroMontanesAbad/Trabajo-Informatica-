@@ -11,15 +11,15 @@
 
 void nombres_cuencas(int j,linea vector[]){
 	
-	int p=0, i;
+	int f=0, i;
 	int posiciones_cuencas[15];
 	for (i=0;i<j;i++){
 	
 	
 	if (strcmp(vector[i].cuenca_hidrografica,vector[i-1].cuenca_hidrografica)!=0){
-		p++;
+		f++;
 	
-		printf("%i- ", p);
+		printf("%i- ", f);
 		printf("%s\n",vector[i].cuenca_hidrografica);
 	}
 
@@ -242,8 +242,3 @@ void sequia (int porcentaje){
 		
 		
 }
-
-
-	 
-	 
-	
