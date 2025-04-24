@@ -62,19 +62,7 @@ void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[
 		}
 	
 	}
-/*
-	if  (num_cuenca == 16){
-	f=0;
-	for (i<vector2[num_cuenca-1]; i<=vector2[num_cuenca];i++){
-		printf("a");
-		if (i%12==0){
-			printf("%i. %s\n", f+1, vector[i].embalse_nombre);
-			f++;
-			m++;
-			
-		}
-	}
-	}*/
+
 	*c = m;
 }
 
