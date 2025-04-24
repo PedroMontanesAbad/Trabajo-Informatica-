@@ -39,7 +39,7 @@ for (i=0;i<j;i++){
 		f++;
 	}
 }
-
+posiciones_cuencas[f]=j; //Añadimos un ultimo valor señalando el fin de los datos
 
 
 //Nombres cuencas numeradas:
