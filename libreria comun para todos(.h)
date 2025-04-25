@@ -24,3 +24,6 @@ float media_anyo(int j,int anyo, linea vector[]);
 float media_anyo_embalse(int j,int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[]);
 float max_y_min_embalse(int j,int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[], int vector3[]);
 
+
+float porcentaje_embalse (int anyo, int mes, int num_cuenca, int vector2[], int b, int num_embalse, linea vector[], linea vector1[]);
+void sequia (int porcentaje);
