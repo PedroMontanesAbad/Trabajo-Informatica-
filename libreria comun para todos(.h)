@@ -1,3 +1,14 @@
+#ifndef _LIB_H_
+#define _LIB_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <windows.h>
+#include <iostream>
+#include <math.h>
+#include <time.h>
+#include <stdint.h>
+#include <string.h>
 
 typedef struct {
 	char cuenca_hidrografica[50];
@@ -27,3 +38,16 @@ float max_y_min_embalse(int j,int anyo, int num_cuenca, int num_embalse, linea v
 
 float porcentaje_embalse (int anyo, int mes, int num_cuenca, int vector2[], int b, int num_embalse, linea vector[], linea vector1[]);
 void sequia (int porcentaje);
+
+
+void gotoxy(int x, int y);
+void DibujarMenu();
+void Texto0();
+void Texto1();
+void Texto2();
+void Texto3();
+void Texto4();
+void Texto5();
+int donut();
+void Fecha();
+void CuatroCuadrados();
