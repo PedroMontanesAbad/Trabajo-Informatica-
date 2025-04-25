@@ -28,6 +28,23 @@ typedef struct {
 } linea;
 
 
+typedef struct {
+    char nombre_embalse[100];
+    float superficie;
+    char tipo_presa[100];
+    char uso_abastecimiento[5];
+    char uso_riego[5];
+    char uso_electricidad[5];
+    char uso_industrial[5];
+    char uso_pesca[5];
+    char uso_navegacion[5];
+    char uso_banyo[5];
+    char uso_picnic[5];
+    char uso_restaurante[5];
+} DatosComparacion;
+
+
+
 void nombres_embalses(int j,linea vector[]);
 void nombres_cuencas(int j,linea vector[]);
 void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[]);
