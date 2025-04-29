@@ -169,8 +169,6 @@ int seleccion_mes(int N_mes, char C_mes[]){
 
 
 char *meses_nombres(int N_mes){
-
-
 	return mes_nom[N_mes-1];
 	
 }
