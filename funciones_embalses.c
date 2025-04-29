@@ -29,18 +29,32 @@ void nombres_cuencas(int j,linea vector[]){
 
 // SELECCIÓN DE CUENCA:
 
-int seleccion_cuenca(int num_cuenca){
+int seleccion_cuenca(int num_cuenca, char C_cuenca[]){
 	
 	do{
+	
 	printf("\nIntroduce el numero de la cuenca: ");
-	scanf("%i", &num_cuenca);
-
-	if((0 >= num_cuenca) || ( num_cuenca > 16 )){
-		printf ("\nNumero no valido, repite:\n");
+	
+	scanf("%s", C_cuenca);
+	
+	if(('9'<C_cuenca[0] && C_cuenca[0]<'0') && ('9'<C_cuenca[1] && C_cuenca[1]<'0')){
+		printf ("\nCaracter no valido, repite:\n");	
+	}
+	else{	
+		if (C_cuenca[0] == '0'){
+			printf ("\nbNumero no valido, repite:\n");
+		}
+		
+		else{		
+			sscanf(C_cuenca, "%i", &num_cuenca);
+			if((0 >= num_cuenca) || ( num_cuenca > 16 )){
+				printf ("\ncNumero no valido, repite:\n");
+			}
+		}
 	}
 }
 
-while ((0 >= num_cuenca) || ( num_cuenca > 16 ));
+while ((0 >= num_cuenca) || ( num_cuenca > 16 ) || (('9'<C_cuenca[0] && C_cuenca[0]<'0') && ('9'<C_cuenca[1] && C_cuenca[1]<'0')) || (C_cuenca[0] == '0'));
 
 return num_cuenca;
 
@@ -66,20 +80,30 @@ void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[
 
 // SELECCIÓN DE EMBALSES:
 
-int seleccion_embalse(int num_embalse, int vector2[], int num_cuenca){
+int seleccion_embalse(int num_embalse, int vector2[], int num_cuenca, char C_embalse[]){
 
 	do{
 	printf("\nIntroduce el numero del embalse: " );	
+	scanf("%s", C_embalse);
 	
-	
-	scanf("%i", &num_embalse);
-
-	if((0 > num_embalse) || ( num_embalse > ((vector2[num_cuenca]-vector2[num_cuenca-1])/12))){
-		printf ("\nNumero no valido, repite:\n");
+	if(('9'<C_embalse[0] && C_embalse[0]<'0') && ('9'<C_embalse[1] && C_embalse[1]<'0')){
+		printf ("\nCaracter no valido, repite:\n");	
+	}
+	else{	
+		if (C_embalse[0] == '0'){
+			printf ("\nNumero no valido, repite:\n");
+		}
+		
+		else{		
+			sscanf(C_embalse, "%i", &num_embalse);
+			if((0 >= num_embalse) || ( num_embalse > ((vector2[num_cuenca]-vector2[num_cuenca-1])/12))){
+				printf ("\nNumero no valido, repite:\n");
+			}
+		}
 	}
 
 }
-while ((0 > num_embalse) || ( num_embalse > ((vector2[num_cuenca]-vector2[num_cuenca-1])/12)));
+while ((0 >= num_embalse) || ( num_embalse > ((vector2[num_cuenca]-vector2[num_cuenca-1])/12)) || ('9'<C_embalse[0] && C_embalse[0]<'0') && ('9'<C_embalse[1] && C_embalse[1]<'0') || (C_embalse[0] == '0'));
 
 	return num_embalse;
 
@@ -87,34 +111,64 @@ while ((0 > num_embalse) || ( num_embalse > ((vector2[num_cuenca]-vector2[num_cu
 
 //SELECCIÓN DE AÑOS:
 
-int seleccion_anyo(int anyo){
+int seleccion_anyo(int anyo, char C_anyo[]){
 		
 	do{
 	printf("\nIntroduce el anyo deseado 2012-2021: ");
-		scanf("%i", &anyo);
-	if((2012 > anyo) || ( anyo > 2021 )){
-		printf ("\nNumero no valido, repite:\n");
+		
+		scanf("%s", C_anyo);
+			
+	if(('9'<C_anyo[0] && C_anyo[0]<'0') || ('9'<C_anyo[1] && C_anyo[1]<'0') || ('9'<C_anyo[2] && C_anyo[2]<'0') || ('9'<C_anyo[3] && C_anyo[3]<'0')){
+		printf ("\nCaracter no valido, repite:\n");	
 	}
-}
+	else{	
+		if (C_anyo[0] == '0'){
+			printf ("\nbNumero no valido, repite:\n");
+		}
+		
+		else{		
+			sscanf(C_anyo, "%i", &anyo);
+			if((2012 > anyo) || (anyo > 2021)){
+				printf ("\nNumero no valido, repite:\n");
+			}
+		}
+	}
+	}
 
-while ((2012 > anyo) || ( anyo > 2021 ));
+while ((2012 > anyo) || ( anyo > 2021 ) || ('9'<C_anyo[0] && C_anyo[0]<'0') || ('9'<C_anyo[1] && C_anyo[1]<'0') || ('9'<C_anyo[2] && C_anyo[2]<'0') || ('9'<C_anyo[3] && C_anyo[3]<'0') || (C_anyo[0] == '0'));
 	
 	return anyo;
 }
 //SELECCIÓN MES:
 
-int seleccion_mes(int mes){
-	
-	do{
-	printf("\nIntroduce el mes deseado: ");
-		scanf("%i", &mes);
-	if((1 > mes) || ( mes > 12 )){
-		printf ("\nNumero no valido, repite:\n");
-	}
-}
-while ((1 > mes) || ( mes > 12 ));
+int seleccion_mes(int N_mes, char C_mes[]){
 
-	return mes;
+	do{
+		
+	printf("\nIntroduce el mes deseado: ");
+	
+	scanf("%s",C_mes);
+		
+	if ((C_mes[0] < '0' && C_mes[0] > '9') || (C_mes[1] < '0' && C_mes[1] > '9')){
+		printf("\nNumero no valido, repite:\n");
+	}
+	else{
+		if (C_mes[0]== '0'){
+			printf("\nNumero no valido, repite:\n");
+		}
+		else{
+			sscanf(C_mes, "%i", &N_mes);
+			
+			if((N_mes < 1) || (N_mes > 12)){
+				printf("\nNumero no valido, repite:\n");
+			}
+		
+		}
+ }
+	}
+	while (((C_mes[0] < '0' && C_mes[0] > '9') || (C_mes[1] < '0' && C_mes[1] > '9')) || (C_mes[0]== '0') || ((N_mes < 1) || (N_mes > 12)));
+	
+	return N_mes;
 }
 
 //MESES CAMBIO DE NÚMEROS A PALABRAS
@@ -123,23 +177,23 @@ while ((1 > mes) || ( mes > 12 ));
 						"agosto", "septiembre", "octubre", "noviembre", "diciembre"};
 
 
-char *meses_nombres(int mes){
+char *meses_nombres(int N_mes){
 
 
-	return mes_nom[mes-1];
+	return mes_nom[N_mes-1];
 	
 }
 
+//PORCENTAJE
 
-
-float porcentaje_embalse (int anyo, int mes, int num_cuenca, int vector2[], int b, int num_embalse, linea vector[], linea vector1[]){
+float porcentaje_embalse (int anyo, int N_mes, int num_cuenca, int vector2[], int b, int num_embalse, linea vector[], linea vector1[]){
 int i;
 float capacidad_actual=0, capacidad_max=0, porcentaje;
 
 
 switch(anyo){
 	case(2012):
-			i=vector2[num_cuenca-1]+(num_embalse-1)*12+(mes-1);
+			i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual = vector[i].dosmildoce;
 			capacidad_max = vector1[b-1].etotal;
 		
@@ -147,7 +201,7 @@ switch(anyo){
 		break;
 
 	case(2013):
-			i=vector2[num_cuenca-1]+(num_embalse-1)*12+(mes-1);
+			i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmiltrece;
 			capacidad_max = vector1[b-1].etotal;
 		
@@ -155,7 +209,7 @@ switch(anyo){
 		break;
 	
 	case(2014):
-			i=vector2[num_cuenca-1]+(num_embalse-1)*12+(mes-1);
+			i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmilcatorce;
 			capacidad_max = vector1[b-1].etotal;
 		
@@ -163,7 +217,7 @@ switch(anyo){
 		break;
 		
 	case(2015):
-		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(mes-1);
+		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmilquince;
 			capacidad_max = vector1[b-1].etotal;
 		//printf ("\n%i, CA %f, CM %f\n",b,capacidad_actual, capacidad_max);
@@ -171,7 +225,7 @@ switch(anyo){
 		break;	
 		
 	case(2016):
-		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(mes-1);
+		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmildieciseis;
 			capacidad_max = vector1[b-1].etotal;
 		
@@ -179,7 +233,7 @@ switch(anyo){
 		break;	
 		
 	case(2017):
-		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(mes-1);
+		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmildiecisiete;
 			capacidad_max = vector1[b-1].etotal;
 		
@@ -187,7 +241,7 @@ switch(anyo){
 		break;
 		
 	case(2018):
-		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(mes-1);
+		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmildieciocho;
 			capacidad_max = vector1[b-1].etotal;
 		
@@ -195,7 +249,7 @@ switch(anyo){
 		break;
 		
 	case(2019):
-		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(mes-1);
+		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmildiecinueve;
 			capacidad_max = vector1[b-1].etotal;		
 		
@@ -203,7 +257,7 @@ switch(anyo){
 		break;
 		
 	case(2020):
-		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(mes-1);
+		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmilveinte;
 			capacidad_max = vector1[b-1].etotal;		
 		
@@ -211,7 +265,7 @@ switch(anyo){
 		break;
 		
 	case(2021):
-		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(mes-1);
+		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmilveintiuno;
 			capacidad_max = vector1[b-1].etotal;	
 		
@@ -221,6 +275,44 @@ switch(anyo){
 }
 return porcentaje;
 }
+
+
+//PONER ESPACIOS EN _, CUENCAS:
+
+char cambio_espacios_cuencas (linea vector[], int num_cuenca, int vector2[], int num_embalse){
+	int c=0;
+	char cambio[100];
+	strcpy(cambio, vector[vector2[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica );
+
+	while (cambio[c] != '\0'){
+		if (cambio[c] == '_'){
+			cambio[c] = ' ';
+		}
+		c++;
+	}
+	strcpy(vector[vector2[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica, cambio );
+
+	}
+
+//PONER ESPACIOS EN _, CUENCAS:
+
+char cambio_espacios_embalses (linea vector[], int num_cuenca, int vector2[], int num_embalse){
+	
+	int c=0;
+	char cambio[100];
+	strcpy(cambio, vector[vector2[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre );
+
+	while (cambio[c] != '\0'){
+		if (cambio[c] == '_'){
+			cambio[c] = ' ';
+		}
+		c++;
+	}
+	strcpy(vector[vector2[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre, cambio );
+	
+	}
+	
+//% DE SEQUÍA
 
 void sequia (int porcentaje){
 	
