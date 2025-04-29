@@ -7,7 +7,7 @@ int main(){
 	
 	int f=0,j=0, k=0, b=0, c,i;
 	
-	char C_cuenca[2], C_embalse[2], C_mes[2], cambio[100];
+	char C_cuenca[2], C_embalse[2], C_mes[2], C_anyo[5], cambio[100];
 
 	int num_embalse, anyo, N_mes,num_cuenca, posiciones_cuencas[15] ;
 
@@ -107,7 +107,7 @@ num_embalse = seleccion_embalse(num_embalse,posiciones_cuencas,num_cuenca,C_emba
 
 printf("\n\nAhora vamos a seleccionar la fecha: \n");
 
-anyo = seleccion_anyo(anyo);
+anyo = seleccion_anyo(anyo, C_anyo);
 
 N_mes = seleccion_mes(N_mes, C_mes);
 
