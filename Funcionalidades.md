@@ -204,11 +204,11 @@ Tras el último caso se hace el cálculo del porcentaje, sabemos que es la capac
 La función devuelve el valor de dicho porcentaje.
 
 	float porcentaje_embalse (int anyo, int N_mes, int num_cuenca, int vector2[], int b, int num_embalse, linea vector[], linea vector1[]){
-int i;
-float capacidad_actual=0, capacidad_max=0, porcentaje;
+	int i;
+	float capacidad_actual=0, capacidad_max=0, porcentaje;
 
 
-switch(anyo){
+	switch(anyo){
 	case(2012):
 			i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual = vector[i].dosmildoce;
