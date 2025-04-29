@@ -172,7 +172,7 @@ Tras haber pasado esta criba, si el elemento cumple la 3ª condición **se almac
 	return N_mes;
 	}
 
-# Cambio  del mes numerado al mes escrito
+## Cambio  del mes numerado al mes escrito
 
 char **meses_nombres* no es funcional, sino que es estético, su único fin es cambiar el mes numerado (por ejemplo 6) por el mes escrito (junio), esto le hace al usuario más fácil la lectura. 
 
