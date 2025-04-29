@@ -111,18 +111,25 @@ while ((0 >= num_embalse) || ( num_embalse > ((vector2[num_cuenca]-vector2[num_c
 
 //SELECCIÓN DE AÑOS:
 
-int seleccion_anyo(int anyo){
+int seleccion_anyo(int anyo, char C_anyo[]);{
 		
 	do{
 	printf("\nIntroduce el anyo deseado 2012-2021: ");
-	scanf("%i", anyo);
+	scanf("%s", C_anyo);
 			
-	if ((2012 > anyo) || (anyo > 2021)){
-		printf ("\nNumero no valido, repite:\n");
+	if(('9'<C_anyo[0] && C_anyo[0]<'0') || ('9'<C_anyo[1] && C_anyo[1]<'0') || ('9'<C_anyo[2] && C_anyo[2]<'0') || ('9'<C_anyo[3] && C_anyo[3]<'0')){
+		printf ("\nCaracter no valido, repite:\n");	
+	}
+	else{	
+		sscanf(C_anyo, "%i", &anyo);
+		if((2012 > anyo) || (anyo > 2021)){
+			printf ("\nNumero no valido, repite:\n");
+		}
 	}
 	}
-	while ((2012 > anyo) || ( anyo > 2021 ) );
 
+while ((2012 > anyo) || ( anyo > 2021 ) || ('9'<C_anyo[0] && C_anyo[0]<'0') || ('9'<C_anyo[1] && C_anyo[1]<'0') || ('9'<C_anyo[2] && C_anyo[2]<'0') || ('9'<C_anyo[3] && C_anyo[3]<'0'));
+	
 	return anyo;
 }
 //SELECCIÓN MES:
