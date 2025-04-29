@@ -291,8 +291,87 @@ Tras el último caso se hace el cálculo del porcentaje, sabemos que es la capac
 	return porcentaje;
 	}
 
+## Cambio de barras bajas '_' por espacios ' ' para **cuencas**
+
+char *cambio_espacios_cuencas* no es funcional. Es una función estética con el fin de que sea más agradable la lectura para el usuario. Su objetivo es **sustituir las barras bajas por espacios** cuando sea necesario para ello usamos un bucle while y un condicional if dentro del mismo.
+
+- **Primero:** se copia la cadena que guarda el nombre de la cuenca en la cadena *"cambio"* (que será una cadena de paso).
+
+- **Segundo:** se crea un bucle que lee cada caracter de la cadena (desde el inicial hasta que encuentra el caracter nulo), dentro de este bucle se encuentra la condición de que siempre que lea un caracter barra baja '_' lo sustituya por el caracter espacio ' '.
+
+- **Por último:** cuando el bucle termina y se ha editado si fuera necesario la cadena *"cambio"*, esta se copia en la cadena que guardaba el nombre de la cuenca.
+
+Esto sustituye la cadena original desde que se aplique esta función en adelante.
+
+	char cambio_espacios_cuencas (linea vector[], int num_cuenca, int vector2[], int num_embalse){
+	int c=0;
+	char cambio[100];
+	strcpy(cambio, vector[vector2[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica );
+
+	while (cambio[c] != '\0'){
+		if (cambio[c] == '_'){
+			cambio[c] = ' ';
+		}
+		c++;
+	}
+	strcpy(vector[vector2[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica, cambio );
+
+	}
 
 
+## Cambio de barras bajas '_' por espacios ' ' para **embalses**
 
+char cambio_espacios_embalses no es funcional. Es una función estética con el fin de que sea más agradable la lectura para el usuario. Su objetivo es sustituir las barras bajas por espacios cuando sea necesario para ello usamos un bucle while y un condicional if dentro del mismo.
 
+- **Primero:** se copia la cadena que guarda el nombre de la cuenca en la cadena *"cambio"* (que será una cadena de paso).
+
+- **Segundo:** se crea un bucle que lee cada caracter de la cadena (desde el inicial hasta que encuentra el caracter nulo), dentro de este bucle se encuentra la condición de que siempre que lea un caracter barra baja '_' lo sustituya por el caracter espacio ' '.
+
+- **Por último:** cuando el bucle termina y se ha editado, si fuera necesario, la cadena *"cambio"*, esta se copia en la cadena que guardaba el nombre del embalse.
+
+Esto sustituye la cadena original desde que se aplique esta función en adelante.
+
+	char cambio_espacios_embalses (linea vector[], int num_cuenca, int vector2[], int num_embalse){
+	
+	int c=0;
+	char cambio[100];
+	strcpy(cambio, vector[vector2[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre );
+
+	while (cambio[c] != '\0'){
+		if (cambio[c] == '_'){
+			cambio[c] = ' ';
+		}
+		c++;
+	}
+	strcpy(vector[vector2[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre, cambio );
+	
+	}
+
+## Peligro de sequía o desbordamiento
+
+void *sequia* es una función que *avisa* al usuario si el embalse seleccionado tiene algún riesgo*. En los embalses españoles por lo general se dice que:
+- Hay **sequía leve** si el porcentaje está entre 50% y 70%.
+- Hay **sequía moderada** si el porcentaje está entre 30% y 50%.
+- Hay **sequía grave** si el porcentaje es menor que 30%.
+También se ha añadido la opción de peligro de **desbordamientos** si el embalse supera el máximo de su capacidad útil, es decir, esta está por encima del 100%.
+
+Para esto se utilizan condicionales if.
+		
+  	void sequia (int porcentaje){
+
+  		if ((50<porcentaje) && (porcentaje<70)){
+			printf("\n\nPeriodo de sequia leve.");
+		}		
+		else if ((30<porcentaje) && (porcentaje<50)){
+			printf("\n\nPeriodo de sequia moderada.");
+		}
+		else if (porcentaje<30){
+			printf("\n\nPeriodo de sequia grave.");
+		}
+		else if (porcentaje>100){
+			printf("\n\nEmbalse en maximos, peligro de desbordamiento.");
+		}
+		
+		
+}
 
