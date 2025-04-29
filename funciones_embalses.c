@@ -34,7 +34,6 @@ int seleccion_cuenca(int num_cuenca, char C_cuenca[]){
 	do{
 	
 	printf("\nIntroduce el numero de la cuenca: ");
-	
 	scanf("%s", C_cuenca);
 	
 	if(('9'<C_cuenca[0] && C_cuenca[0]<'0') && ('9'<C_cuenca[1] && C_cuenca[1]<'0')){
@@ -139,7 +138,6 @@ int seleccion_mes(int N_mes, char C_mes[]){
 	do{
 		
 	printf("\nIntroduce el mes deseado: ");
-	
 	scanf("%s",C_mes);
 		
 	if ((C_mes[0] < '0' && C_mes[0] > '9') || (C_mes[1] < '0' && C_mes[1] > '9')){
