@@ -8,17 +8,38 @@
 Son las cosas más básicas
 
 Para que se vea el código que has hecho: 
-printf(int main(){
+printf(
+
+	int seleccion_cuenca(int num_cuenca, char C_cuenca[]){
 	
-	int f=0,j=0, k=0, b=0, c,i;
+	do{
 	
-	char C_cuenca[2], C_embalse[2], C_mes[2], C_anyo[5], cambio[100];
+	printf("\nIntroduce el numero de la cuenca: ");
+	
+	scanf("%s", C_cuenca);
+	
+	if(('9'<C_cuenca[0] && C_cuenca[0]<'0') && ('9'<C_cuenca[1] && C_cuenca[1]<'0')){
+		printf ("\nCaracter no valido, repite:\n");	
+	}
+	else{	
+		if (C_cuenca[0] == '0'){
+			printf ("\nbNumero no valido, repite:\n");
+		}
+		
+		else{		
+			sscanf(C_cuenca, "%i", &num_cuenca);
+			if((0 >= num_cuenca) || ( num_cuenca > 16 )){
+				printf ("\ncNumero no valido, repite:\n");
+			}
+		}
+	}
+	}
 
-	int num_embalse, anyo, N_mes,num_cuenca, posiciones_cuencas[15] ;
+	while ((0 >= num_cuenca) || ( num_cuenca > 16 ) || (('9'<C_cuenca[0] && C_cuenca[0]<'0') && ('9'<C_cuenca[1] && C_cuenca[1]<'0')) || (C_cuenca[0] == '0'));
 
-	float porcentaje, capacidad_max, capacidad_actual;
+	return num_cuenca;
 
-	linea cuenca[4236], embalse [353];
+	}
  )
-- Creas un printf y pegas el código
+- Creas un printf y pegas el código coo un \t de separación con el printf cada línea y la primera con dos \n de separación
 · (Para ver las cosas meteos como si fuerais a editar este documento)
