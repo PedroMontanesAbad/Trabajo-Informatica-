@@ -174,7 +174,7 @@ Tras haber pasado esta criba, si el elemento cumple la 3ª condición **se almac
 
 ## Cambio  del mes numerado al mes escrito
 
-char **meses_nombres* no es funcional, sino que es estético, su único fin es cambiar el mes numerado (por ejemplo 6) por el mes escrito (junio), esto le hace al usuario más fácil la lectura. 
+char **meses_nombres* no es funcional, sino que es estético, su único fin es **cambiar el mes numerado** (por ejemplo 6) **por el** mes **escrito** (junio), esto le hace al usuario más fácil la lectura. 
 
 Para ello se define un puntero char global para poder acceder a el desde la función y que no ocupe espacio en el main.
 
@@ -185,6 +185,112 @@ La función char **meses_nombres* a partir devuelve el nombre del mes a partir d
 
 	char *meses_nombres(int N_mes){
 	return mes_nom[N_mes-1];
+	}
+
+## Capacidad del embalse
+
+float *porcentaje_embalse* es función que permite al usuario conocer la **capacidad del embalse** en un mes y año concreto. 
+
+Para esto se usa un switch que ofrece todas las opciones según el año elegido previamente por el usuario en la función seleccion_anyo.
+
+Se obtiene la **capacidad actual**, esta pertenece al vector cuencas de la estructura principal tomando i como la posición del embalse en el año seleccionado, esto permite mostrar la capacidad en dicahs coordenadas.
+
+Se obtiene la **capacidad total** como el vector embalse de la estructura principal tomando b como la posición del embalse en el segundo fichero, esto permite mostrar el total de la capacidad.
+
+Este proceso se repite para cada caso.
+
+Tras el último caso se hace el cálculo del porcentaje, sabemos que es la capacidad actual por cien, entre la total.
+
+La función devuelve el valor de dicho porcentaje.
+
+	float porcentaje_embalse (int anyo, int N_mes, int num_cuenca, int vector2[], int b, int num_embalse, linea vector[], linea vector1[]){
+int i;
+float capacidad_actual=0, capacidad_max=0, porcentaje;
+
+
+switch(anyo){
+	case(2012):
+			i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
+			capacidad_actual = vector[i].dosmildoce;
+			capacidad_max = vector1[b-1].etotal;
+		
+		porcentaje = capacidad_actual*100/capacidad_max;
+		break;
+
+	case(2013):
+			i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
+			capacidad_actual =  vector[i].dosmiltrece;
+			capacidad_max = vector1[b-1].etotal;
+		
+		porcentaje = capacidad_actual*100/capacidad_max;
+		break;
+	
+	case(2014):
+			i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
+			capacidad_actual =  vector[i].dosmilcatorce;
+			capacidad_max = vector1[b-1].etotal;
+		
+		porcentaje = capacidad_actual*100/capacidad_max;
+		break;
+		
+	case(2015):
+		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
+			capacidad_actual =  vector[i].dosmilquince;
+			capacidad_max = vector1[b-1].etotal;
+		//printf ("\n%i, CA %f, CM %f\n",b,capacidad_actual, capacidad_max);
+		porcentaje = capacidad_actual*100/capacidad_max;
+		break;	
+		
+	case(2016):
+		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
+			capacidad_actual =  vector[i].dosmildieciseis;
+			capacidad_max = vector1[b-1].etotal;
+		
+		porcentaje = capacidad_actual*100/capacidad_max;
+		break;	
+		
+	case(2017):
+		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
+			capacidad_actual =  vector[i].dosmildiecisiete;
+			capacidad_max = vector1[b-1].etotal;
+		
+		porcentaje = capacidad_actual*100/capacidad_max;
+		break;
+		
+	case(2018):
+		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
+			capacidad_actual =  vector[i].dosmildieciocho;
+			capacidad_max = vector1[b-1].etotal;
+		
+		porcentaje = capacidad_actual*100/capacidad_max;
+		break;
+		
+	case(2019):
+		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
+			capacidad_actual =  vector[i].dosmildiecinueve;
+			capacidad_max = vector1[b-1].etotal;		
+		
+		porcentaje = capacidad_actual*100/capacidad_max;
+		break;
+		
+	case(2020):
+		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
+			capacidad_actual =  vector[i].dosmilveinte;
+			capacidad_max = vector1[b-1].etotal;		
+		
+		porcentaje = capacidad_actual*100/capacidad_max;
+		break;
+		
+	case(2021):
+		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
+			capacidad_actual =  vector[i].dosmilveintiuno;
+			capacidad_max = vector1[b-1].etotal;	
+		
+		porcentaje = capacidad_actual*100/capacidad_max;
+		break;
+
+	}
+	return porcentaje;
 	}
 
 
