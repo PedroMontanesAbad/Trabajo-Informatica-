@@ -21,3 +21,4 @@ printf(int main(){
 	linea cuenca[4236], embalse [353];
  )
 - Creas un printf y pegas el código
+· (Para ver las cosas meteos como si fuerais a editar este documento)
