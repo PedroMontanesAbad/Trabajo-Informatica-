@@ -181,7 +181,7 @@ Para ello se define un puntero char global para poder acceder a el desde la func
 	char *mes_nom[] = {"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", 
 			"agosto", "septiembre", "octubre", "noviembre", "diciembre"};
 
-La función char **meses_nombres* a partir devuelve el nombre del mes a partir del número de mes "N_mes" obtenido en la función aterior (se le resta 1 porque el almacenamiento en la cadena empieza en el 0.
+La función char **meses_nombres* a partir devuelve el nombre del mes a partir del número de mes "*N_mes*" obtenido en la función aterior (se le resta 1 porque el almacenamiento en la cadena empieza en el 0).
 
 	char *meses_nombres(int N_mes){
 	return mes_nom[N_mes-1];
@@ -193,15 +193,13 @@ float *porcentaje_embalse* es función que permite al usuario conocer la **capac
 
 Para esto se usa un switch que ofrece todas las opciones según el año elegido previamente por el usuario en la función seleccion_anyo.
 
-Se obtiene la **capacidad actual**, esta pertenece al vector cuencas de la estructura principal tomando i como la posición del embalse en el año seleccionado, esto permite mostrar la capacidad en dicahs coordenadas.
+- Se obtiene la **capacidad actual**, esta pertenece al vector cuencas de la estructura principal tomando i como la posición del embalse en el año seleccionado, esto permite mostrar la capacidad en dicahs coordenadas.
 
-Se obtiene la **capacidad total** como el vector embalse de la estructura principal tomando b como la posición del embalse en el segundo fichero, esto permite mostrar el total de la capacidad.
+- Se obtiene la **capacidad total** como el vector embalse de la estructura principal tomando b como la posición del embalse en el segundo fichero, esto permite mostrar el total de la capacidad.
 
 Este proceso se repite para cada caso.
 
-Tras el último caso se hace el cálculo del porcentaje, sabemos que es la capacidad actual por cien, entre la total.
-
-La función devuelve el valor de dicho porcentaje.
+Tras el último caso se hace el cálculo del porcentaje, sabemos que es la capacidad actual por cien, entre la total. La función devuelve el valor de dicho porcentaje.
 
 	float porcentaje_embalse (int anyo, int N_mes, int num_cuenca, int vector2[], int b, int num_embalse, linea vector[], linea vector1[]){
 	int i;
