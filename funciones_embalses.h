@@ -21,18 +21,22 @@ typedef struct {
 
 void nombres_cuencas(int j,linea cuenca[]);
 
-int seleccion_cuenca(int num_cuenca);
+int seleccion_cuenca(int num_cuenca,char C_cuenca[]);
 
 void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[]);
 
-int seleccion_embalse(int num_embalse, int vector2[], int num_cuenca);
+int seleccion_embalse(int num_embalse, int vector2[], int num_cuenca, char C_embalse[]);
 
-int seleccion_anyo(int anyo);
+int seleccion_anyo(int anyo, char C_anyo[]);
 
-int seleccion_mes(int mes);
+int seleccion_mes(int N_mes, char C_mes[]);
 
-char *meses_nombres(int mes);
+char *meses_nombres(int N_mes);
 
-float porcentaje_embalse (int anyo, int mes, int num_cuenca, int vector2[], int b, int num_embalse, linea vector[], linea vector1[]);
+float porcentaje_embalse (int anyo, int N_mes, int num_cuenca, int vector2[], int b, int num_embalse, linea vector[], linea vector1[]);
+
+char cambio_espacios_cuencas (linea vector[], int num_cuenca, int vector2[], int num_embalse);
+
+char cambio_espacios_embalses (linea vector[], int num_cuenca, int vector2[], int num_embalse);
 
 void sequia (int porcentaje);
