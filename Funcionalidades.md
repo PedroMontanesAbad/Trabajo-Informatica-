@@ -8,11 +8,11 @@ Dentro de este bucle se pide al usuario un dato de tipo char (formado por una ca
 
 - **La segunda condición** es que el primer elemento de la cadena sea distinto de 0, para que el programa no tenga errores al introducir por ejemplo “08” en vez de “8”.
 
-Después, si se han cumplido las condiciones anteriores, con “sscanf” **transformamos la cadena en** un dato del tipo **int**.
+Después, si se han cumplido las condiciones anteriores, con “*sscanf*” **transformamos la cadena en** un dato del tipo **int**.
 
 - **La tercera condición**, y última, es que, ya teniendo un número, este pertenezca al intervalo en el que se encuentran en este caso las cuencas (1-16).
 
-Tras haber pasado esta criba, si el elemento cumple la 3ª condición **se almacena en “num_cuenca”**.
+Tras haber pasado esta criba, si el elemento cumple la 3ª condición **se almacena en “*num_cuenca*”**.
 	
 	int seleccion_cuenca(int num_cuenca, char C_cuenca[]){
 	
@@ -54,11 +54,11 @@ Dentro de este bucle se pide al usuario un dato de tipo char (formado por una ca
 
 - **La segunda condición** es que el primer elemento de la cadena sea distinto de 0, para que el programa no tenga errores al introducir por ejemplo “08” en vez de “8”.
 
-Después, si se han cumplido las condiciones anteriores, con “sscanf” **transformamos la cadena en** un dato del tipo **int**. 
+Después, si se han cumplido las condiciones anteriores, con “*sscanf*” **transformamos la cadena en** un dato del tipo **int**. 
 
 - **La tercera condición**, y última, es que, ya teniendo un número, este pertenezca al intervalo en el que se encuentran en este caso los embalses (1-Último embalse de la cuenca seleccionada previamente).
 
-Tras haber pasado esta criba, si el elemento cumple la 3ª condición **se almacena en “num_embalse”**.
+Tras haber pasado esta criba, si el elemento cumple la 3ª condición **se almacena en “*num_embalse*”**.
 
  	int seleccion_embalse(int num_embalse, int vector2[], int num_cuenca, char C_embalse[]){
 
@@ -99,11 +99,11 @@ Dentro de este bucle se pide al usuario un dato de tipo char (formado por una ca
 
 - **La primera condición** es que de entre los elementos de la tabla ASCII cada valor introducido pertenezca al intervalo ‘0’ – ‘9’, si no se cumple esta condición se imprime el mensaje de error, con esto nos aseguramos de que el valor introducido sea un número.
  
-Después, si se ha cumplido las condición anterior, con “sscanf” **transformamos la cadena en** un dato del tipo **int**.
+Después, si se ha cumplido las condición anterior, con “*sscanf*” **transformamos la cadena en** un dato del tipo **int**.
 
 - **La segunda condición**, y última, es que, ya teniendo un número, este pertenezca al intervalo en el que se encuentran en este caso los años (2012-2021).
 
-Tras haber pasado esta criba, si el elemento cumple la 2ª condición **se almacena en “anyo”**.
+Tras haber pasado esta criba, si el elemento cumple la 2ª condición **se almacena en “*anyo*”**.
 
 	int seleccion_anyo(int anyo, char C_anyo[]);{
 		
@@ -137,11 +137,11 @@ Dentro de este bucle se pide al usuario un dato de tipo char (formado por una ca
 - 
 - **La segunda condición** es que el primer elemento de la cadena sea distinto de 0, para que el programa no tenga errores al introducir por ejemplo “08” en vez de “8”.
 - 
-Después, si se han cumplido las condiciones anteriores, con “sscanf” **transformamos la cadena en** un dato del tipo **int**.
+Después, si se han cumplido las condiciones anteriores, con “*sscanf*” **transformamos la cadena en** un dato del tipo **int**.
 
 - **La tercera condición**, y última, es que, ya teniendo un número, este pertenezca al intervalo en el que se encuentran en este caso los meses (1-12).
 
-Tras haber pasado esta criba, si el elemento cumple la 3ª condición **se almacena en “N_mes”**.
+Tras haber pasado esta criba, si el elemento cumple la 3ª condición **se almacena en “*N_mes*”**.
 
 	int seleccion_mes(int N_mes, char C_mes[]){
 
