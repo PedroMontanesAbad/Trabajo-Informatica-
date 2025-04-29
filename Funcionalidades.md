@@ -99,7 +99,7 @@ Dentro de este bucle se pide al usuario un dato de tipo char (formado por una ca
 
 - **La primera condición** es que de entre los elementos de la tabla ASCII cada valor introducido pertenezca al intervalo ‘0’ – ‘9’, si no se cumple esta condición se imprime el mensaje de error, con esto nos aseguramos de que el valor introducido sea un número.
  
-Después, si se han cumplido las condición anterior, con “sscanf” **transformamos la cadena en** un dato del tipo **int**.
+Después, si se ha cumplido las condición anterior, con “sscanf” **transformamos la cadena en** un dato del tipo **int**.
 
 - **La segunda condición**, y última, es que, ya teniendo un número, este pertenezca al intervalo en el que se encuentran en este caso los años (2012-2021).
 
