@@ -266,7 +266,7 @@ return porcentaje;
 }
 
 
-//PONER ESPACIOS EN _, CUENCAS:
+//PONER ESPACIOS EN _, EMBALSES:
 
 char cambio_espacios_cuencas (linea vector[], int num_cuenca, int vector2[], int num_embalse){
 	int c=0;
