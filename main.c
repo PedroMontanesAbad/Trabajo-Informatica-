@@ -2,11 +2,14 @@
 #include <string.h>
 #include "funciones_embalses.h" 
 
+
 int main(){
 	
 	int f=0,j=0, k=0, b=0, c,i;
+	
+	char C_cuenca[2], C_embalse[2], C_mes[2], C_anyo[5], cambio[100];
 
-	int num_embalse, anyo, mes,num_cuenca, posiciones_cuencas[15] ;
+	int num_embalse, anyo, N_mes,num_cuenca, posiciones_cuencas[15] ;
 
 	float porcentaje, capacidad_max, capacidad_actual;
 
@@ -15,7 +18,7 @@ int main(){
 //ABRIMOS FICHEROS:
 	
 	FILE *tabla;
-	tabla = fopen("texto_proyecto.txt","r");
+	tabla = fopen("texto_proyecto.csv","r");
 	
 	if (tabla == NULL) // Si el resultado es NULL mensaje de error
 	{
@@ -34,11 +37,13 @@ int main(){
 
 //SE LEE EL PRIMER FICHERO:
 	
-	while (fscanf(tabla, "%s\t%s\t%i\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , &cuenca[j].mes , &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho,  &cuenca[j].dosmildiecinueve,  &cuenca[j].dosmilveinte,  &cuenca[j].dosmilveintiuno ) != EOF)
+	//Poner que el puntero avance una linea
+	fseek(tabla,90,SEEK_SET);
+	while (fscanf(tabla, "%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , &cuenca[j].mes , &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho,  &cuenca[j].dosmildiecinueve,  &cuenca[j].dosmilveinte,  &cuenca[j].dosmilveintiuno ) != EOF)
 	{
 	
 	//printf("Linea %i:\n", j);
-	//printf("%s\t%s\t%i\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , cuenca[j].mes , cuenca[j].dosmildoce, cuenca[j].dosmiltrece, cuenca[j].dosmilcatorce, cuenca[j].dosmilquince, cuenca[j].dosmildieciseis, cuenca[j].dosmildiecisiete, cuenca[j].dosmildieciocho,  cuenca[j].dosmildiecinueve,  cuenca[j].dosmilveinte,  cuenca[j].dosmilveintiuno );
+	//printf("%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , cuenca[j].mes , cuenca[j].dosmildoce, cuenca[j].dosmiltrece, cuenca[j].dosmilcatorce, cuenca[j].dosmilquince, cuenca[j].dosmildieciseis, cuenca[j].dosmildiecisiete, cuenca[j].dosmildieciocho,  cuenca[j].dosmildiecinueve,  cuenca[j].dosmilveinte,  cuenca[j].dosmilveintiuno );
 	
 	j++;
 	}
@@ -65,7 +70,7 @@ nombres_cuencas(j,cuenca);
 
 //NÚMERO DE CUENCA
 
-num_cuenca = seleccion_cuenca(num_cuenca);
+num_cuenca = seleccion_cuenca(num_cuenca, C_cuenca);
 
 //IMPRIME EMBALSES DE UNA CUENCA EN CONCRETO
 
@@ -73,12 +78,12 @@ nombres_cuencas_embalse( j, num_cuenca, cuenca, posiciones_cuencas);
 
 //SELECCIONA EL NÚMERO DE EMBALSE
 
-num_embalse = seleccion_embalse(num_embalse,posiciones_cuencas,num_cuenca);
+num_embalse = seleccion_embalse(num_embalse,posiciones_cuencas,num_cuenca,C_embalse);
 
 
 //IMPRIME CUENCA Y EMBALSE, PARA VER COMO VAS.
 
-printf("Tu embalse es %s, de la cuenca %s \n",cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre,cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica) ;
+//printf("Tu embalse es %s, de la cuenca %s \n",cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre,cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica) ;
 	
 	
 //ESCANEA EL SEGUNDO FICHERO; 
@@ -102,14 +107,19 @@ printf("Tu embalse es %s, de la cuenca %s \n",cuenca[posiciones_cuencas[num_cuen
 
 printf("\n\nAhora vamos a seleccionar la fecha: \n");
 
-anyo = seleccion_anyo(anyo);
+anyo = seleccion_anyo(anyo, C_anyo);
 
-mes = seleccion_mes(mes);
+N_mes = seleccion_mes(N_mes, C_mes);
 
 //MOSTRAMOS TEXTO FINAL CON TODOS LOS DATOS
 
-porcentaje = porcentaje_embalse (anyo, mes, num_cuenca, posiciones_cuencas, b, num_embalse, cuenca, embalse);
-printf("El embalse %s de la cuenca %s estaba al %.2f%% de su capadidad, en %s del anyo %i.", cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre, cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica, porcentaje, meses_nombres(mes), anyo);
+porcentaje = porcentaje_embalse (anyo, N_mes, num_cuenca, posiciones_cuencas, b, num_embalse, cuenca, embalse);
+
+cambio_espacios_cuencas (cuenca, num_cuenca, posiciones_cuencas, num_embalse);
+
+cambio_espacios_embalses (cuenca, num_cuenca, posiciones_cuencas, num_embalse);
+
+printf("El embalse %s de la cuenca %s estaba al %.2f%% de su capadidad, en %s del anyo %i.",cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre , cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica, porcentaje, meses_nombres(N_mes), anyo);
 
 //SÓLO SI HAY SEQÍA
 
@@ -118,4 +128,3 @@ sequia (porcentaje);
 fclose(tabla);
 fclose(lista);
 }
-
