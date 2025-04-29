@@ -172,6 +172,21 @@ Tras haber pasado esta criba, si el elemento cumple la 3ª condición **se almac
 	return N_mes;
 	}
 
+# Cambio  del mes numerado al mes escrito
+
+char **meses_nombres* no es funcional, sino que es estético, su único fin es cambiar el mes numerado (por ejemplo 6) por el mes escrito (junio), esto le hace al usuario más fácil la lectura. 
+
+Para ello se define un puntero char global para poder acceder a el desde la función y que no ocupe espacio en el main.
+
+	char *mes_nom[] = {"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", 
+			"agosto", "septiembre", "octubre", "noviembre", "diciembre"};
+
+La función char **meses_nombres* a partir devuelve el nombre del mes a partir del número de mes "N_mes" obtenido en la función aterior (se le resta 1 porque el almacenamiento en la cadena empieza en el 0.
+
+	char *meses_nombres(int N_mes){
+	return mes_nom[N_mes-1];
+	}
+
 
 
 
