@@ -27,7 +27,7 @@ void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[
 
 int seleccion_embalse(int num_embalse, int vector2[], int num_cuenca, char C_embalse[]);
 
-int seleccion_anyo(int anyo, char C_anyo[]);
+int seleccion_anyo(int anyo);
 
 int seleccion_mes(int N_mes, char C_mes[]);
 
