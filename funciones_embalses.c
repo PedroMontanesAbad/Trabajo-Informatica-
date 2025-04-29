@@ -316,7 +316,7 @@ void sequia (int porcentaje){
 			printf("\n\nPeriodo de sequia grave.");
 		}
 		else if (porcentaje>100){
-			printf("\n\nEmbalse en maximos, posiblemente debordado.");
+			printf("\n\nEmbalse en maximos, peligro de desbordamiento.");
 		}
 		
 		
