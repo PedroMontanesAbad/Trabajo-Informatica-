@@ -27,7 +27,7 @@ A la hora de leer este segundo fichero sólo nos interesa el nombre del embalse 
 	}
 
 
-# FUNCIONALIDADES
+# FUNCIONALIDADES:
 ## Selección de cuenca:
 int *seleccion_cuencas* permite al usuario **seleccionar una de las cuencas** en el intervalo del 1 al 16, si la selección está fuera de ese rango se imprime por pantalla un mensaje de error y se invita al usuario a elegir otro número mediante un bucle While. 
 
