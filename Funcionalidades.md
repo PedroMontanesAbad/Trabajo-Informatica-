@@ -1,3 +1,32 @@
+# MAIN:
+## Lectura del segundo fichero:
+**Abrimos el fichero**
+	
+ 	FILE *lista;
+	lista = fopen("Embalses_capacidad.txt","r");
+	
+	if (lista == NULL) // Si el resultado es NULL mensaje de error
+	{
+	printf("Error al abrir el fichero 2.\n");
+	return -1;
+	}
+ 
+**Lectura:**
+A la hora de leer este segundo fichero sólo nos interesa el nombre del embalse ya elegido por el fichero del usuario. Por esto mientras que leemos el archivo vamos a **comparar cada nombre de embalse con el nombre del embalse elegido**. Cada vez que avanza la lectura se suma 1 a un contador. En cuanto los embalses coincidan se iguala el número del contador a una variable "*embalse_coincide*"
+
+ 	while ( fscanf(lista, "%s\t%f\n", embalse[k].embalse_nom , &embalse[k].etotal) !=EOF )
+	{
+
+	//printf("%s\t%.2f\n", embalse[k].embalse_nom, embalse[k].etotal );
+	
+	if  (strcmp(cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre , embalse[k].embalse_nom) == 0){
+		embalse_coincide = k+1;
+	}
+	k++;	
+
+	}
+
+
 # FUNCIONALIDADES
 ## Selección de cuenca:
 int *seleccion_cuencas* permite al usuario **seleccionar una de las cuencas** en el intervalo del 1 al 16, si la selección está fuera de ese rango se imprime por pantalla un mensaje de error y se invita al usuario a elegir otro número mediante un bucle While. 
@@ -201,7 +230,7 @@ Este proceso se repite para cada caso.
 
 Tras el último caso se hace el cálculo del porcentaje, sabemos que es la capacidad actual por cien, entre la total. La función devuelve el valor de dicho porcentaje.
 
-	float porcentaje_embalse (int anyo, int N_mes, int num_cuenca, int vector2[], int b, int num_embalse, linea vector[], linea vector1[]){
+	float porcentaje_embalse (int anyo, int N_mes, int num_cuenca, int vector2[], int embalse_coincide, int num_embalse, linea vector[], linea vector1[]){
 	int i;
 	float capacidad_actual=0, capacidad_max=0, porcentaje;
 
@@ -210,7 +239,7 @@ Tras el último caso se hace el cálculo del porcentaje, sabemos que es la capac
 	case(2012):
 			i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual = vector[i].dosmildoce;
-			capacidad_max = vector1[b-1].etotal;
+			capacidad_max = vector1[embalse_coincide-1].etotal;
 		
 		porcentaje = capacidad_actual*100/capacidad_max;
 		break;
@@ -218,7 +247,7 @@ Tras el último caso se hace el cálculo del porcentaje, sabemos que es la capac
 	case(2013):
 			i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmiltrece;
-			capacidad_max = vector1[b-1].etotal;
+			capacidad_max = vector1[embalse_coincide-1].etotal;
 		
 		porcentaje = capacidad_actual*100/capacidad_max;
 		break;
@@ -226,7 +255,7 @@ Tras el último caso se hace el cálculo del porcentaje, sabemos que es la capac
 	case(2014):
 			i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmilcatorce;
-			capacidad_max = vector1[b-1].etotal;
+			capacidad_max = vector1[embalse_coincide-1].etotal;
 		
 		porcentaje = capacidad_actual*100/capacidad_max;
 		break;
@@ -234,15 +263,15 @@ Tras el último caso se hace el cálculo del porcentaje, sabemos que es la capac
 	case(2015):
 		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmilquince;
-			capacidad_max = vector1[b-1].etotal;
-		//printf ("\n%i, CA %f, CM %f\n",b,capacidad_actual, capacidad_max);
+			capacidad_max = vector1[embalse_coincide-1].etotal;
+		
 		porcentaje = capacidad_actual*100/capacidad_max;
 		break;	
 		
 	case(2016):
 		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmildieciseis;
-			capacidad_max = vector1[b-1].etotal;
+			capacidad_max = vector1[embalse_coincide-1].etotal;
 		
 		porcentaje = capacidad_actual*100/capacidad_max;
 		break;	
@@ -250,7 +279,7 @@ Tras el último caso se hace el cálculo del porcentaje, sabemos que es la capac
 	case(2017):
 		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmildiecisiete;
-			capacidad_max = vector1[b-1].etotal;
+			capacidad_max = vector1[embalse_coincide-1].etotal;
 		
 		porcentaje = capacidad_actual*100/capacidad_max;
 		break;
@@ -258,7 +287,7 @@ Tras el último caso se hace el cálculo del porcentaje, sabemos que es la capac
 	case(2018):
 		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmildieciocho;
-			capacidad_max = vector1[b-1].etotal;
+			capacidad_max = vector1[embalse_coincide-1].etotal;
 		
 		porcentaje = capacidad_actual*100/capacidad_max;
 		break;
@@ -266,7 +295,7 @@ Tras el último caso se hace el cálculo del porcentaje, sabemos que es la capac
 	case(2019):
 		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmildiecinueve;
-			capacidad_max = vector1[b-1].etotal;		
+			capacidad_max = vector1[embalse_coincide-1].etotal;		
 		
 		porcentaje = capacidad_actual*100/capacidad_max;
 		break;
@@ -274,7 +303,7 @@ Tras el último caso se hace el cálculo del porcentaje, sabemos que es la capac
 	case(2020):
 		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmilveinte;
-			capacidad_max = vector1[b-1].etotal;		
+			capacidad_max = vector1[embalse_coincide-1].etotal;		
 		
 		porcentaje = capacidad_actual*100/capacidad_max;
 		break;
@@ -282,7 +311,7 @@ Tras el último caso se hace el cálculo del porcentaje, sabemos que es la capac
 	case(2021):
 		i=vector2[num_cuenca-1]+(num_embalse-1)*12+(N_mes-1);
 			capacidad_actual =  vector[i].dosmilveintiuno;
-			capacidad_max = vector1[b-1].etotal;	
+			capacidad_max = vector1[embalse_coincide-1].etotal;	
 		
 		porcentaje = capacidad_actual*100/capacidad_max;
 		break;
