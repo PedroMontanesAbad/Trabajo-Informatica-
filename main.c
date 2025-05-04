@@ -5,7 +5,7 @@
 
 int main(){
 	
-	int f=0,j=0, k=0, b=0, c,i;
+	int f=0,j=0, k=0, embalse_coincide=0, c,i;
 	
 	char C_cuenca[2], C_embalse[2], C_mes[2], C_anyo[5], cambio[100];
 
@@ -97,7 +97,7 @@ num_embalse = seleccion_embalse(num_embalse,posiciones_cuencas,num_cuenca,C_emba
 	//printf("%s\t%.2f\n", embalse[k].embalse_nom, embalse[k].etotal );
 	
 	if  (strcmp(cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre , embalse[k].embalse_nom) == 0){
-		b = k+1;
+		embalse_coincide = k+1;
 	}
 	k++;	
 
@@ -113,7 +113,7 @@ N_mes = seleccion_mes(N_mes, C_mes);
 
 //MOSTRAMOS TEXTO FINAL CON TODOS LOS DATOS
 
-porcentaje = porcentaje_embalse (anyo, N_mes, num_cuenca, posiciones_cuencas, b, num_embalse, cuenca, embalse);
+porcentaje = porcentaje_embalse (anyo, N_mes, num_cuenca, posiciones_cuencas, embalse_coincide, num_embalse, cuenca, embalse);
 
 cambio_espacios_cuencas (cuenca, num_cuenca, posiciones_cuencas, num_embalse);
 
