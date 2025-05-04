@@ -33,7 +33,7 @@ int seleccion_mes(int N_mes, char C_mes[]);
 
 char *meses_nombres(int N_mes);
 
-float porcentaje_embalse (int anyo, int N_mes, int num_cuenca, int vector2[], int b, int num_embalse, linea vector[], linea vector1[]);
+float porcentaje_embalse (int anyo, int N_mes, int num_cuenca, int vector2[], int embalse_coincide, int num_embalse, linea vector[], linea vector1[]);
 
 char cambio_espacios_cuencas (linea vector[], int num_cuenca, int vector2[], int num_embalse);
 
