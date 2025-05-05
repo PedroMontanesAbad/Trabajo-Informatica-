@@ -8,7 +8,7 @@
 Son las cosas más básicas
 
 Para que se vea el código que has hecho:
-
+	
 	int main(){
 	
 	int f=0,j=0, k=0, b=0, c,i;
