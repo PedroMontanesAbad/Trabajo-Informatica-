@@ -404,3 +404,5 @@ Para esto se utilizan condicionales if.
 		
 }
 
+# PALABRA DEL DÍA:
+## 
