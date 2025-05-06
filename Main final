@@ -1,5 +1,254 @@
-MAIN FINAL COMUN
-//Incluimos las librerias:
-#include "libreria_comun_proyecto"
+#include "funciones_comunes.h"
 
-//Primero creamos el menú:
+
+int main(void)//system cls importantes antes de cada funcion
+{
+	system("color 0A");
+	
+	
+	
+	//Preparaciones antes del programa:
+	int i, j = 0, anyo, num_cuenca, num_embalse, f = 0,n;
+
+	int maxmin[4];
+
+	int posiciones_cuencas[15];
+
+	float media;
+	
+	linea cuenca[4236];
+	
+	//ABRIMOS FICHEROS:
+	
+	FILE *tabla;
+	tabla = fopen("texto_proyecto_actualizado.csv","r");
+	
+	if (tabla == NULL) // Si el resultado es NULL mensaje de error
+	{
+	printf("Error al abrir el fichero.\n");
+	return -1;
+	}
+
+	FILE *lista;
+	lista = fopen("Embalses_capacidad.txt","r");
+	
+	if (lista == NULL) // Si el resultado es NULL mensaje de error
+	{
+	printf("Error al abrir el fichero 2.\n");
+	return -1;
+	}
+
+	//SE LEE EL PRIMER FICHERO:
+	
+	//Poner que el puntero avance una linea
+	fseek(tabla,90,SEEK_SET);
+	while (fscanf(tabla, "%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , &cuenca[j].mes , &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho,  &cuenca[j].dosmildiecinueve,  &cuenca[j].dosmilveinte,  &cuenca[j].dosmilveintiuno ) != EOF)
+	{
+	
+	//printf("Linea %i:\n", j);
+	//printf("%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , cuenca[j].mes , cuenca[j].dosmildoce, cuenca[j].dosmiltrece, cuenca[j].dosmilcatorce, cuenca[j].dosmilquince, cuenca[j].dosmildieciseis, cuenca[j].dosmildiecisiete, cuenca[j].dosmildieciocho,  cuenca[j].dosmildiecinueve,  cuenca[j].dosmilveinte,  cuenca[j].dosmilveintiuno );
+	
+	j++;
+	}
+	
+	// las comparamos para no repetir
+	
+	for (i=0;i<j;i++){
+	
+	if (strcmp(cuenca[i].cuenca_hidrografica, cuenca[i-1].cuenca_hidrografica) != 0){
+		
+		posiciones_cuencas[f]=i;
+		//printf("\ni es %i",posiciones_cuencas[f]);
+		f++;
+	}
+}
+
+	//añadimos la número 16
+
+	posiciones_cuencas[f]=j;
+
+
+
+	do
+	{
+		system("cls");
+		printf("\a");
+		gotoxy(80, 2);
+		Fecha();
+		DibujarMenu();
+		Texto0();
+		scanf_s("%d", &n);
+		system("cls");
+
+
+
+		switch (n)
+		{
+		case 1: 	//Faltan los titulos, en este caso n=1, titulo --> Ver datos generales
+			do
+			{
+				Texto1();
+				scanf_s("%d", &n);
+				if (n == 1)
+				{
+					//Faltan los titulos, en este caso n=1, titulo --> Ver medias de litros totales por año
+							system("cls");
+					printf("De que anyo necesitas informacion\n");
+					scanf("%i", &anyo);
+					printf("Para calcular la media seleccione una cuenca\n");
+					nombres_cuencas(j,cuenca);
+					scanf("%i", &num_cuenca);
+					printf("Selecciona el embalse de la cuenca elegida\n");
+					nombres_cuencas_embalse(j,num_cuenca,cuenca,posiciones_cuencas);
+					scanf("%i", &num_embalse);
+					media = media_anyo_embalse(j,anyo,num_cuenca,num_embalse,cuenca,posiciones_cuencas);
+					//printf("La media es %f", media);
+					printf("La media de %i de la cuenca %s, embalse %s es %f", anyo, cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica,cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre, media);
+					printf("\nPara volver al menu pulse 1, para cerrar el programa pulse 2\n");
+					scanf("%i",&n);
+					//Cambiamos n para seguir (n=7), se vuelve a hacer el menu, o para salir (n=6) exit.
+					n = 8-n;
+					break;
+
+				}
+				if (n == 2)
+				{
+					n = 0;
+					break;
+
+				}
+				if (n == 3)
+				{
+					n = 0;
+					break;
+
+				}
+				else if (n == 4)
+				{
+					system("cls");
+					exit(-1);
+				}
+				system("cls");
+			} while (n != 5);
+
+			break;
+		case 2:
+			do
+			{
+				
+				DibujarMenu();
+				Texto2();
+
+				scanf_s("%d", &n);
+			
+			
+				//printf(Para volver al menu pulse 1, para cerrar el programa pulse 2 )
+				if (n == 5)
+				{
+					n = 0;
+					break;
+
+				}
+				else if (n == 6)
+				{
+					system("cls");
+					exit(-1);
+				}
+				system("cls");
+			} while (n != 5);
+
+			break;
+		case 3://Analisis de datos
+			do
+			{
+				DibujarMenu();
+				Texto3();
+				scanf_s("%d", &n);
+				if (n == 1)
+				{
+					system("cls");
+					//calcular_media();
+				}
+				if (n == 5)
+				{
+					n = 0;
+					break;
+
+				}
+				else if (n == 6)
+				{
+					system("cls");
+					exit(-1);
+				}
+				system("cls");
+			} while (n != 5);
+
+			break;
+		case 4:
+			do
+			{
+				DibujarMenu();
+				Texto4();
+				scanf_s("%d", &n);
+				if (n == 5)
+				{
+					n = 0;
+					break;
+
+				}
+				else if (n == 6)
+				{
+					system("cls");
+					exit(-1);
+				}
+				system("cls");
+			} while (n != 5);
+
+			break;
+		case 5://AJUSTES
+			do
+			{
+				DibujarMenu();
+				Texto5();
+				scanf_s("%d", &n);
+
+				if (n == 1)
+					system("color 46");
+				if (n == 12)
+					system("color 56");
+				if (n == 13)
+					system("color 97");
+				else if (n == 2)
+				{
+					system("cls");
+					donut();
+					//system("pause");
+			//pause solo necesario para los printf, para funciones no parece ser necesarios
+				}
+				else if (n == 5)
+				{
+					n = 0;
+					break;
+
+				}
+				else if (n == 6)
+				{
+					system("cls");
+					exit(-1);
+				}
+				system("cls");
+			} while (n != 5);
+
+			break;
+		case 6:
+			exit(-1);
+		default:
+			break;
+
+		}
+	} while (n < 1 || n>6);
+
+//	scanf_s("%d", &n);
+
+	return 0;
+}
