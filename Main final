@@ -1,5 +1,5 @@
 MAIN FINAL COMUN
 //Incluimos las librerias:
-
+#include "libreria_comun_proyecto"
 
 //Primero creamos el menú:
