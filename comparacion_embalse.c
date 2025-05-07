@@ -960,3 +960,55 @@ if(strcmp(comp[l_r_embalse/12-1].uso_restaurante,comp[l_r_embalse2/12-1].uso_res
 		printf("Ambos embalses se usan para restaurantes.\n" );
 	}}
 }
+
+
+//CAMBIO DE GUION A ESPACIO
+char cambios_espacios_embalses (frase cuenca [], int l_r_embalse, int l_r_embalse2){
+	int c=0;
+	int b=0;
+	char cambio[100];
+	char cambio2[100];
+	strcpy(cambio, cuenca[l_r_embalse-1].embalse_nombre);
+	strcpy(cambio2, cuenca[l_r_embalse2-1].embalse_nombre);
+	
+	while(cambio[c] != '\0'){
+		if (cambio[c]=='_'){
+			cambio[c]=' ';
+		}
+		c++;
+	}
+	while(cambio2[b] != '\0'){
+		if(cambio2[b]=='_'){
+			cambio2[b]=' ';
+		}
+		b++;
+	}
+	
+	strcpy(cuenca[l_r_embalse-1].embalse_nombre,cambio);
+	strcpy(cuenca[l_r_embalse2-1].embalse_nombre,cambio2);
+}
+
+char cambios_espacios_tipo_presa (DatosComparacion comp[], int l_r_embalse, int l_r_embalse2){
+	int c=0;
+	int b=0;
+	char cambio[100];
+	char cambio2[100];
+	strcpy(cambio, comp[l_r_embalse/12-1].tipo_presa);
+	strcpy(cambio2, comp[l_r_embalse2/12-1].tipo_presa);
+	
+	while(cambio[c] != '\0'){
+		if (cambio[c]=='_'){
+			cambio[c]=' ';
+		}
+		c++;
+	}
+	while(cambio2[b] != '\0'){
+		if(cambio2[b]=='_'){
+			cambio2[b]=' ';
+		}
+		b++;
+	}
+	
+	strcpy(comp[l_r_embalse/12-1].tipo_presa,cambio);
+	strcpy(comp[l_r_embalse2/12-1].tipo_presa,cambio2);
+}
