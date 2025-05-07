@@ -53,7 +53,8 @@ while(fscanf(capacidad,"%s\t%f\n",embalse[vc].embalse_nom,&embalse[vc].etotal)!=
 while(fscanf(F_comparacion,"%99[^,],%f,%99[^,],%4[^,],%4[^,],%4[^,],%4[^,],%4[^,],%4[^,],%4[^,],%4[^,],%4[^\n]\n",comp[vco].nombre_embalse,&comp[vco].superficie,comp[vco].tipo_presa,comp[vco].uso_abastecimiento,comp[vco].uso_riego,comp[vco].uso_electricidad,comp[vco].uso_industrial,comp[vco].uso_pesca,comp[vco].uso_navegacion,comp[vco].uso_banyo,comp[vco].uso_picnic,comp[vco].uso_restaurante)!=EOF){
 	    vco++;
 	}
-	
+
+do{
 //LISTA CUENCAS
 nombres_cuencas(vb,cuenca);
 
@@ -71,6 +72,12 @@ num_cuenca2=seleccion_cuenca_2(num_cuenca2);
 
 //SELECCION 2 EMBALSE
 nombreseleccion_embalse_2(num_cuenca2,cuenca, &num_embalse2, &l_r_embalse2);
+
+if(l_r_embalse==l_r_embalse2){
+	printf("\nHas elegido el mismo embalse, no se puede hacer la comparacion. Intentelo de nuevo.\n");
+}
+
+}while(l_r_embalse==l_r_embalse2);
 
 cambios_espacios_embalses(cuenca,l_r_embalse,l_r_embalse2);
 cambios_espacios_tipo_presa (comp,l_r_embalse,l_r_embalse2);
