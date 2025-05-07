@@ -72,6 +72,9 @@ num_cuenca2=seleccion_cuenca_2(num_cuenca2);
 //SELECCION 2 EMBALSE
 nombreseleccion_embalse_2(num_cuenca2,cuenca, &num_embalse2, &l_r_embalse2);
 
+cambios_espacios_embalses(cuenca,l_r_embalse,l_r_embalse2);
+cambios_espacios_tipo_presa (comp,l_r_embalse,l_r_embalse2);
+
 	printf("\nEl primer embalse elegido es %s\n", cuenca[l_r_embalse-1].embalse_nombre);
 	printf("El segundo embalse elegido es %s\n", cuenca[l_r_embalse2-1].embalse_nombre);
 
