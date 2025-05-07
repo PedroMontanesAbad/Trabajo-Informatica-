@@ -21,15 +21,34 @@ for(i=0;i<vb;i++){
 
 //SELECCION CUENCA:
 
-int seleccion_cuenca_1(int num_cuenca){
+int seleccion_cuenca_1(int num_cuenca, char C_cuenca[]){
+		
 	do{
-	printf("Introduce el numero de cuenca:\t");
-	scanf("%i",&num_cuenca);
-	//
-	if(num_cuenca<=0||num_cuenca>16){
-		printf("Numero no valido, pruebe otra vez.\n");
+	
+	printf("\nIntroduce el numero de la cuenca: ");
+	scanf("%s", C_cuenca);
+	
+	if(('9'<C_cuenca[0] && C_cuenca[0]<'0') && ('9'<C_cuenca[1] && C_cuenca[1]<'0')){
+		printf ("\nCaracter no valido, repite:\n");	
 	}
-}while(num_cuenca<=0 || num_cuenca>16 );
+	else{	
+		if (C_cuenca[0] == '0'){
+			printf ("\nbNumero no valido, repite:\n");
+		}
+		
+		else{		
+			sscanf(C_cuenca, "%i", &num_cuenca);
+			if((0 >= num_cuenca) || ( num_cuenca > 16 )){
+				printf ("\ncNumero no valido, repite:\n");
+			}
+		}
+	}
+}
+
+while ((0 >= num_cuenca) || ( num_cuenca > 16 ) || (('9'<C_cuenca[0] && C_cuenca[0]<'0') && ('9'<C_cuenca[1] && C_cuenca[1]<'0')) || (C_cuenca[0] == '0'));
+
+return num_cuenca;
+
 }
 
 
@@ -235,15 +254,34 @@ void nombreseleccion_embalse_1(int num_cuenca,frase cuenca[], int* num_embalse, 
 
 
 //SELECCION CUENCA 2
-int seleccion_cuenca_2(int num_cuenca2){
+int seleccion_cuenca_2(int num_cuenca2, char C_cuenca2[]){
+	
 	do{
-	printf("\nIntroduce el numero de la segunda cuenca:\t");
-	scanf("%i",&num_cuenca2);
-	//
-	if(num_cuenca2<=0||num_cuenca2>16){
-		printf("Numero no valido, pruebe otra vez.\n");
+	
+	printf("\nIntroduce el numero de la cuenca: ");
+	scanf("%s", C_cuenca2);
+	
+	if(('9'<C_cuenca2[0] && C_cuenca2[0]<'0') && ('9'<C_cuenca2[1] && C_cuenca2[1]<'0')){
+		printf ("\nCaracter no valido, repite:\n");	
 	}
-}while(num_cuenca2<=0 || num_cuenca2>16 );
+	else{	
+		if (C_cuenca2[0] == '0'){
+			printf ("\nbNumero no valido, repite:\n");
+		}
+		
+		else{		
+			sscanf(C_cuenca2, "%i", &num_cuenca2);
+			if((0 >= num_cuenca2) || ( num_cuenca2 > 16 )){
+				printf ("\ncNumero no valido, repite:\n");
+			}
+		}
+        }
+}
+
+while ((0 >= num_cuenca2) || ( num_cuenca2 > 16 ) || (('9'<C_cuenca2[0] && C_cuenca2[0]<'0') && ('9'<C_cuenca2[1] && C_cuenca2[1]<'0')) || (C_cuenca2[0] == '0'));
+
+return num_cuenca2;
+
 }
 
 
