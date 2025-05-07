@@ -68,6 +68,10 @@ void tipo_embalse(DatosComparacion comp[],int l_r_embalse, int l_r_embalse2, fra
 
 void uso_embalse(DatosComparacion comp[],int l_r_embalse, int l_r_embalse2, frase cuenca[]);
 
+char cambios_espacios_embalses (frase cuenca [], int l_r_embalse, int l_r_embalse2);
+
+char cambios_espacios_tipo_presa (DatosComparacion comp[], int l_r_embalse, int l_r_embalse2);
+
 
 
 
