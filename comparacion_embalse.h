@@ -40,11 +40,11 @@ typedef struct {
 
 void nombres_cuencas(int vb, frase cuenca[]);
 
-int seleccion_cuenca_1(int num_cuenca);
+int seleccion_cuenca_1(int num_cuenca, char C_cuenca[]);
 
 void nombreseleccion_embalse_1(int num_cuenca,frase cuenca[], int* num_embalse, int* l_r_embalse);
 
-int seleccion_cuenca_2(int num_cuenca2);
+int seleccion_cuenca_2(int num_cuenca2, char C_cuenca2[]);
 
 void nombreseleccion_embalse_2(int num_cuenca2,frase cuenca[], int* num_embalse2, int* l_r_embalse2);
 
