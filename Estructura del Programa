@@ -62,7 +62,7 @@ int preguntas_cuestionario(int i){
             
             valor = valor_letra_introducida();
             
-            return valor - 'A' + 1; /*Se resta al valor de la letra el valor de A para que sea un número entre el 0 y el 3 y se le suma 1 para que esté en 1-4*/;
+            break; 
             
       case  1:  
       
@@ -74,7 +74,7 @@ int preguntas_cuestionario(int i){
             
             valor = valor_letra_introducida();
             
-            return valor - 'A' + 1;
+            break;
             
       case  2:  
       
@@ -86,7 +86,7 @@ int preguntas_cuestionario(int i){
             
             valor = valor_letra_introducida();
             
-            return valor - 'A' + 1;    
+            break;    
             
       case  3:  
       
@@ -98,7 +98,8 @@ int preguntas_cuestionario(int i){
             
             valor = valor_letra_introducida();
             
-            return valor - 'A' + 1;
+            break;
+            
       case  4:  
       
             printf("\nPREGUNTA Nª5: \n");
@@ -109,7 +110,8 @@ int preguntas_cuestionario(int i){
             
             valor = valor_letra_introducida();
             
-            return valor - 'A' + 1;
+            break;
+            
       case  5:  
       
             printf("\nPREGUNTA Nª6: \n");
@@ -120,8 +122,11 @@ int preguntas_cuestionario(int i){
             
             valor = valor_letra_introducida();
             
-            return valor - 'A' + 1;
+            break;
+        
     }
+            
+       return valor - 'A' + 1;/*Se resta al valor de la letra el valor de A para que sea un número entre el 0 y el 3 y se le suma 1 para que esté en 1-4*/;    
 }
 
 void mostrar_resultado(int correcta, int i){
@@ -222,13 +227,13 @@ void informacion_respuestas(int i){
         
         case 3:
         
-            printf("\n \n-El embalse más antiguo de España se encuentra en la Comunidad Autónoma de Extremadura, más concretamente en Mérida. Es el embalse de Proserpina, fue construido por los romanos entre el I y II d.C y todavía sigue en uso (con fines recreativos). \n");
+            printf("\n \n-El nivel de los embalses depende principalmente del balance entre el agua que reciben (principalmente de la lluvia y el deshielo) y la que se extrae para riego, consumo y otros usos. Las precipitaciones y las sequías tienen un impacto directo, mucho más que otros factores como la altitud o la densidad poblacional.\n");
         
         break;
         
         case 4:
         
-            printf("\n \n-El nivel de los embalses depende principalmente del balance entre el agua que reciben (principalmente de la lluvia y el deshielo) y la que se extrae para riego, consumo y otros usos. Las precipitaciones y las sequías tienen un impacto directo, mucho más que otros factores como la altitud o la densidad poblacional.\n");
+            printf("\n \n-El embalse más antiguo de España se encuentra en la Comunidad Autónoma de Extremadura, más concretamente en Mérida. Es el embalse de Proserpina, fue construido por los romanos entre el I y II d.C y todavía sigue en uso (con fines recreativos). \n");
         
         break;
         
