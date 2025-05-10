@@ -2949,7 +2949,9 @@ void premios_concurso(int numero_aciertos){
 }
 
 int cuestionario(){
-    
+
+    setlocale(LC_ALL, "");
+	
     printf("\nOímos, vemos y hablamos sobre los embalses cotidianamente, nos abastecen de agua para el consumo y la agricultura y tienen un impacto en el día a día del que el ciudadano promedio no es consciente. Dicho esto, ¿sabrás lo suficiente cómo para llevarte el premio al que más sabe de embalses?");
     
     int valor_pregunta = pregunta_inicial(), respuestas[6], respuestas_correctas[6]={3,4,2,4,1,3};
