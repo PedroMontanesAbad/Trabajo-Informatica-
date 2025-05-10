@@ -80,7 +80,7 @@ int preguntas_cuestionario(int i){
       
             printf("\nPREGUNTA Nª3: \n");
       
-            printf("¿Paísen el que se encuentra el embalse más grande de Europa?");
+            printf("¿País en el que se encuentra el embalse más grande de Europa?");
       
             printf("\n \tA)Francia \n \tB)Ucrania \n \tC)Italia \n \tD)Suecia\n");
             
