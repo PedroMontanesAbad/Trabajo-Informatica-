@@ -1161,4 +1161,64 @@ tabla_errores(correcta,i){
     
     }
 }
+
+int cuestionario(){
+    
+    printf("\nOímos, vemos y hablamos sobre los embalses cotidianamente, nos abastecen de agua para el consumo y la agricultura y tienen un impacto en el día a día del que el ciudadano promedio no es consciente. Dicho esto, ¿sabrás lo suficiente cómo para llevarte el premio al que más sabe de embalses?");
+    
+    int valor_pregunta = pregunta_inicial(), respuestas[6], respuestas_correctas[6]={3,4,2,4,1,3};
+    
+    if(valor_pregunta == 1){
+        
+      printf("\t \t \t*********************************\n");
+    
+      printf("\t \t \t*    CUESTIONARIO DE EMBALSES   *\n");
+    
+      printf("\t \t \t*********************************\n");
+    
+    for(int i=0;i<6;i++){
+        
+        respuestas[i] = preguntas_cuestionario( i );
+       
+        mostrar_resultado(respuestas[i]==respuestas_correctas[i], i);
+      
+        informacion_respuestas(i);
+    }
+    
+    int numero_aciertos=0;
+    
+    for(int i=0;i<6;i++){
+        
+      tabla_errores(respuestas[i]==respuestas_correctas[i], i);
+    
+        if(respuestas[i]==respuestas_correctas[i]){
+        
+            numero_aciertos++;
+    
+        }
+    
+    }
+    
+    printf("\n \t \t ***************");/*se acaba la tabla por abajo*/
+    
+    premios_concurso(numero_aciertos);
+    
+    }
+    
+    else if(valor_pregunta == 2){
+    
+    printf("\n joe :(");
+    
+    return 0;
+    
+    }
+    
+    else{
+        
+        return 0;
+        
+    }
+
+    return 0;
+}
 //Final funciones del cuestionario
