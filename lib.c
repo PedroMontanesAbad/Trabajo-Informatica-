@@ -995,6 +995,7 @@ void CuatroCuadrados()
 	}
 }
 
+//Inicio funciones del cuestionario
 int pregunta_inicial(){
     int valor;
     printf("\n \n¿Iniciar cuestionario?\n");
@@ -1160,3 +1161,4 @@ tabla_errores(correcta,i){
     
     }
 }
+//Final funciones del cuestionario
