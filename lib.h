@@ -9,6 +9,7 @@
 #include <time.h>
 #include <stdint.h>
 #include <string.h>
+#include <ctype.h>
 
 void gotoxy(int x, int y);
 void DibujarMenu();
