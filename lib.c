@@ -2546,7 +2546,7 @@ if(!cuenca|| !embalse|| !comp){
 	
 //Fich
 FILE *base;
-base=fopen("dataset.csv","r");
+base=fopen("texto_proyecto.csv","r");
 		if(base==NULL){
 			printf("Error al abrir el fichero base.\n");
 			return -1;
