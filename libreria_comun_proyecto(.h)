@@ -78,3 +78,4 @@ void mostrar_resultado(int correcta, int i);
 void informacion_respuestas(int i);
 void tabla_errores(int correcta,int i);
 void premios_concurso(int numero_aciertos);
+
