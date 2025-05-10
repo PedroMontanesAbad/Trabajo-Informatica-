@@ -69,3 +69,12 @@ void Texto5();
 int donut();
 void Fecha();
 void CuatroCuadrados();
+
+int cuestionario();
+int pregunta_inicial();
+int valor_letra_introducida();
+int preguntas_cuestionario(int i);
+void mostrar_resultado(int correcta, int i);
+void informacion_respuestas(int i);
+void tabla_errores(int correcta,int i);
+void premios_concurso(int numero_aciertos);
