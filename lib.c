@@ -185,6 +185,193 @@ float max_y_min_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea 
 
 }
 
+#include "lib.h"
+ 
+int calcular_media() {
+
+	int i, j = 0, anyo, num_cuenca, num_embalse, f = 0;
+
+	int maxmin[4];
+
+	int posiciones_cuencas[15];
+
+	float media;
+
+	linea cuenca[4236];
+
+	FILE* tabla;
+	tabla = fopen("texto_proyecto.txt", "r");
+	if (tabla == NULL) // Si el resultado es NULL mensaje de error
+	{
+		printf("Error al abrir el fichero.\n");
+		return -1;
+	}
+
+
+	while (fscanf(tabla, "%s\t%s\t%i\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", cuenca[j].cuenca_hidrografica, cuenca[j].embalse_nombre, &cuenca[j].mes, &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho, &cuenca[j].dosmildiecinueve, &cuenca[j].dosmilveinte, &cuenca[j].dosmilveintiuno) != EOF)
+	{
+		j++;
+	}
+
+	//Almacenar posiciones cuencas
+	//Aparecen irregularmente debemos compararlas para no repetir
+	for (i = 0;i < j;i++) {
+
+		if (strcmp(cuenca[i].cuenca_hidrografica, cuenca[i - 1].cuenca_hidrografica) != 0) {
+			posiciones_cuencas[f] = i;
+			f++;
+		}
+	}
+
+
+
+	//Nombres cuencas numeradas:
+	//nombres_cuencas(j,cuenca);
+
+	//Nombres embalses numerados:
+	//nombres_embalses(j,cuenca);
+
+	//Nombres de los embalses de una cuenca en concreto:
+	//scanf("%i", &num_cuenca);
+	//nombres_cuencas_embalse( j, num_cuenca, cuenca, posiciones_cuencas);
+
+	//Media de un año en concreto:
+	//scanf("%i", &anyo);
+	//media = media_anyo(j, anyo, cuenca);
+	//printf("La media en %i fue de %f", anyo, media)
+
+	//Media de un embalse un año en concreto:
+	//scanf("%i", &anyo);
+	//scanf("%i", &num_cuenca);
+	//scanf("%i", &num_embalse);
+	//media = media_anyo_embalse(j, anyo, num_cuenca, num_embalse, cuenca, posiciones_cuencas);
+	//printf("La media de %i de la cuenca %s, embalse %s es %f", anyo, cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].cuenca_hidrografica,cuenca[posiciones_cuencas[num_cuenca-1]+(num_embalse-1)*12].embalse_nombre);
+
+
+	//Máximo y minimo de un embalse un año en concreto:
+	//scanf("%i", &anyo);
+	//scanf("%i", &num_cuenca);
+	//scanf("%i", &num_embalse);
+	//max_y_min_embalse(j, anyo, num_cuenca, num_embalse, cuenca, posiciones_cuencas, maxmin);
+	//printf("El maximo es %f en el mes %i, el minimo es %f en el mes %i", maxmin[0],maxmin[1],maxmin[2],maxmin[3]);
+
+
+	//Ejemplo programa
+	printf("Para calcular la media seleccione un año(2012)\n");
+	anyo = 2012;
+	printf("Para calcular la media seleccione una cuenca\n");
+	nombres_cuencas(j, cuenca);
+	scanf("%i", &num_cuenca);
+	printf("Selecciona el embalse de la cuenca elegida\n");
+	nombres_cuencas_embalse(j, num_cuenca, cuenca, posiciones_cuencas);
+	scanf("%i", &num_embalse);
+	media = media_anyo_embalse(j, anyo, num_cuenca, num_embalse, cuenca, posiciones_cuencas);
+	//printf("La media es %f", media);
+	printf("La media de %i de la cuenca %s, embalse %s es %f", anyo, cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].cuenca_hidrografica, cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].embalse_nombre, media);
+
+
+
+
+
+}
+
+void nombres_embalses(int j, linea vector[]) {		// Vector es cuencas
+	int i, f = 0;
+	for (i = 0;i < j;i++) {
+		if (i % 12 == 0) {
+			printf("%i. %s\n", f + 1, vector[i].embalse_nombre);
+			f++;
+
+		}
+	}
+}
+
+void nombres_cuencas(int j, linea vector[]) {			// Vector 1 es cuencas y vector 2 posiciones cuencas
+	int i, f = 0;
+	for (i = 0;i < j;i++) {
+		if (strcmp(vector[i].cuenca_hidrografica, vector[i - 1].cuenca_hidrografica) != 0) {
+			printf("%i. %s\n", f + 1, vector[i].cuenca_hidrografica);
+			f++;
+		}
+	}
+}
+
+
+void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[]) {
+	int i, f = 0;
+	for (i = vector2[num_cuenca - 1];i < vector2[num_cuenca];i++) {
+		if (i % 12 == 0) {
+			printf("%i. %s\n", f + 1, vector[i].embalse_nombre);
+			f++;
+		}
+	}
+}
+
+
+
+float media_anyo(int j, int anyo, linea vector[]) {		// Vector es cuencas
+	int i;
+	float suma = 0, media;
+	switch (anyo) {
+	case(2012):
+		for (i = 0;i < j;i++) {
+			suma = suma + vector[i].dosmildoce;
+
+		}
+		media = suma / j;
+		printf("%f\n", media);
+		break;
+
+	}
+	return media;
+}
+
+float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[]) {		//  Vector 1 es cuencas y vector 2 es posiciones cuencas
+	int i;
+	float suma=0, media;
+	switch (anyo) {
+	case(2012):
+		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
+			suma = suma + vector[i].dosmildoce;
+			printf("dato:%f\n", vector[i].dosmildoce);
+			printf("linea:%i\n", i);
+		}
+		media = suma / 12;
+		printf("%f\n", media);
+	}
+	return media;
+}
+
+float max_y_min_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[], int vector3[]) { // Vector 3 es vector auxiliar para guardar los datos obtenidos
+	int i, mesM, mesm;
+	float maximo = 0, minimo = 1000;
+	switch (anyo) {
+	case(2012):
+		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
+			if (vector[i].dosmildoce > maximo)
+			{
+				maximo = vector[i].dosmildoce;
+				mesM = (i + 1) % 12;
+			}
+			if (vector[i].dosmildoce < minimo)
+			{
+				minimo = vector[i].dosmildoce;
+				mesm = (i + 1) % 12;
+			}
+
+		}
+		break;
+
+		return 0;
+	}
+	vector3[0] = maximo;
+	vector3[1] = mesM;
+	vector3[2] = minimo;
+	vector3[3] = mesm;
+	//printf("El maximo es %f en el mes %i, el minimo es %f en el mes %i", vector3[0],vector3[1],vector3[2],vector3[3]);
+
+}
+
 void gotoxy(int x, int y)
 {
 	HANDLE Identiventana;
@@ -295,8 +482,85 @@ void DibujarMenu()
 		}
 	}
 }
+void cuadradosDosPorDos()
+{ 
+	int x = 19, y = 9, i, fila = 81, columna = 20;
 
+	////Dibujar Cuadrados 2X2////
+	{
+		//Cuadrado Grande
+		{
+			for (i = 0; i < fila; i++)//Fila Arriba
+			{
+				x++;
+				gotoxy(x, y);
+				printf("%c", 205);
+			}
+			gotoxy(x, y);
+			printf("%c", 187);
+			for (i = 0; i < columna; i++)//Columna derecha
+			{
+				y++;
+				gotoxy(x, y);
+				printf("%c", 186);
 
+			}
+			gotoxy(x, y);
+			printf("%c", 188);
+			for (i = 0; i < fila; i++)//Fila abajo
+			{
+				x--;
+				gotoxy(x, y);
+				printf("%c", 205);
+			}
+			gotoxy(x, y);
+			printf("%c", 200);
+			for (i = 0; i < columna; i++)//Columna izquierda
+			{
+				y--;
+				gotoxy(x, y);
+				printf("%c", 186);
+			}
+			gotoxy(x, y);
+			printf("%c", 201);
+		}
+		//Separador
+		{
+			//Columna centro
+			{
+				x = 60, y = 9;
+				gotoxy(x, y);
+				printf("%c", 203);
+				for (i = 0; i < columna; i++)
+				{
+					y++;
+					gotoxy(x, y);
+					printf("%c", 186);
+				}
+				gotoxy(x, y);
+				printf("%c", 202);
+			}
+
+			//Fila 
+			{
+				x = 19, y = 19;
+				gotoxy(x, y);
+				printf("%c", 204);
+				for (i = 0; i < fila; i++)//Fila Arriba
+				{
+					x++;
+					gotoxy(x, y);
+					printf("%c", 205);
+				}
+				gotoxy(x, y);
+				printf("%c", 185);
+
+			}
+
+			gotoxy(60, 19), printf("%c", 206);
+		}
+	}
+}
 int x, y;
 //Texto0
 void Texto0()
@@ -315,9 +579,9 @@ void Texto0()
 			x = 20;
 			y = 9;
 			gotoxy(x, y);
-			printf("EMBALSES");
+			printf("CUENCAS");
 			gotoxy(x, 14);
-			printf("Press ( 1 )");
+			printf("Presionar ( 1 )");
 
 		}
 		////// Segundo cuadrado/////
@@ -325,9 +589,9 @@ void Texto0()
 			x = 61;
 			y = 9;
 			gotoxy(x, y);
-			printf("CUENCAS");
+			printf("EMBALSES");
 			gotoxy(x, 14);
-			printf("Press ( 2 )");
+			printf("Presionar ( 2 )");
 
 		}
 		//// Tercer cuadrado////
@@ -335,9 +599,9 @@ void Texto0()
 			x = 20;
 			y = 16;
 			gotoxy(x, y);
-			printf("ANALISIS DE DATOS");
+			printf("CUESTIONARIO");
 			gotoxy(x, 21);
-			printf("Press ( 3 )");
+			printf("Presionar ( 3 )");
 
 		}
 		//// Cuarto cuadrado////
@@ -345,9 +609,9 @@ void Texto0()
 			x = 61;
 			y = 16;
 			gotoxy(x, y);
-			printf("ESTADISTICA");
+			printf("PALABRA DEL DIA");
 			gotoxy(x, 21);
-			printf("Press ( 4 )");
+			printf("Presionar ( 4 )");
 
 		}
 		//// 5 cuadrado////
@@ -357,7 +621,7 @@ void Texto0()
 			gotoxy(x, y);
 			printf("AJUSTES");
 			gotoxy(x, 28);
-			printf("Press ( 5 )");
+			printf("Presionar ( 5 )");
 
 		}
 		//// 6 cuadrado////
@@ -365,9 +629,9 @@ void Texto0()
 			x = 61;
 			y = 23;
 			gotoxy(x, y);
-			printf("Cerrar programa");
+			printf("SALIR DEL PROGRAMA");
 			gotoxy(x, 28);
-			printf("Press ( 6 )");
+			printf("Presionar ( 6 )");
 
 		}
 	}
@@ -382,7 +646,7 @@ void Texto1()
 {
 	int x = 19, y = 9, i, fila = 81, columna = 20;
 
-	////Dibujar Cuadrados////
+	////Dibujar Cuadrados 2X2////
 	{
 		//Cuadrado Grande
 		{
@@ -459,34 +723,35 @@ void Texto1()
 
 		//Texto 
 		{
+			//TITULO
+			gotoxy(53, 4);
+			printf("CUENCAS");
 
 			//Primer Cuadrado
 			gotoxy(20, 10);
-			printf("-----------------");
+			printf("NOMBRES DE CUENCAS");
 			gotoxy(20, 18);
-			printf("Enter ( 1 )");
+			printf("Presionar ( 1 )");
 
 			//Segundo Cuadrado
 			gotoxy(61, 10);
-			printf("-----------------");
+			printf("NOMBRES DE CUENCAS");
 			gotoxy(61, 18);
-			printf("Enter ( 2 )");
+			printf("Presionar ( 2 )");
 
 			//Tercer Cuadrado
 			gotoxy(20, 20);
-			printf("Volver al menu");
+			printf("VOLVER AL MENU");
 			gotoxy(20, 28);
-			printf("Enter ( 3 )");
+			printf("Presionar ( 3 )");
 
 			//Cuarto Cuadrado
 			gotoxy(61, 20);
-			printf("Salir");
+			printf("SALIR DEL PROGRAMA");
 			gotoxy(61, 28);
-			printf("Enter ( 4 )");
+			printf("Presionar ( 4 )");
 
-			//TITULO
-			gotoxy(53, 4);
-			printf("-------------");
+			
 		}
 
 		gotoxy(55, 7);
@@ -501,7 +766,7 @@ void Texto2()
 	//Titulo// 
 	{
 		gotoxy(55, 4);
-		printf("CUENCAS");
+		printf("EMBALSES");
 	}
 
 
@@ -512,27 +777,27 @@ void Texto2()
 			x = 20;
 			y = 9;
 			gotoxy(x, y);
-			printf("Buscar datos");
+			printf("MEDIDAS");
 			gotoxy(x, 14);
-			printf("Press ( 1 )");
+			printf("Presionar ( 1 )");
 		}
 		////// Segundo cuadrado/////
 		{
 			x = 61;
 			y = 9;
 			gotoxy(x, y);
-			printf("-----------------");
+			printf("PORCENTAJES");
 			gotoxy(x, 14);
-			printf("Press ( 2 )");
+			printf("Presionar ( 2 )");
 		}
 		//// Tercer cuadrado////
 		{
 			x = 20;
 			y = 16;
 			gotoxy(x, y);
-			printf("-----------------");
+			printf("COMPARACION");
 			gotoxy(x, 21);
-			printf("Press ( 3 )");
+			printf("Presionar ( 3 )");
 
 		}
 		//// Cuarto cuadrado////
@@ -540,9 +805,9 @@ void Texto2()
 			x = 61;
 			y = 16;
 			gotoxy(x, y);
-			printf("-----------------");
+			printf("MAXIMO Y MINIMO");
 			gotoxy(x, 21);
-			printf("Press ( 4 )");
+			printf("Presionar ( 4 )");
 
 		}
 		//// 5 cuadrado////
@@ -550,9 +815,9 @@ void Texto2()
 			x = 20;
 			y = 23;
 			gotoxy(x, y);
-			printf("Volver al menu");
+			printf("VOLVER AL MENU");
 			gotoxy(x, 28);
-			printf("Press ( 5 )");
+			printf("Presionar ( 5 )");
 
 		}
 		//// 6 cuadrado////
@@ -560,9 +825,9 @@ void Texto2()
 			x = 61;
 			y = 23;
 			gotoxy(x, y);
-			printf("Cerrar programa");
+			printf("SALIR DEL PROGRAMA");
 			gotoxy(x, 28);
-			printf("Press ( 6 )");
+			printf("Presionar ( 6 )");
 
 		}
 	}
@@ -578,10 +843,10 @@ void Texto3()
 	//Titulo// 
 	{
 		gotoxy(55, 4);
-		printf("ANALISIS DE DATOS");
+		printf("CUESTIONARIO");
 	}
 
-
+	/*
 	//Textos
 	{
 		////Texto Primer Cuadrado////
@@ -589,9 +854,9 @@ void Texto3()
 			x = 20;
 			y = 9;
 			gotoxy(x, y);
-			printf("Calcular medias");
+			printf("-------------");
 			gotoxy(x, 14);
-			printf("Press ( 1 )");
+			printf("Presionar ( 1 )");
 
 		}
 		////// Segundo cuadrado/////
@@ -601,7 +866,7 @@ void Texto3()
 			gotoxy(x, y);
 			printf("-----------------");
 			gotoxy(x, 14);
-			printf("Press ( 2 )");
+			printf("Presionar ( 2 )");
 		}
 		//// Tercer cuadrado////
 		{
@@ -610,7 +875,7 @@ void Texto3()
 			gotoxy(x, y);
 			printf("-----------------");
 			gotoxy(x, 21);
-			printf("Press ( 3 )");
+			printf("Presionar ( 3 )");
 
 		}
 		//// Cuarto cuadrado////
@@ -620,7 +885,7 @@ void Texto3()
 			gotoxy(x, y);
 			printf("-----------------");
 			gotoxy(x, 21);
-			printf("Press ( 4 )");
+			printf("Presionar ( 4 )");
 
 		}
 		//// 5 cuadrado////
@@ -628,9 +893,9 @@ void Texto3()
 			x = 20;
 			y = 23;
 			gotoxy(x, y);
-			printf("Volver al menu");
+			printf("VOLVER AL MENU");
 			gotoxy(x, 28);
-			printf("Press ( 5 )");
+			printf("Presionar ( 5 )");
 
 		}
 		//// 6 cuadrado////
@@ -638,9 +903,9 @@ void Texto3()
 			x = 61;
 			y = 23;
 			gotoxy(x, y);
-			printf("Cerrar programa");
+			printf("SALIR DEL PROGRAMA");
 			gotoxy(x, 28);
-			printf("Press ( 6 )");
+			printf("Presionar ( 6 )");
 
 		}
 	}
@@ -648,15 +913,16 @@ void Texto3()
 	gotoxy(55, 7);
 	printf("Ir a: ");
 	gotoxy(65, 7);
-}
+}*/
 
 //Texto4
+	/*
 void Texto4()
 {
 	//Titulo// 
 	{
 		gotoxy(55, 4);
-		printf("DATOS ESTADISTICOS");
+		printf("PALABRA DEL DIA");
 	}
 
 
@@ -672,7 +938,7 @@ void Texto4()
 			printf("y");
 
 			gotoxy(x, 14);
-			printf("Press ( 1 )");
+			printf("Presionar ( 1 )");
 
 		}
 		////// Segundo cuadrado/////
@@ -685,7 +951,7 @@ void Texto4()
 			printf("y");
 
 			gotoxy(x, 14);
-			printf("Press ( 2 )");
+			printf("Presionar ( 2 )");
 
 		}
 		//// Tercer cuadrado////
@@ -695,7 +961,7 @@ void Texto4()
 			gotoxy(x, y);
 			printf("-----------------");
 			gotoxy(x, 21);
-			printf("Press ( 3 )");
+			printf("Presionar ( 3 )");
 
 		}
 		//// Cuarto cuadrado////
@@ -705,7 +971,7 @@ void Texto4()
 			gotoxy(x, y);
 			printf("-----------------");
 			gotoxy(x, 21);
-			printf("Press ( 4 )");
+			printf("Presionar ( 4 )");
 
 		}
 		//// 5 cuadrado////
@@ -713,9 +979,9 @@ void Texto4()
 			x = 20;
 			y = 23;
 			gotoxy(x, y);
-			printf("Volver al menu");
+			printf("VOLVER AL MENU");
 			gotoxy(x, 28);
-			printf("Press ( 5 )");
+			printf("Presionar ( 5 )");
 
 		}
 		//// 6 cuadrado////
@@ -723,9 +989,9 @@ void Texto4()
 			x = 61;
 			y = 23;
 			gotoxy(x, y);
-			printf("Cerrar programa");
+			printf("SALIR DEL PROGRAMA");
 			gotoxy(x, 28);
-			printf("Press ( 6 )");
+			printf("Presionar ( 6 )");
 
 		}
 	}
@@ -733,15 +999,17 @@ void Texto4()
 	gotoxy(55, 7);
 	printf("Ir a:");
 	gotoxy(65, 7);
-}
+}*/
 
 //Texto5
 void Texto5()
 {
+	
+		//TEXTO
 	//Titulo// 
 	{
-		gotoxy(55, 4);
-		printf("EASTER EGGS");
+		gotoxy(53, 4);
+		printf("AJUSTES");
 	}
 
 
@@ -750,69 +1018,49 @@ void Texto5()
 		////Texto Primer Cuadrado////
 		{
 			x = 20;
-			y = 9;
-			gotoxy(x, y);
-			printf("MODO DIABLO??:1");
-			x = 20;
 			y = 10;
 			gotoxy(x, y);
-			printf("Color Violeta:12");
+			printf("MODO DIABLO:1");
 			x = 20;
 			y = 11;
 			gotoxy(x, y);
-			printf("Color azul:13");
-			gotoxy(x, 14);
+			printf("VIOLETA:7");
+			x = 20;
+			y = 12;
+			gotoxy(x, y);
+			printf("AZUL:8");
+			gotoxy(x, 18);
 			printf("");
 
 		}
 		////// Segundo cuadrado/////
 		{
 			x = 61;
-			y = 9;
+			y = 10;
 			gotoxy(x, y);
-			printf("sorpresa");
-			gotoxy(x, 14);
-			printf("Press ( 2 )");
+			printf("SORPRESA");
+			gotoxy(x, 18);
+			printf("Presionar ( 2 )");
 
 		}
 		//// Tercer cuadrado////
 		{
 			x = 20;
-			y = 16;
+			y = 20;
 			gotoxy(x, y);
-			printf("?????????");
-			gotoxy(x, 21);
-			printf("Press ( 3 )");
+			printf("VOLVER AL MENU");
+			gotoxy(x, 28);
+			printf("Presionar ( 5 )");
 
 		}
 		//// Cuarto cuadrado////
 		{
 			x = 61;
-			y = 16;
+			y = 20;
 			gotoxy(x, y);
-			printf("¿¿¿¿¿¿¿¿¿¿¡");
-			gotoxy(x, 21);
-			printf("Press ( 4 )");
-
-		}
-		//// 5 cuadrado////
-		{
-			x = 20;
-			y = 23;
-			gotoxy(x, y);
-			printf("Volver al menu");
+			printf("SALIR DEL PROGRAMA");
 			gotoxy(x, 28);
-			printf("Press ( 5 )");
-
-		}
-		//// 6 cuadrado////
-		{
-			x = 61;
-			y = 23;
-			gotoxy(x, y);
-			printf("Salir del programa");
-			gotoxy(x, 28);
-			printf("Press ( 6 )");
+			printf("Presionar ( 6 )");
 
 		}
 	}
@@ -878,7 +1126,7 @@ void Fecha()
 
 }
 
-void CuatroCuadrados()
+void SeisCuadrados()
 {
 	int x = 19, y = 9, i, fila = 81, columna = 20;
 
@@ -964,25 +1212,25 @@ void CuatroCuadrados()
 			gotoxy(20, 10);
 			printf("-----------------");
 			gotoxy(20, 18);
-			printf("Enter ( 1 )");
+			printf("Presionar ( 1 )");
 
 			//Segundo Cuadrado
 			gotoxy(61, 10);
 			printf("-----------------");
 			gotoxy(61, 18);
-			printf("Enter ( 2 )");
+			printf("Presionar ( 2 )");
 
 			//Tercer Cuadrado
 			gotoxy(20, 20);
 			printf("-----------------");
 			gotoxy(20, 28);
-			printf("Enter ( 3 )");
+			printf("Presionar ( 3 )");
 
 			//Cuarto Cuadrado
 			gotoxy(61, 20);
 			printf("-----------------");
 			gotoxy(61, 28);
-			printf("Enter ( 4 )");
+			printf("Presionar ( 4 )");
 
 			//TITULO
 			gotoxy(53, 4);
