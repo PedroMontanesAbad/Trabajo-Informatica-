@@ -71,6 +71,16 @@ float media_anyo(int j,int anyo, linea vector[]);
 float media_anyo_embalse(int j,int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[]);
 float max_y_min_embalse(int j,int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[], int vector3[]);
 
+//Funciones cuestionario
+int cuestionario();
+int pregunta_inicial();
+int valor_letra_introducida();
+int preguntas_cuestionario(int i);
+void mostrar_resultado(int correcta, int i);
+void informacion_respuestas(int i);
+void tabla_errores(int correcta,int i);
+void premios_concurso(int numero_aciertos);
+
 //Funciones_comparacion
 void nombres_cuencas_E(int vb, linea cuenca[]);
 int seleccion_cuenca_1(int num_cuenca, char C_cuenca[]);
