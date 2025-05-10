@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
-#include <iostream>
+//#include <iostream>
 #include <math.h>
 #include <time.h>
 #include <stdint.h>
@@ -55,6 +55,10 @@ typedef struct {
 	float etotal;
 
 } Embalse;
+
+void lista_cuencas();
+void lista_embalses();
+
 
 void porcentajes_main();
 void nombres_cuencas(int j, linea cuenca[]);
