@@ -1,8 +1,5 @@
 #include "lib.h"
 
-
-
-
 //vector2[] es posiciones_cuencas[15]
 //vector es linea cuenca[4236]
 //vector1 es Embalse embalse[353]
@@ -320,7 +317,7 @@ void sequia(int porcentaje) {
 
 }
 
-//<MAIN> 
+// MAIN PORCENTAJES 
 
 void porcentajes_main() {
 
@@ -440,8 +437,8 @@ void porcentajes_main() {
 	cambio_espacios_cuencas(cuenca, num_cuenca, posiciones_cuencas, num_embalse);
 
 	cambio_espacios_embalses(cuenca, num_cuenca, posiciones_cuencas, num_embalse);
-
-	printf("El embalse %s de la cuenca %s estaba al %.2f%% de su capadidad, en %i del anyo %i.", cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].embalse_nombre, cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].cuenca_hidrografica, porcentaje,N_mes, anyo);
+	
+	printf("El embalse %s de la cuenca %s estaba al %.2f%% de su capadidad, en el mes %i del anyo %i.", cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].embalse_nombre, cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].cuenca_hidrografica, porcentaje,N_mes, anyo);
 
 	//SÓLO SI HAY SEQÍA
 
@@ -452,16 +449,11 @@ void porcentajes_main() {
 }
 
 
-
-
-
-
-
 void nombres_embalses(int j, linea vector[]) {		// Vector es cuencas
 	int i, f = 0;
 	for (i = 0;i < j;i++) {
 		if (i % 12 == 0) {
-			printf("%i. %s\n", f + 1, vector[i].embalse_nombre);
+			printf("%i- %s\n", f + 1, vector[i].embalse_nombre);
 			f++;
 
 		}
@@ -469,9 +461,69 @@ void nombres_embalses(int j, linea vector[]) {		// Vector es cuencas
 }
 
 
+//LISTA CUENCAS:
+
+void lista_cuencas(){
+		int j = 0;
 
 
+	linea cuenca[4236];
 
+	//ABRIMOS FICHEROS:
+
+	FILE* tabla;
+	tabla = fopen("texto_proyecto.csv", "r");
+
+	if (tabla == NULL) // Si el resultado es NULL mensaje de error
+	{
+		printf("Error al abrir el fichero.\n");
+
+	}
+	fseek(tabla, 90, SEEK_SET);
+	while (fscanf(tabla, "%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica, cuenca[j].embalse_nombre, &cuenca[j].mes, &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho, &cuenca[j].dosmildiecinueve, &cuenca[j].dosmilveinte, &cuenca[j].dosmilveintiuno) != EOF)
+	{
+
+		//printf("Linea %i:\n", j);
+		//printf("%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , cuenca[j].mes , cuenca[j].dosmildoce, cuenca[j].dosmiltrece, cuenca[j].dosmilcatorce, cuenca[j].dosmilquince, cuenca[j].dosmildieciseis, cuenca[j].dosmildiecisiete, cuenca[j].dosmildieciocho,  cuenca[j].dosmildiecinueve,  cuenca[j].dosmilveinte,  cuenca[j].dosmilveintiuno );
+
+		j++;
+	}
+	printf("Tus cuencas son:\n\n");
+	nombres_cuencas(j, cuenca) ;
+	
+}
+
+//LISTA EMBALSES:
+
+void lista_embalses(){
+		int j = 0;
+
+
+	linea cuenca[4236];
+
+	//ABRIMOS FICHEROS:
+
+	FILE* tabla;
+	tabla = fopen("texto_proyecto.csv", "r");
+
+	if (tabla == NULL) // Si el resultado es NULL mensaje de error
+	{
+		printf("Error al abrir el fichero.\n");
+
+	}
+	fseek(tabla, 90, SEEK_SET);
+	while (fscanf(tabla, "%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica, cuenca[j].embalse_nombre, &cuenca[j].mes, &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho, &cuenca[j].dosmildiecinueve, &cuenca[j].dosmilveinte, &cuenca[j].dosmilveintiuno) != EOF)
+	{
+
+		//printf("Linea %i:\n", j);
+		//printf("%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , cuenca[j].mes , cuenca[j].dosmildoce, cuenca[j].dosmiltrece, cuenca[j].dosmilcatorce, cuenca[j].dosmilquince, cuenca[j].dosmildieciseis, cuenca[j].dosmildiecisiete, cuenca[j].dosmildieciocho,  cuenca[j].dosmildiecinueve,  cuenca[j].dosmilveinte,  cuenca[j].dosmilveintiuno );
+
+		j++;
+	}
+	printf("Tus embalses son:\n\n");
+	nombres_embalses(j, cuenca) ;
+	
+}
 
 float media_anyo(int j, int anyo, linea vector[]) {		// Vector es cuencas
 	int i;
@@ -856,7 +908,7 @@ void Texto0()
 			x = 20;
 			y = 9;
 			gotoxy(x, y);
-			printf("CUENCAS");
+			printf("LISTADOS");
 			gotoxy(x, 14);
 			printf("Presionar ( 1 )");
 
@@ -866,7 +918,7 @@ void Texto0()
 			x = 61;
 			y = 9;
 			gotoxy(x, y);
-			printf("EMBALSES");
+			printf("INFORMACION GENERAL");
 			gotoxy(x, 14);
 			printf("Presionar ( 2 )");
 
@@ -1002,17 +1054,17 @@ void Texto1()
 		{
 			//TITULO
 			gotoxy(53, 4);
-			printf("CUENCAS");
+			printf("LISTADOS");
 
 			//Primer Cuadrado
 			gotoxy(20, 10);
-			printf("NOMBRES DE CUENCAS");
+			printf("LISTADO DE CUENCAS");
 			gotoxy(20, 18);
 			printf("Presionar ( 1 )");
 
 			//Segundo Cuadrado
 			gotoxy(61, 10);
-			printf("NOMBRES DE CUENCAS");
+			printf("LISTADO DE EMBALSES");
 			gotoxy(61, 18);
 			printf("Presionar ( 2 )");
 
@@ -1054,7 +1106,7 @@ void Texto2()
 			x = 20;
 			y = 9;
 			gotoxy(x, y);
-			printf("MEDIDAS");
+			printf("MEDIAS");
 			gotoxy(x, 14);
 			printf("Presionar ( 1 )");
 		}
