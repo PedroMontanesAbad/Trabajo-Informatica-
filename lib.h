@@ -37,6 +37,9 @@ typedef struct {
 	float dosmilveinte;
 	float dosmilveintiuno;
 
+	char embalse_nom[50];
+	float etotal;
+
 } linea;
 
 int calcular_media();
