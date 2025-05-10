@@ -27,7 +27,7 @@ void nombres_cuencas(int j, linea vector[]) {
 
 }
 
-// SELECCIÓN DE CUENCA:
+// SELECCIÃ“N DE CUENCA:
 
 int seleccion_cuenca(int num_cuenca, char C_cuenca[]) {
 
@@ -78,7 +78,7 @@ void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[
 
 }
 
-// SELECCIÓN DE EMBALSES:
+// SELECCIÃ“N DE EMBALSES:
 
 int seleccion_embalse(int num_embalse, int vector2[], int num_cuenca, char C_embalse[]) {
 
@@ -108,7 +108,7 @@ int seleccion_embalse(int num_embalse, int vector2[], int num_cuenca, char C_emb
 
 }
 
-//SELECCIÓN DE AÑOS:
+//SELECCIÃ“N DE AÃ‘OS:
 
 int seleccion_anyo(int anyo, char C_anyo[]) {
 
@@ -138,7 +138,7 @@ int seleccion_anyo(int anyo, char C_anyo[]) {
 
 	return anyo;
 }
-//SELECCIÓN MES:
+//SELECCIÃ“N MES:
 
 int seleccion_mes(int N_mes, char C_mes[]) {
 
@@ -299,7 +299,7 @@ char* cambio_espacios_embalses(linea vector[], int num_cuenca, int vector2[], in
 	return vector[vector2[num_cuenca - 1] + (num_embalse - 1) * 12].embalse_nombre;
 }
 
-//% DE SEQUÍA
+//% DE SEQUÃA
 
 void sequia(int porcentaje) {
 
@@ -380,7 +380,7 @@ void porcentajes_main() {
 		}
 	}
 
-	//añadimos la número 16
+	//aÃ±adimos la nÃºmero 16
 
 	posiciones_cuencas[f] = j;
 
@@ -390,7 +390,7 @@ void porcentajes_main() {
 
 	nombres_cuencas(j, cuenca);
 
-	//NÚMERO DE CUENCA
+	//NÃšMERO DE CUENCA
 
 	num_cuenca = seleccion_cuenca(num_cuenca, C_cuenca);
 
@@ -398,7 +398,7 @@ void porcentajes_main() {
 
 	nombres_cuencas_embalse(j, num_cuenca, cuenca, posiciones_cuencas);
 
-	//SELECCIONA EL NÚMERO DE EMBALSE
+	//SELECCIONA EL NÃšMERO DE EMBALSE
 
 	num_embalse = seleccion_embalse(num_embalse, posiciones_cuencas, num_cuenca, C_embalse);
 
@@ -410,8 +410,8 @@ void porcentajes_main() {
 
 	//ESCANEA EL SEGUNDO FICHERO; 
 	//Y COMPARA SUS LINEAS (LAS DEL SEGUNDO FICHERO) CON EL NOMBRE DEL EMBALSE ESCOGIDO EN EL PRIMER FICHERO.
-	//CUANDO COINCIDEN SE CUMPLE EL IF, Y DAMOS EL VALOR NÚMERICO A b, k+1 POR SER VECTOR. ESE VALOR NOS PERMITE CONOCER LA LÍNEA DEL
-	//SECUNDO FICHERO DONDE ESTÁ EL EMBALSE QUE COINCIDE CON EL PRIMER FICHERO, Y POR TANTO SU CAPACIDAD TOTAL.
+	//CUANDO COINCIDEN SE CUMPLE EL IF, Y DAMOS EL VALOR NÃšMERICO A b, k+1 POR SER VECTOR. ESE VALOR NOS PERMITE CONOCER LA LÃNEA DEL
+	//SECUNDO FICHERO DONDE ESTÃ EL EMBALSE QUE COINCIDE CON EL PRIMER FICHERO, Y POR TANTO SU CAPACIDAD TOTAL.
 
 	while (fscanf(lista, "%s\t%f\n", embalse[k].embalse_nom, &embalse[k].etotal) != EOF)
 	{
@@ -443,7 +443,7 @@ void porcentajes_main() {
 
 	printf("El embalse %s de la cuenca %s estaba al %.2f%% de su capadidad, en %i del anyo %i.", cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].embalse_nombre, cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].cuenca_hidrografica, porcentaje,N_mes, anyo);
 
-	//SÓLO SI HAY SEQÍA
+	//SÃ“LO SI HAY SEQÃA
 
 	sequia(porcentaje);
 
@@ -568,7 +568,7 @@ float media_anyo(int j, int anyo, linea vector[]) {		// Vector es cuencas
 		break;
 
 	default:
-		printf("Año no registrado\n");
+		printf("AÃ±o no registrado\n");
 		media = -1;
 		break;
 
@@ -1387,7 +1387,7 @@ int donut() {
 			A += 0.00004;
 			B += 0.00002;
 		}
-		Sleep(30); // Usamos Sleep() en lugar de usleep(). El argumento está en milisegundos.
+		Sleep(30); // Usamos Sleep() en lugar de usleep(). El argumento estÃ¡ en milisegundos.
 	}
 	return 0;
 }
@@ -1598,7 +1598,7 @@ void cuadradosDosPorDos()
 //Inicio funciones del cuestionario
 int pregunta_inicial() {
 	int valor;
-	printf("\n \n¿Iniciar cuestionario?\n");
+	printf("\n \nÂ¿Iniciar cuestionario?\n");
 
 	printf("\t1-SI\n\t2-NO\n");
 
@@ -1629,10 +1629,10 @@ int valor_letra_introducida() {
 
 		if (letra != 'A' && letra != 'B' && letra != 'C' && letra != 'D' && i > 0) {
 
-			printf("\nCarácter incorrecto. Introduzca la respuesta de nuevo:");
+			printf("\nCarÃ¡cter incorrecto. Introduzca la respuesta de nuevo:");
 		}
 
-		i++;/*Ponemos un i de manera que el texto de carácter incorrecto solo salta a la segunda*/
+		i++;/*Ponemos un i de manera que el texto de carÃ¡cter incorrecto solo salta a la segunda*/
 
 	} while (letra != 'A' && letra != 'B' && letra != 'C' && letra != 'D');
 
@@ -1648,11 +1648,11 @@ int preguntas_cuestionario(int i) {
 	switch (i) {
 
 	case 0:
-		printf("PREGUNTA Nª1: \n");
+		printf("PREGUNTA NÂª1: \n");
 
-		printf("¿En que continente está el embalse artificial más grande del mundo?");
+		printf("Â¿En que continente estÃ¡ el embalse artificial mÃ¡s grande del mundo?");
 
-		printf("\n \tA)América \n \tB)Europa \n \tC)África \n \tD)Asia\n");
+		printf("\n \tA)AmÃ©rica \n \tB)Europa \n \tC)Ãfrica \n \tD)Asia\n");
 
 		valor = valor_letra_introducida();
 
@@ -1660,11 +1660,11 @@ int preguntas_cuestionario(int i) {
 
 	case  1:
 
-		printf("\nPREGUNTA Nª2: \n");
+		printf("\nPREGUNTA NÂª2: \n");
 
-		printf("¿Que país de Europa tiene el mayor número de embalses?");
+		printf("Â¿Que paÃ­s de Europa tiene el mayor nÃºmero de embalses?");
 
-		printf("\n \tA)Albania \n \tB)Rumanía \n \tC)Noruega \n \tD)España\n");
+		printf("\n \tA)Albania \n \tB)RumanÃ­a \n \tC)Noruega \n \tD)EspaÃ±a\n");
 
 		valor = valor_letra_introducida();
 
@@ -1672,9 +1672,9 @@ int preguntas_cuestionario(int i) {
 
 	case  2:
 
-		printf("\nPREGUNTA Nª3: \n");
+		printf("\nPREGUNTA NÂª3: \n");
 
-		printf("¿País en el que se encuentra el embalse más grande de Europa?");
+		printf("Â¿PaÃ­s en el que se encuentra el embalse mÃ¡s grande de Europa?");
 
 		printf("\n \tA)Francia \n \tB)Ucrania \n \tC)Italia \n \tD)Suecia\n");
 
@@ -1684,11 +1684,11 @@ int preguntas_cuestionario(int i) {
 
 	case  3:
 
-		printf("\nPREGUNTA Nª4: \n");
+		printf("\nPREGUNTA NÂª4: \n");
 
-		printf("¿Qué factor influye en mayor medida a el nivel de agua en los embalses de España?");
+		printf("Â¿QuÃ© factor influye en mayor medida a el nivel de agua en los embalses de EspaÃ±a?");
 
-		printf("\n \tA)Altitud de las montañas \n \tB)Población de la zona \n \tC)Temperatura media del mar \n \tD)Precipitaciones y sequías\n");
+		printf("\n \tA)Altitud de las montaÃ±as \n \tB)PoblaciÃ³n de la zona \n \tC)Temperatura media del mar \n \tD)Precipitaciones y sequÃ­as\n");
 
 		valor = valor_letra_introducida();
 
@@ -1696,11 +1696,11 @@ int preguntas_cuestionario(int i) {
 
 	case  4:
 
-		printf("\nPREGUNTA Nª5: \n");
+		printf("\nPREGUNTA NÂª5: \n");
 
-		printf("¿Dónde se encuentra el embalse más antiguo de España?");
+		printf("Â¿DÃ³nde se encuentra el embalse mÃ¡s antiguo de EspaÃ±a?");
 
-		printf("\n \tA)Extremadura \n \tB)Asturias \n \tC)Castilla y León \n \tD)País Vasco\n");
+		printf("\n \tA)Extremadura \n \tB)Asturias \n \tC)Castilla y LeÃ³n \n \tD)PaÃ­s Vasco\n");
 
 		valor = valor_letra_introducida();
 
@@ -1708,9 +1708,9 @@ int preguntas_cuestionario(int i) {
 
 	case  5:
 
-		printf("\nPREGUNTA Nª6: \n");
+		printf("\nPREGUNTA NÂª6: \n");
 
-		printf("¿Cual fue el año desde el 2004 en el que hubo más agua embalsada en todo el país?");
+		printf("Â¿Cual fue el aÃ±o desde el 2004 en el que hubo mÃ¡s agua embalsada en todo el paÃ­s?");
 
 		printf("\n \tA)2008 \n \tB)2021 \n \tC)2013 \n \tD)2017\n");
 
@@ -1720,7 +1720,7 @@ int preguntas_cuestionario(int i) {
 
 	}
 
-	return valor - 'A' + 1;/*Se resta al valor de la letra el valor de A para que sea un número entre el 0 y el 3 y se le suma 1 para que esté en 1-4*/;
+	return valor - 'A' + 1;/*Se resta al valor de la letra el valor de A para que sea un nÃºmero entre el 0 y el 3 y se le suma 1 para que estÃ© en 1-4*/;
 }
 
 void mostrar_resultado(int correcta, int i) {
@@ -1756,7 +1756,7 @@ void mostrar_resultado(int correcta, int i) {
 
 		case 1:
 
-			printf("D-España");
+			printf("D-EspaÃ±a");
 
 			break;
 
@@ -1768,7 +1768,7 @@ void mostrar_resultado(int correcta, int i) {
 
 		case 3:
 
-			printf("D-Precipitaciones y sequías");
+			printf("D-Precipitaciones y sequÃ­as");
 
 			break;
 
@@ -1803,37 +1803,37 @@ void informacion_respuestas(int i) {
 
 	case 0:
 
-		printf("\n \n-En África se encuentra el embalse y lago artifical más grande del mundo, el lago Kariba en la fronterea entre Zimbawe y Zambia: Este posee un  volumen de 130 km^3 y desemboca en el Oceano Índico.\n");
+		printf("\n \n-En Ãfrica se encuentra el embalse y lago artifical mÃ¡s grande del mundo, el lago Kariba en la fronterea entre Zimbawe y Zambia: Este posee un  volumen de 130 km^3 y desemboca en el Oceano Ãndico.\n");
 
 		break;
 
 	case 1:
 
-		printf("\n \n-España es el país de Europa con más embalses y uno de los que más tiene en todo el mundo. Son más de 1200 los embalses de más de 1hm^3 de capacidad que hay repartidos por el país. No es de extrañar el número debido a la geografía y clima del país que favorece la creacíon de estas estructuras. \n");
+		printf("\n \n-EspaÃ±a es el paÃ­s de Europa con mÃ¡s embalses y uno de los que mÃ¡s tiene en todo el mundo. Son mÃ¡s de 1200 los embalses de mÃ¡s de 1hm^3 de capacidad que hay repartidos por el paÃ­s. No es de extraÃ±ar el nÃºmero debido a la geografÃ­a y clima del paÃ­s que favorece la creacÃ­on de estas estructuras. \n");
 
 		break;
 
 	case 2:
 
-		printf("\n \n-La presa de Kuibuyshev, en Rusia, es la presa más grande de Europa, con una capacidad de 58km^3.\n");
+		printf("\n \n-La presa de Kuibuyshev, en Rusia, es la presa mÃ¡s grande de Europa, con una capacidad de 58km^3.\n");
 
 		break;
 
 	case 3:
 
-		printf("\n \n-El nivel de los embalses depende principalmente del balance entre el agua que reciben (principalmente de la lluvia y el deshielo) y la que se extrae para riego, consumo y otros usos. Las precipitaciones y las sequías tienen un impacto directo, mucho más que otros factores como la altitud o la densidad poblacional.\n");
+		printf("\n \n-El nivel de los embalses depende principalmente del balance entre el agua que reciben (principalmente de la lluvia y el deshielo) y la que se extrae para riego, consumo y otros usos. Las precipitaciones y las sequÃ­as tienen un impacto directo, mucho mÃ¡s que otros factores como la altitud o la densidad poblacional.\n");
 
 		break;
 
 	case 4:
 
-		printf("\n \n-El embalse más antiguo de España se encuentra en la Comunidad Autónoma de Extremadura, más concretamente en Mérida. Es el embalse de Proserpina, fue construido por los romanos entre el I y II d.C y todavía sigue en uso (con fines recreativos). \n");
+		printf("\n \n-El embalse mÃ¡s antiguo de EspaÃ±a se encuentra en la Comunidad AutÃ³noma de Extremadura, mÃ¡s concretamente en MÃ©rida. Es el embalse de Proserpina, fue construido por los romanos entre el I y II d.C y todavÃ­a sigue en uso (con fines recreativos). \n");
 
 		break;
 
 	case 5:
 
-		printf("\n \n-El año con más acumulación fue el 2013, con 63.000 hm^3 acumulados, lo que representaba sobre la media un 111/100. \n");
+		printf("\n \n-El aÃ±o con mÃ¡s acumulaciÃ³n fue el 2013, con 63.000 hm^3 acumulados, lo que representaba sobre la media un 111/100. \n");
 
 		break;
 
@@ -1856,39 +1856,39 @@ void tabla_errores(int correcta, int i) {
 }
 
 void premios_concurso(int numero_aciertos) {
-	printf("\n \nTu número de aciertos es %d", numero_aciertos);
+	printf("\n \nTu nÃºmero de aciertos es %d", numero_aciertos);
 
 	switch (numero_aciertos) {
 	case 0:
 
-		printf("\n ¡¡Felicidades!! ");
-		printf("\n   _______\n  |       |\n  |  X_X  |  ¡Has conseguido no acertar nada! \n  |_______|\n");
+		printf("\n Â¡Â¡Felicidades!! ");
+		printf("\n   _______\n  |       |\n  |  X_X  |  Â¡Has conseguido no acertar nada! \n  |_______|\n");
 
 		break;
 
 	case 1:
 	case 2:
-		printf("\n Bueno, al menos lo has intentado ¿no?. ");
-		printf("\n    .-\"      \"-.\\n   /   O    O   \\\\n  |      /\\      |     Poco a poco\\n  |     ====     |     Sigue aprendiendo.\\n   \\            /\\n    '-.______.–'\\n");
+		printf("\n Bueno, al menos lo has intentado Â¿no?. ");
+		printf("\n    .-\"      \"-.\\n   /   O    O   \\\\n  |      /\\      |     Poco a poco\\n  |     ====     |     Sigue aprendiendo.\\n   \\            /\\n    '-.______.Â–'\\n");
 
 		break;
 
 	case 3:
 	case 4:
-		printf("\n ¡Buen intento! Vas mejorando. ");
-		printf("\n    .-\"      \"-. \n   /   O    O   \\ \n  |      /\\      |     ¡Ya estás cerca! \n  |     ====     |     En nada lo tienes. \n   \\            / \n    '-.______.–' \n");
+		printf("\n Â¡Buen intento! Vas mejorando. ");
+		printf("\n    .-\"      \"-. \n   /   O    O   \\ \n  |      /\\      |     Â¡Ya estÃ¡s cerca! \n  |     ====     |     En nada lo tienes. \n   \\            / \n    '-.______.Â–' \n");
 
 		break;
 
 	case 5:
-		printf("\n ¡Casi perfecto! ");
+		printf("\n Â¡Casi perfecto! ");
 		printf("\n     _______\n    /       \\\n   |  _____  |\n   | |     | |\n   | |_____| |  Te mereces una medalla\n    \\_______/\n     \\_____/\n");
 
 		break;
 
 	case 6:
-		printf("\n ¡Eres un maestro de embalses!");
-		printf("\n      ___________\n     '._==_==_=_.' \n     .-\\:      /-.\n    | (|:.     |) |   Aquí tienes tu trofeo. \n     '-|:.     |-'\n       \\::.    /\n        '::. .'\n          ) (\n        _.' '._\n       `\"\"\"\"\"\"\"`\n");
+		printf("\n Â¡Eres un maestro de embalses!");
+		printf("\n      ___________\n     '._==_==_=_.' \n     .-\\:      /-.\n    | (|:.     |) |   AquÃ­ tienes tu trofeo. \n     '-|:.     |-'\n       \\::.    /\n        '::. .'\n          ) (\n        _.' '._\n       `\"\"\"\"\"\"\"`\n");
 
 		break;
 	}
@@ -1897,7 +1897,7 @@ void premios_concurso(int numero_aciertos) {
 int cuestionario() {
 
 
-	printf("\nOímos, vemos y hablamos sobre los embalses cotidianamente, nos abastecen de agua para el consumo y la agricultura y tienen un impacto en el día a día del que el ciudadano promedio no es consciente. Dicho esto, ¿sabrás lo suficiente cómo para llevarte el premio al que más sabe de embalses?");
+	printf("\nOÃ­mos, vemos y hablamos sobre los embalses cotidianamente, nos abastecen de agua para el consumo y la agricultura y tienen un impacto en el dÃ­a a dÃ­a del que el ciudadano promedio no es consciente. Dicho esto, Â¿sabrÃ¡s lo suficiente cÃ³mo para llevarte el premio al que mÃ¡s sabe de embalses?");
 
 	int valor_pregunta = pregunta_inicial(), respuestas[6], respuestas_correctas[6] = { 3,4,2,4,1,3 };
 
