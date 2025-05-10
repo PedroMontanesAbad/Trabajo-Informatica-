@@ -11,8 +11,10 @@
 #include <string.h>
 #include <ctype.h>
 
+
 void gotoxy(int x, int y);
 void DibujarMenu();
+void cuadradosDosPorDos();
 void Texto0();
 void Texto1();
 void Texto2();
@@ -21,7 +23,7 @@ void Texto4();
 void Texto5();
 int donut();
 void Fecha();
-void CuatroCuadrados();
+void SeisCuadrados();
 
 typedef struct {
 	char cuenca_hidrografica[50];
