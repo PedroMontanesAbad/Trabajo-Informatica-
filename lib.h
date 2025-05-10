@@ -10,7 +10,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <ctype.h>
-
+#include <locale.h>
 
 void gotoxy(int x, int y);
 void DibujarMenu();
