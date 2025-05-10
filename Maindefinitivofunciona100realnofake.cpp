@@ -1,5 +1,5 @@
-﻿
-#include "lib.h"
+
+#include "funciones_comunes.h"
 
 
 
@@ -24,7 +24,6 @@ int main(void)//system cls importantes antes de cada funcion
 		system("cls");
 		n = c - '0';
 
-
 		switch (n)
 		{
 		case 1:
@@ -36,6 +35,20 @@ int main(void)//system cls importantes antes de cada funcion
 				
 				n = c - '0';
 				
+				if (n == 1)
+				{
+					system("cls");
+					lista_cuencas();
+					system("pause");
+				}
+				
+				if (n == 2)
+				{
+					system("cls");
+					lista_embalses();
+					system("pause");
+				}
+					
 				if (n == 3)
 				{
 					n = 0;
@@ -47,7 +60,7 @@ int main(void)//system cls importantes antes de cada funcion
 					system("cls");
 					exit(-1);
 				}
-				
+				system("cls");
 			} while (n != 5);
 
 			break;
@@ -68,6 +81,7 @@ int main(void)//system cls importantes antes de cada funcion
 				{
 					system("cls");
 					porcentajes_main();
+					system("pause");
 				}
 				if (n == 3)
 				{
@@ -95,6 +109,7 @@ int main(void)//system cls importantes antes de cada funcion
 			break;
 		case 3://cuestionario
 			cuestionario();
+			system("pause");
 			system("cls");
 			
 		case 4://palabra del dia
@@ -175,4 +190,3 @@ int main(void)//system cls importantes antes de cada funcion
 
 	return 0;
 }
-
