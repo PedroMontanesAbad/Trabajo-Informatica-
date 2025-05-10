@@ -300,7 +300,7 @@ void premios_concurso(int numero_aciertos){
     }
 }
 
-void cuestionario(){
+int cuestionario(){
     
     printf("\nOímos, vemos y hablamos sobre los embalses cotidianamente, nos abastecen de agua para el consumo y la agricultura y tienen un impacto en el día a día del que el ciudadano promedio no es consciente. Dicho esto, ¿sabrás lo suficiente cómo para llevarte el premio al que más sabe de embalses?");
     
