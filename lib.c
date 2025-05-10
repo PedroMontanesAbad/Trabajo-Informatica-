@@ -1474,7 +1474,7 @@ int cuestionario(){
 //Funciones de comparacion
 //LISTA CUENCAS:
 
-void nombres_cuencas_E(int vb, frase cuenca[]){
+void nombres_cuencas_E(int vb, linea cuenca[]){
 	
 	int numc=0,i;//variables cuenca
 for(i=0;i<vb;i++){
@@ -1523,7 +1523,7 @@ return num_cuenca;
 
 //LISTADO Y SELECCION DE EMBALSES:
 
-void nombreseleccion_embalse_1(int num_cuenca,frase cuenca[], int* num_embalse, int* l_r_embalse){
+void nombreseleccion_embalse_1(int num_cuenca,linea cuenca[], int* num_embalse, int* l_r_embalse){
 		int nume=0,i;
 	switch(num_cuenca)
 	{case(1):
@@ -1755,7 +1755,7 @@ return num_cuenca2;
 
 
 //SELECCION EMBALSE 2:
-void nombreseleccion_embalse_2(int num_cuenca2,frase cuenca[], int* num_embalse2, int* l_r_embalse2){
+void nombreseleccion_embalse_2(int num_cuenca2,linea cuenca[], int* num_embalse2, int* l_r_embalse2){
 	int nume2=0,i;
 	switch(num_cuenca2)
 	{case(1):
@@ -2004,7 +2004,7 @@ char *meses_nombre(int mes){
 
 
 //COMPARACION SEGUN AÑO:
-void comparacion_anyo(int mes_anyo, int anyo, int l_r_embalse, int l_r_embalse2, frase cuenca[]){
+void comparacion_anyo(int mes_anyo, int anyo, int l_r_embalse, int l_r_embalse2, linea cuenca[]){
 		float min= FLT_MAX;
 	float max=FLT_MIN;
 	float min2= FLT_MAX;
@@ -2169,7 +2169,7 @@ void comparacion_anyo(int mes_anyo, int anyo, int l_r_embalse, int l_r_embalse2,
 
 
 //COMPARACION SEGUN MES
-void comparacion_mes( int mes_anyo, int anyo, int mes, int l_r_embalse, int l_r_embalse2, frase cuenca[]){
+void comparacion_mes( int mes_anyo, int anyo, int mes, int l_r_embalse, int l_r_embalse2, linea cuenca[]){
 		float res_mes,max_mes,min_mes;
 	
 	    
@@ -2320,7 +2320,7 @@ void comparacion_mes( int mes_anyo, int anyo, int mes, int l_r_embalse, int l_r_
 
 
 //CAPACIDAD MAX
-void capacidad_max( int l_r_embalse, int l_r_embalse2, frase cuenca[],frase embalse[]){
+void capacidad_max( int l_r_embalse, int l_r_embalse2, linea cuenca[],Embalse embalse[]){
 	float max_capM,min_capM,dif_capM;
 printf("La capacidad maxima que puede contener los embalses elegidos, %s y %s, es %.2f y %.2f respectivamente.\n", cuenca[l_r_embalse-1].embalse_nombre, cuenca[l_r_embalse2-1].embalse_nombre, embalse[l_r_embalse/12-1].etotal,embalse[l_r_embalse2/12-1].etotal);
 if(embalse[l_r_embalse2/12-1].etotal>embalse[l_r_embalse/12-1].etotal){
@@ -2341,7 +2341,7 @@ if(embalse[l_r_embalse2/12-1].etotal==embalse[l_r_embalse/12-1].etotal){
 
 
 //SUPERFICIE
-void superficie( int l_r_embalse, int l_r_embalse2, frase cuenca[], DatosComparacion comp[]){
+void superficie( int l_r_embalse, int l_r_embalse2, linea cuenca[], DatosComparacion comp[]){
 	float max_sup,min_sup,dif_sup;
    
 printf("La superficie del primer embalse, %s, es %.2f.\n", cuenca[l_r_embalse-1].embalse_nombre,comp[l_r_embalse/12-1].superficie);
@@ -2364,7 +2364,7 @@ if(comp[l_r_embalse/12-1].superficie==comp[l_r_embalse2/12-1].superficie){
 
 
 //TIPO DE EMBALSE:
-void tipo_embalse(DatosComparacion comp[],int l_r_embalse, int l_r_embalse2, frase cuenca[]){
+void tipo_embalse(DatosComparacion comp[],int l_r_embalse, int l_r_embalse2, linea cuenca[]){
 	if(strcmp(comp[l_r_embalse/12-1].tipo_presa,comp[l_r_embalse2/12-1].tipo_presa)!=0){
 	printf("El primer embalse, %s, tiene un embalse de tipo %s, mientras que el segundo embalse, %s, tiene un embalse de tipo %s.\n",cuenca[l_r_embalse-1].embalse_nombre,comp[l_r_embalse/12-1].tipo_presa, cuenca[l_r_embalse2-1].embalse_nombre,comp[l_r_embalse2/12-1].tipo_presa);
 }else{
@@ -2374,7 +2374,7 @@ void tipo_embalse(DatosComparacion comp[],int l_r_embalse, int l_r_embalse2, fra
 
 
 //USO DE EMBALSE:
-void uso_embalse(DatosComparacion comp[],int l_r_embalse, int l_r_embalse2, frase cuenca[]){
+void uso_embalse(DatosComparacion comp[],int l_r_embalse, int l_r_embalse2, linea cuenca[]){
 	if(strcmp(comp[l_r_embalse/12-1].uso_abastecimiento,comp[l_r_embalse2/12-1].uso_abastecimiento)!=0){
 	if(strcmp(comp[l_r_embalse/12-1].uso_abastecimiento,"Si")==0){
 		printf("Solo el embalse, %s, se usa para abastecimiento.\n",cuenca[l_r_embalse-1].embalse_nombre );
@@ -2470,7 +2470,7 @@ if(strcmp(comp[l_r_embalse/12-1].uso_restaurante,comp[l_r_embalse2/12-1].uso_res
 
 
 //CAMBIO DE GUION A ESPACIO
-char cambios_espacios_embalses_E(frase cuenca [], int l_r_embalse, int l_r_embalse2){
+char cambios_espacios_embalses_E(linea cuenca [], int l_r_embalse, int l_r_embalse2){
 	int c=0;
 	int b=0;
 	char cambio[100];
@@ -2530,11 +2530,11 @@ int num_cuenca,num_embalse,l_r_embalse;//embalse1
 int num_cuenca2,num_embalse2,l_r_embalse2;//embalse2
 int mes_anyo, anyo,mes;//fechas y meses
 	
-frase* cuenca= NULL;
+linea* cuenca= NULL;
 Embalse* embalse= NULL; 
 DatosComparacion* comp= NULL;
 
-cuenca=(frase*)malloc(5000*sizeof(frase));
+cuenca=(linea*)malloc(5000*sizeof(linea));
 embalse=(Embalse*)malloc(500*sizeof(Embalse));
 comp= (DatosComparacion*)malloc(500*sizeof(DatosComparacion));
 
