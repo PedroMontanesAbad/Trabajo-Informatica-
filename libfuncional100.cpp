@@ -1648,362 +1648,361 @@ void cuadradosDosPorDos()
 	}
 }
 //Inicio funciones del cuestionario
-int pregunta_inicial() {
-	int valor;
-	printf("\n \n¿Iniciar cuestionario?\n");
-
-	printf("\t1-SI\n\t2-NO\n");
-
-	do {
-
-		scanf("%d", &valor);
-
-		while ((getchar()) != '\n');
-
-	} while (valor != 1 && valor != 2);
-
-	return valor;
+int pregunta_inicial(){
+    int valor;
+    printf("\n \n¿Iniciar cuestionario?\n");
+    
+    printf("\t1-SI\n\t2-NO\n");
+    
+    do{
+        
+        scanf("%d", &valor);
+        
+        while ((getchar()) != '\n');
+        
+    }while(valor != 1 && valor != 2);
+        
+    return valor;
 }
 
-int valor_letra_introducida() {
-
-	int i = 0;
-	char letra;
-	char cadena[10];
-
-	printf("Introduzca la respuesta: ");
-
-	do {
-
-		fgets(cadena, sizeof(cadena), stdin);
-
-		letra = toupper(cadena[0]);
-
-		if (letra != 'A' && letra != 'B' && letra != 'C' && letra != 'D' && i > 0) {
-
-			printf("\nCarácter incorrecto. Introduzca la respuesta de nuevo:");
-		}
-
-		i++;/*Ponemos un i de manera que el texto de carácter incorrecto solo salta a la segunda*/
-
-	} while (letra != 'A' && letra != 'B' && letra != 'C' && letra != 'D');
-
-	return letra;
+int valor_letra_introducida(){
+    
+    int i=0;
+    char letra;
+    char cadena[10];
+    
+    printf("Introduzca la respuesta: ");
+    
+    do{
+        
+        fgets(cadena, sizeof(cadena), stdin);
+        
+        letra = toupper(cadena[0]);
+        
+        if(letra!='A' && letra!='B' && letra!='C' && letra!='D' && i>0){
+            
+            printf("\nCaracter incorrecto. Introduzca la respuesta de nuevo:");
+        }
+        
+        i++;/*Ponemos un i de manera que el texto de carácter incorrecto solo salta a la segunda*/
+        
+    }while(letra!='A' && letra!='B' && letra!='C' && letra!='D' );
+    
+    return letra;
 }
 
-int preguntas_cuestionario(int i) {
-
-	char letra;
-
-	int valor;
-
-	switch (i) {
-
-	case 0:
-		printf("PREGUNTA Nª1: \n");
-
-		printf("¿En que continente está el embalse artificial más grande del mundo?");
-
-		printf("\n \tA)América \n \tB)Europa \n \tC)África \n \tD)Asia\n");
-
-		valor = valor_letra_introducida();
-
-		break;
-
-	case  1:
-
-		printf("\nPREGUNTA Nª2: \n");
-
-		printf("¿Que país de Europa tiene el mayor número de embalses?");
-
-		printf("\n \tA)Albania \n \tB)Rumanía \n \tC)Noruega \n \tD)España\n");
-
-		valor = valor_letra_introducida();
-
-		break;
-
-	case  2:
-
-		printf("\nPREGUNTA Nª3: \n");
-
-		printf("¿País en el que se encuentra el embalse más grande de Europa?");
-
-		printf("\n \tA)Francia \n \tB)Ucrania \n \tC)Italia \n \tD)Suecia\n");
-
-		valor = valor_letra_introducida();
-
-		break;
-
-	case  3:
-
-		printf("\nPREGUNTA Nª4: \n");
-
-		printf("¿Qué factor influye en mayor medida a el nivel de agua en los embalses de España?");
-
-		printf("\n \tA)Altitud de las montañas \n \tB)Población de la zona \n \tC)Temperatura media del mar \n \tD)Precipitaciones y sequías\n");
-
-		valor = valor_letra_introducida();
-
-		break;
-
-	case  4:
-
-		printf("\nPREGUNTA Nª5: \n");
-
-		printf("¿Dónde se encuentra el embalse más antiguo de España?");
-
-		printf("\n \tA)Extremadura \n \tB)Asturias \n \tC)Castilla y León \n \tD)País Vasco\n");
-
-		valor = valor_letra_introducida();
-
-		break;
-
-	case  5:
-
-		printf("\nPREGUNTA Nª6: \n");
-
-		printf("¿Cual fue el año desde el 2004 en el que hubo más agua embalsada en todo el país?");
-
-		printf("\n \tA)2008 \n \tB)2021 \n \tC)2013 \n \tD)2017\n");
-
-		valor = valor_letra_introducida();
-
-		break;
-
-	}
-
-	return valor - 'A' + 1;/*Se resta al valor de la letra el valor de A para que sea un número entre el 0 y el 3 y se le suma 1 para que esté en 1-4*/;
+int preguntas_cuestionario(int i){
+    
+    char letra; 
+    
+    int valor;
+    
+    switch(i){
+    
+      case 0:
+            printf("PREGUNTA N 1: \n");
+      
+            printf("¿En que continente está el embalse artificial más grande del mundo?");
+      
+            printf("\n \tA)America \n \tB)Europa \n \tC)Africa \n \tD)Asia\n");
+            
+            valor = valor_letra_introducida();
+            
+            break; 
+            
+      case  1:  
+      
+            printf("\nPREGUNTA N 2: \n");
+      
+            printf("¿Que pais de Europa tiene el mayor número de embalses?");
+      
+            printf("\n \tA)Albania \n \tB)Rumanía \n \tC)Noruega \n \tD)Espanya\n");
+            
+            valor = valor_letra_introducida();
+            
+            break;
+            
+      case  2:  
+      
+            printf("\nPREGUNTA N 3: \n");
+      
+            printf("¿Pais en el que se encuentra el embalse mas grande de Europa?");
+      
+            printf("\n \tA)Francia \n \tB)Ucrania \n \tC)Italia \n \tD)Suecia\n");
+            
+            valor = valor_letra_introducida();
+            
+            break;    
+            
+      case  3:  
+      
+            printf("\nPREGUNTA N 4: \n");
+      
+            printf("¿Qué factor influye en mayor medida a el nivel de agua en los embalses de Espanya?");
+      
+            printf("\n \tA)Altitud de las montañas \n \tB)Población de la zona \n \tC)Temperatura media del mar \n \tD)Precipitaciones y sequias\n");
+            
+            valor = valor_letra_introducida();
+            
+            break;
+            
+      case  4:  
+      
+            printf("\nPREGUNTA N 5: \n");
+      
+            printf("¿Donde se encuentra el embalse más antiguo de Espanya?");
+      
+            printf("\n \tA)Extremadura \n \tB)Asturias \n \tC)Castilla y Leon \n \tD)País Vasco\n");
+            
+            valor = valor_letra_introducida();
+            
+            break;
+            
+      case  5:  
+      
+            printf("\nPREGUNTA N 6: \n");
+      
+            printf("¿Cual fue el anyo desde el 2004 en el que hubo más agua embalsada en todo el pais?");
+      
+            printf("\n \tA)2008 \n \tB)2021 \n \tC)2013 \n \tD)2017\n");
+            
+            valor = valor_letra_introducida();
+            
+            break;
+        
+    }
+            
+       return valor - 'A' + 1;/*Se resta al valor de la letra el valor de A para que sea un número entre el 0 y el 3 y se le suma 1 para que esté en 1-4*/;    
 }
 
-void mostrar_resultado(int correcta, int i) {
-
-	if (correcta) {
-
-		printf("\n \t \t!Respuesta correcta!\n");
-
-		printf("\n\t \t \t        X\n");
-
-		printf("\t \t \t       X\n");
-
-		printf("\t \t \t      X \n");
-
-		printf("\t \t \tX   X\n");
-
-		printf("\t \t \t X X\n");
-
-		printf("\t \t \t  X \n");
-
-	}
-	else {
-
-		printf("\n \t \t!Respuesta incorrecta!: La respuesta era la ");
-
-		switch (i) {
-
-		case 0:
-
-			printf("C-Africa");
-
-			break;
-
-		case 1:
-
-			printf("D-España");
-
-			break;
-
-		case 2:
-
-			printf("B-Ucrania");
-
-			break;
-
-		case 3:
-
-			printf("D-Precipitaciones y sequías");
-
-			break;
-
-		case 4:
-
-			printf("A-Extremadura");
-
-			break;
-
-		case 5:
-
-			printf("C-2013");
-
-			break;
-
-		}
-
-		printf("\n \n\t \t \tX   X\n");
-
-		printf("\t \t \t X X\n");
-
-		printf("\t \t \t  X\n");
-
-		printf("\t \t \t X X\n");
-
-		printf("\t \t \tX   X\n");
-	}
+void mostrar_resultado(int correcta, int i){
+    
+    if( correcta ){
+        
+            printf("\n \t \t¡Respuesta correcta!\n");
+        
+            printf("\n\t \t \t        X\n");
+            
+            printf("\t \t \t       X\n");
+            
+            printf("\t \t \t      X \n");
+            
+            printf("\t \t \tX   X\n");
+            
+            printf("\t \t \t X X\n");
+            
+            printf("\t \t \t  X \n");
+            
+       }
+        else{
+            
+            printf("\n \t \t¡Respuesta incorrecta!: La respuesta era la ");
+            
+            switch(i){
+                
+                case 0: 
+                
+                   printf("C-Africa");
+                   
+                break;
+                
+                case 1: 
+                
+                   printf("D-Espanya");
+                   
+                break;
+                
+                case 2: 
+                
+                   printf("B-Ucrania");
+                   
+                break;
+                
+                case 3: 
+                
+                   printf("D-Precipitaciones y sequias");
+                   
+                break;
+                
+                case 4: 
+                
+                   printf("A-Extremadura");
+                   
+                break;
+                
+                case 5: 
+                
+                   printf("C-2013");
+                   
+                break;
+                
+            }
+            
+            printf("\n \n\t \t \tX   X\n");
+            
+            printf("\t \t \t X X\n");
+            
+            printf("\t \t \t  X\n");
+            
+            printf("\t \t \t X X\n");
+            
+            printf("\t \t \tX   X\n");
+        }
 }
 
-void informacion_respuestas(int i) {
-	switch (i) {
-
-	case 0:
-
-		printf("\n \n-En África se encuentra el embalse y lago artifical más grande del mundo, el lago Kariba en la fronterea entre Zimbawe y Zambia: Este posee un  volumen de 130 km^3 y desemboca en el Oceano Índico.\n");
-
-		break;
-
-	case 1:
-
-		printf("\n \n-España es el país de Europa con más embalses y uno de los que más tiene en todo el mundo. Son más de 1200 los embalses de más de 1hm^3 de capacidad que hay repartidos por el país. No es de extrañar el número debido a la geografía y clima del país que favorece la creacíon de estas estructuras. \n");
-
-		break;
-
-	case 2:
-
-		printf("\n \n-La presa de Kuibuyshev, en Rusia, es la presa más grande de Europa, con una capacidad de 58km^3.\n");
-
-		break;
-
-	case 3:
-
-		printf("\n \n-El nivel de los embalses depende principalmente del balance entre el agua que reciben (principalmente de la lluvia y el deshielo) y la que se extrae para riego, consumo y otros usos. Las precipitaciones y las sequías tienen un impacto directo, mucho más que otros factores como la altitud o la densidad poblacional.\n");
-
-		break;
-
-	case 4:
-
-		printf("\n \n-El embalse más antiguo de España se encuentra en la Comunidad Autónoma de Extremadura, más concretamente en Mérida. Es el embalse de Proserpina, fue construido por los romanos entre el I y II d.C y todavía sigue en uso (con fines recreativos). \n");
-
-		break;
-
-	case 5:
-
-		printf("\n \n-El año con más acumulación fue el 2013, con 63.000 hm^3 acumulados, lo que representaba sobre la media un 111/100. \n");
-
-		break;
-
-	}
+void informacion_respuestas(int i){
+    switch(i){
+        
+        case 0:
+        
+            printf("\n \n-En África se encuentra el embalse y lago artifical mas grande del mundo, el lago Kariba en la fronterea entre Zimbawe y Zambia: Este posee un  volumen de 130 km^3 y desemboca en el Oceano Indico.\n");
+    
+        break;
+        
+        case 1:
+        
+            printf("\n \n-Espanya es el país de Europa con más embalses y uno de los que más tiene en todo el mundo. Son más de 1200 los embalses de más de 1hm^3 de capacidad que hay repartidos por el pais. No es de extrañar el número debido a la geografia y clima del pais que favorece la creacíon de estas estructuras. \n");
+    
+        break;
+        
+        case 2:
+        
+            printf("\n \n-La presa de Kuibuyshev, en Rusia, es la presa más grande de Europa, con una capacidad de 58km^3.\n");
+        
+        break;
+        
+        case 3:
+        
+            printf("\n \n-El nivel de los embalses depende principalmente del balance entre el agua que reciben (principalmente de la lluvia y el deshielo) y la que se extrae para riego, consumo y otros usos. Las precipitaciones y las sequias tienen un impacto directo, mucho mas que otros factores como la altitud o la densidad poblacional.\n");
+        
+        break;
+        
+        case 4:
+        
+            printf("\n \n-El embalse mas antiguo de Espanya se encuentra en la Comunidad Autonoma de Extremadura, mas concretamente en Merida. Es el embalse de Proserpina, fue construido por los romanos entre el I y II d.C y todavía sigue en uso (con fines recreativos). \n");
+        
+        break;
+        
+        case 5:
+        
+            printf("\n \n-El anyo con más acumulacion fue el 2013, con 63.000 hm^3 acumulados, lo que representaba sobre la media un 111/100. \n");
+        
+        break;
+          
+    }
 }
-void tabla_errores(int correcta, int i) {
-
-	printf("\n \t \t ***************");
-
-	if (correcta) {
-
-		printf("\n \t \t *PREGUNTA %d*SI*", i + 1);
-
-	}
-	else {
-
-		printf("\n \t \t *PREGUNTA %d*NO*", i + 1);
-
-	}
-}
-
-void premios_concurso(int numero_aciertos) {
-	printf("\n \nTu número de aciertos es %d", numero_aciertos);
-
-	switch (numero_aciertos) {
-	case 0:
-
-		printf("\n ¡¡Felicidades!! ");
-		printf("\n   _______\n  |       |\n  |  X_X  |  ¡Has conseguido no acertar nada! \n  |_______|\n");
-
-		break;
-
-	case 1:
-	case 2:
-		printf("\n Bueno, al menos lo has intentado ¿no?. ");
-		printf("\n    .-\"      \"-.\\n   /   O    O   \\\\n  |      /\\      |     Poco a poco\\n  |     ====     |     Sigue aprendiendo.\\n   \\            /\\n    '-.______.'\\n");
-
-		break;
-
-	case 3:
-	case 4:
-		printf("\n ¡Buen intento! Vas mejorando. ");
-		printf("\n    .-\"      \"-. \n   /   O    O   \\ \n  |      /\\      |     ¡Ya estás cerca! \n  |     ====     |     En nada lo tienes. \n   \\            / \n    '-.______.' \n");
-
-		break;
-
-	case 5:
-		printf("\n ¡Casi perfecto! ");
-		printf("\n     _______\n    /       \\\n   |  _____  |\n   | |     | |\n   | |_____| |  Te mereces una medalla\n    \\_______/\n     \\_____/\n");
-
-		break;
-
-	case 6:
-		printf("\n ¡Eres un maestro de embalses!");
-		printf("\n      ___________\n     '._==_==_=_.' \n     .-\\:      /-.\n    | (|:.     |) |   Aquí tienes tu trofeo. \n     '-|:.     |-'\n       \\::.    /\n        '::. .'\n          ) (\n        _.' '._\n       `\"\"\"\"\"\"\"`\n");
-
-		break;
-	}
+void tabla_errores(int correcta,int i){
+    
+    printf("\n \t \t ***************");
+    
+    if(correcta){
+    
+    printf("\n \t \t *PREGUNTA %d*SI*", i+1);
+    
+    }
+    else{
+        
+    printf("\n \t \t *PREGUNTA %d*NO*", i+1);
+    
+    }
 }
 
-int cuestionario() {
+void premios_concurso(int numero_aciertos){
+    printf("\n \nTu número de aciertos es %d", numero_aciertos);
+    
+    switch(numero_aciertos){
+        case 0:
+           
+           printf("\n ¡¡Felicidades!! ");
+           printf("\n   _______\n  |       |\n  |  X_X  |  ¡Has conseguido no acertar nada! \n  |_______|\n");
 
+        break;
+        
+        case 1:
+        case 2:
+           printf("\n Bueno, al menos lo has intentado ¿no?. ");
+           printf("\n    .-\"      \"-.\\n   /   O    O   \\\\n  |      /\\      |     Poco a poco\\n  |     ====     |     Sigue aprendiendo.\\n   \\            /\\n    '-.______.–'\\n");
 
-	printf("\nOímos, vemos y hablamos sobre los embalses cotidianamente, nos abastecen de agua para el consumo y la agricultura y tienen un impacto en el día a día del que el ciudadano promedio no es consciente. Dicho esto, ¿sabrás lo suficiente cómo para llevarte el premio al que más sabe de embalses?");
+        break;
+        
+        case 3: 
+        case 4:
+           printf("\n ¡Buen intento! Vas mejorando. ");
+            printf("\n    .-\"      \"-. \n   /   O    O   \\ \n  |      /\\      |     ¡Ya estas cerca! \n  |     ====     |     En nada lo tienes. \n   \\            / \n    '-.______.–' \n");
 
-	int valor_pregunta = pregunta_inicial(), respuestas[6], respuestas_correctas[6] = { 3,4,2,4,1,3 };
+        break;
+        
+        case 5:
+           printf("\n ¡Casi perfecto! ");
+           printf("\n     _______\n    /       \\\n   |  _____  |\n   | |     | |\n   | |_____| |  Te mereces una medalla\n    \\_______/\n     \\_____/\n");
 
-	if (valor_pregunta == 1) {
+        break;
+        
+        case 6:
+           printf("\n ¡Eres un maestro de embalses!");
+           printf("\n      ___________\n     '._==_==_=_.' \n     .-\\:      /-.\n    | (|:.     |) |   Aqui tienes tu trofeo. \n     '-|:.     |-'\n       \\::.    /\n        '::. .'\n          ) (\n        _.' '._\n       `\"\"\"\"\"\"\"`\n");
 
-		printf("\t \t \t*********************************\n");
+        break;
+    }
+}
 
-		printf("\t \t \t*    CUESTIONARIO DE EMBALSES   *\n");
+int cuestionario(){
+    
+    printf("\nOimos, vemos y hablamos sobre los embalses cotidianamente, nos abastecen de agua para el consumo y la agricultura y tienen un impacto en el dia a dia del que el ciudadano promedio no es consciente. Dicho esto, ¿sabras lo suficiente como para llevarte el premio al que mas sabe de embalses?");
+    
+    int valor_pregunta = pregunta_inicial(), respuestas[6], respuestas_correctas[6]={3,4,2,4,1,3};
+    
+    if(valor_pregunta == 1){
+        
+      printf("\t \t \t*********************************\n");
+    
+      printf("\t \t \t*    CUESTIONARIO DE EMBALSES   *\n");
+    
+      printf("\t \t \t*********************************\n");
+    
+    for(int i=0;i<6;i++){
+        
+        respuestas[i] = preguntas_cuestionario( i );
+       
+        mostrar_resultado(respuestas[i]==respuestas_correctas[i], i);
+      
+        informacion_respuestas(i);
+    }
+    
+    int numero_aciertos=0;
+    
+    for(int i=0;i<6;i++){
+        
+      tabla_errores(respuestas[i]==respuestas_correctas[i], i);
+    
+        if(respuestas[i]==respuestas_correctas[i]){
+        
+            numero_aciertos++;
+    
+        }
+    
+    }
+    
+    printf("\n \t \t ***************");/*se acaba la tabla por abajo*/
+    
+    premios_concurso(numero_aciertos);
+    
+    }
+    
+    else if(valor_pregunta == 2){
+    
+    printf("\njoe :(");
+    
+    return 0;
+    
+    }
+    
+    else{
+        
+        return 0;
+        
+    }
 
-		printf("\t \t \t*********************************\n");
-
-		for (int i = 0;i < 6;i++) {
-
-			respuestas[i] = preguntas_cuestionario(i);
-
-			mostrar_resultado(respuestas[i] == respuestas_correctas[i], i);
-
-			informacion_respuestas(i);
-		}
-
-		int numero_aciertos = 0;
-
-		for (int i = 0;i < 6;i++) {
-
-			tabla_errores(respuestas[i] == respuestas_correctas[i], i);
-
-			if (respuestas[i] == respuestas_correctas[i]) {
-
-				numero_aciertos++;
-
-			}
-
-		}
-
-		printf("\n \t \t ***************");/*se acaba la tabla por abajo*/
-
-		premios_concurso(numero_aciertos);
-
-	}
-
-	else if (valor_pregunta == 2) {
-
-		printf("\n joe :(");
-
-		return 0;
-
-	}
-
-	else {
-
-		return 0;
-
-	}
-
-	return 0;
+    return 0;
 }
 //Final funciones del cuestionario
