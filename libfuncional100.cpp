@@ -1193,7 +1193,7 @@ char* cambios_espacios_tipo_presa(DatosComparacion comp[], int l_r_embalse, int 
 
 
 //
-void comparacion_principal() {
+void comparacion_principal(int j, linea cuencas[], int posiciones_cuencas[]) {
 	//variables
 
 	int vb = 0, vc = 0, vco = 0, i;//for y ficheros
@@ -1217,18 +1217,6 @@ void comparacion_principal() {
 	}
 
 	//Fich
-	FILE* base;
-	base = fopen("texto_proyecto.csv", "r");
-	if (base == NULL) {
-		printf("Error al abrir el fichero base.\n");
-		return;
-	}
-	FILE* capacidad;
-	capacidad = fopen("Embalses_capacidad.txt", "r");
-	if (capacidad == NULL) {
-		printf("Error al abrir el fichero de capacidad.\n");
-		return;
-	}
 	FILE* F_comparacion;
 	F_comparacion = fopen("comparacion2.txt", "r");
 	if (F_comparacion == NULL) {
@@ -1239,14 +1227,6 @@ void comparacion_principal() {
 
 	//
 
-	fseek(base, 90, SEEK_SET);
-	while (fscanf(base, "%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[vb].cuenca_hidrografica, cuenca[vb].embalse_nombre, &cuenca[vb].mes, &cuenca[vb].dosmildoce, &cuenca[vb].dosmiltrece, &cuenca[vb].dosmilcatorce, &cuenca[vb].dosmilquince, &cuenca[vb].dosmildieciseis, &cuenca[vb].dosmildiecisiete, &cuenca[vb].dosmildieciocho, &cuenca[vb].dosmildiecinueve, &cuenca[vb].dosmilveinte, &cuenca[vb].dosmilveintiuno) != EOF)
-	{
-
-
-
-		vb++;
-	}
 	while (fscanf(capacidad, "%s\t%f\n", embalse[vc].embalse_nom, &embalse[vc].etotal) != EOF) {
 
 		vc++;
@@ -1718,7 +1698,7 @@ void sequia(int porcentaje) {
 
 //<MAIN> 
 
-void porcentajes_main() {
+void porcentajes_main(int j, linea cuencas[], int posiciones_cuencas[]) {
 
 	int f = 0, j = 0, k = 0, embalse_coincide = 0, c, i;
 
@@ -1731,54 +1711,8 @@ void porcentajes_main() {
 	linea cuenca[4236];
 	Embalse embalse[353];
 
-	//ABRIMOS FICHEROS:
-
-	FILE* tabla;
-	tabla = fopen("texto_proyecto.csv", "r");
-
-	if (tabla == NULL) // Si el resultado es NULL mensaje de error
-	{
-		printf("Error al abrir el fichero.\n");
-
-	}
-
-	FILE* lista;
-	lista = fopen("Embalses_capacidad.txt", "r");
-
-	if (lista == NULL) // Si el resultado es NULL mensaje de error
-	{
-		printf("Error al abrir el fichero 2.\n");
-
-	}
-
-	//SE LEE EL PRIMER FICHERO:
-
-		//Poner que el puntero avance una linea
-	fseek(tabla, 90, SEEK_SET);
-	while (fscanf(tabla, "%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica, cuenca[j].embalse_nombre, &cuenca[j].mes, &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho, &cuenca[j].dosmildiecinueve, &cuenca[j].dosmilveinte, &cuenca[j].dosmilveintiuno) != EOF)
-	{
-
-		//printf("Linea %i:\n", j);
-		//printf("%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , cuenca[j].mes , cuenca[j].dosmildoce, cuenca[j].dosmiltrece, cuenca[j].dosmilcatorce, cuenca[j].dosmilquince, cuenca[j].dosmildieciseis, cuenca[j].dosmildiecisiete, cuenca[j].dosmildieciocho,  cuenca[j].dosmildiecinueve,  cuenca[j].dosmilveinte,  cuenca[j].dosmilveintiuno );
-
-		j++;
-	}
-
-	// las comparamos para no repetir
-
-	for (i = 0;i < j;i++) {
-
-		if (strcmp(cuenca[i].cuenca_hidrografica, cuenca[i - 1].cuenca_hidrografica) != 0) {
-
-			posiciones_cuencas[f] = i;
-			//printf("\ni es %i",posiciones_cuencas[f]);
-			f++;
-		}
-	}
-
-	//añadimos la número 16
-
-	posiciones_cuencas[f] = j;
+	
+	
 
 	//NOMBRES DE CUENCAS ENNUMERADAS
 
