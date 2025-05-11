@@ -7,7 +7,25 @@
 #include <float.h>
 #include <stdlib.h>
 
+//PALABRA DIA
+typedef struct {
+	char posicion[365];
+}linea_palabradia;
 
+//FECHA ACTUAL 
+
+struct tm* fecha_actual();
+
+//DÍA DEL AÑO
+
+int dia_anyo(struct tm* fecha);
+
+//PALABRA DEL DÍA
+
+void palabra_d(int dia, linea_palabradia digitos[]);
+
+void palbra_dia_main();
+//PALABRA DIA FINAL
 
 //SELECCION CUENCA:
 
