@@ -18,7 +18,6 @@ int main(void)//system cls importantes antes de cada funcion
 		Texto0();
 		//seguro por si se escribe una letra
 		scanf_s("%c", &c, 1);
-		
 		system("cls");
 		n = c - '0';
 
@@ -106,7 +105,13 @@ int main(void)//system cls importantes antes de cada funcion
 			break;
 			
 		case 4://palabra del dia
-			
+	
+			palbra_dia_main();
+			system("pause");
+			n = 7;
+			system("cls");
+			break;
+				
 		case 5://AJUSTES
 			do
 			{
