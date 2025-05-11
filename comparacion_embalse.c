@@ -1,15 +1,17 @@
 #include <stdio.h>
 #include <string.h>
 #include <float.h>
+#include <stdlib.h>
 #include "comparacion_embalse.h"
 
 //LISTA CUENCAS:
 
-void nombres_cuencas(int vb, frase cuenca[]){
+void nombres_cuencas(int vb, linea cuenca[]){
 	
 	int numc=0,i;//variables cuenca
-for(i=0;i<vb;i++){
-	if(strcmp(cuenca[i].cuenca_hidrografica,cuenca[i-1].cuenca_hidrografica)!=0){
+for(i=1;i<vb;i++){
+	if(strcmp(cuenca[i].cuenca_hidrografica,cuenca[i+1].cuenca_hidrografica)!=0){
+		
 			numc++;
 			printf("%i-",numc);
 			printf("%s\n",cuenca[i].cuenca_hidrografica);
@@ -28,6 +30,7 @@ int seleccion_cuenca_1(int num_cuenca, char C_cuenca[]){
 	printf("\nIntroduce el numero de la cuenca: ");
 	scanf("%s", C_cuenca);
 	
+	
 	if(('9'<C_cuenca[0] && C_cuenca[0]<'0') && ('9'<C_cuenca[1] && C_cuenca[1]<'0')){
 		printf ("\nCaracter no valido, repite:\n");	
 	}
@@ -38,6 +41,7 @@ int seleccion_cuenca_1(int num_cuenca, char C_cuenca[]){
 		
 		else{		
 			sscanf(C_cuenca, "%i", &num_cuenca);
+		
 			if((0 >= num_cuenca) || ( num_cuenca > 16 )){
 				printf ("\ncNumero no valido, repite:\n");
 			}
@@ -54,7 +58,7 @@ return num_cuenca;
 
 //LISTADO Y SELECCION DE EMBALSES:
 
-void nombreseleccion_embalse_1(int num_cuenca,frase cuenca[], int* num_embalse, int* l_r_embalse){
+void nombreseleccion_embalse_1(int num_cuenca,linea cuenca[], int* num_embalse, int* l_r_embalse){
 		int nume=0,i;
 	switch(num_cuenca)
 	{case(1):
@@ -149,8 +153,8 @@ void nombreseleccion_embalse_1(int num_cuenca,frase cuenca[], int* num_embalse, 
 		}
 		}
 		printf("Elige un numero de embalse de la Cuenca de Costa de Galicia: ");
-		scanf("%i",&num_embalse);
-		*l_r_embalse=129*12+ *num_embalse * 12;
+		scanf("%i",num_embalse);
+		*l_r_embalse=129*12 + *num_embalse * 12;
 		break;
 	case(9):
 		for(i=140*12;i<148*12;i++){
@@ -286,7 +290,7 @@ return num_cuenca2;
 
 
 //SELECCION EMBALSE 2:
-void nombreseleccion_embalse_2(int num_cuenca2,frase cuenca[], int* num_embalse2, int* l_r_embalse2){
+void nombreseleccion_embalse_2(int num_cuenca2,linea cuenca[], int* num_embalse2, int* l_r_embalse2){
 	int nume2=0,i;
 	switch(num_cuenca2)
 	{case(1):
@@ -522,20 +526,9 @@ int seleccion_mes(int mes){
 }
 
 
-//MESES_NOMBRES
-
-	char *mes_nom[] = {"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", 
-						"agosto", "septiembre", "octubre", "noviembre", "diciembre"};
-
-
-char *meses_nombre(int mes){
-	return mes_nom[mes-1];
-	
-}
-
 
 //COMPARACION SEGUN AÑO:
-void comparacion_anyo(int mes_anyo, int anyo, int l_r_embalse, int l_r_embalse2, frase cuenca[]){
+void comparacion_anyo(int mes_anyo, int anyo, int l_r_embalse, int l_r_embalse2, linea cuenca[]){
 		float min= FLT_MAX;
 	float max=FLT_MIN;
 	float min2= FLT_MAX;
@@ -700,150 +693,150 @@ void comparacion_anyo(int mes_anyo, int anyo, int l_r_embalse, int l_r_embalse2,
 
 
 //COMPARACION SEGUN MES
-void comparacion_mes( int mes_anyo, int anyo, int mes, int l_r_embalse, int l_r_embalse2, frase cuenca[]){
+void comparacion_mes( int mes_anyo, int anyo, int mes, int l_r_embalse, int l_r_embalse2, linea cuenca[]){
 		float res_mes,max_mes,min_mes;
 	
 	    
 	switch(anyo){
 		case(2012):
-			printf("La capacidad del primer embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse-13+mes].dosmildoce);
-			printf("La capacidad del segundo embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse2-13+mes].dosmildoce);
+			printf("La capacidad del primer embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse-13+mes].dosmildoce);
+			printf("La capacidad del segundo embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse2-13+mes].dosmildoce);
 			if(cuenca[l_r_embalse2-13+mes].dosmildoce>cuenca[l_r_embalse-13+mes].dosmildoce){
 			   max_mes=	cuenca[l_r_embalse2-13+mes].dosmildoce;
 			   min_mes=cuenca[l_r_embalse-13+mes].dosmildoce;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse-13+mes].dosmildoce>cuenca[l_r_embalse2-13+mes].dosmildoce){
 			   max_mes=	cuenca[l_r_embalse-13+mes].dosmildoce;
 			   min_mes=cuenca[l_r_embalse2-13+mes].dosmildoce;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse2-13+mes].dosmildoce==cuenca[l_r_embalse-13+mes].dosmildoce){
-			   printf("%s y %s tinen la misma capacidad en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s y %s tinen la misma capacidad en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 			break;
 		case(2013):
-			printf("La capacidad del primer embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse-13+mes].dosmiltrece);
-			printf("La capacidad del segundo embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse2-13+mes].dosmiltrece);
+			printf("La capacidad del primer embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse-13+mes].dosmiltrece);
+			printf("La capacidad del segundo embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse2-13+mes].dosmiltrece);
 			if(cuenca[l_r_embalse2-13+mes].dosmiltrece>cuenca[l_r_embalse-13+mes].dosmiltrece){
 			   max_mes=	cuenca[l_r_embalse2-13+mes].dosmiltrece;
 			   min_mes=cuenca[l_r_embalse-13+mes].dosmiltrece;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse-13+mes].dosmiltrece>cuenca[l_r_embalse2-13+mes].dosmiltrece){
 			   max_mes=	cuenca[l_r_embalse-13+mes].dosmiltrece;
 			   min_mes=cuenca[l_r_embalse2-13+mes].dosmiltrece;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse2-13+mes].dosmiltrece==cuenca[l_r_embalse-13+mes].dosmiltrece){
-			   printf("%s y %s tinen la misma capacidad en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s y %s tinen la misma capacidad en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 			break;
 		case(2014):
-			printf("La capacidad del primer embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse-13+mes].dosmilcatorce);
-			printf("La capacidad del segundo embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse2-13+mes].dosmilcatorce);
+			printf("La capacidad del primer embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse-13+mes].dosmilcatorce);
+			printf("La capacidad del segundo embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse2-13+mes].dosmilcatorce);
 			if(cuenca[l_r_embalse2-13+mes].dosmilcatorce>cuenca[l_r_embalse-13+mes].dosmilcatorce){
 			   max_mes=	cuenca[l_r_embalse2-13+mes].dosmilcatorce;
 			   min_mes=cuenca[l_r_embalse-13+mes].dosmilcatorce;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse-13+mes].dosmilcatorce>cuenca[l_r_embalse2-13+mes].dosmilcatorce){
 			   max_mes=	cuenca[l_r_embalse-13+mes].dosmilcatorce;
 			   min_mes=cuenca[l_r_embalse2-13+mes].dosmilcatorce;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse2-13+mes].dosmilcatorce==cuenca[l_r_embalse-13+mes].dosmilcatorce){
-			   printf("%s y %s tinen la misma capacidad en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s y %s tinen la misma capacidad en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 			break;
 		case(2015):
-			printf("La capacidad del primer embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse-13+mes].dosmilquince);
-			printf("La capacidad del segundo embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse2-13+mes].dosmilquince);
+			printf("La capacidad del primer embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse-13+mes].dosmilquince);
+			printf("La capacidad del segundo embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse2-13+mes].dosmilquince);
 			if(cuenca[l_r_embalse2-13+mes].dosmilquince>cuenca[l_r_embalse-13+mes].dosmilquince){
 			   max_mes=	cuenca[l_r_embalse2-13+mes].dosmilquince;
 			   min_mes=cuenca[l_r_embalse-13+mes].dosmilquince;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse-13+mes].dosmilquince>cuenca[l_r_embalse2-13+mes].dosmilquince){
 			   max_mes=	cuenca[l_r_embalse-13+mes].dosmilquince;
 			   min_mes=cuenca[l_r_embalse2-13+mes].dosmilquince;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse2-13+mes].dosmilquince==cuenca[l_r_embalse-13+mes].dosmilquince){
-			   printf("%s y %s tinen la misma capacidad en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s y %s tinen la misma capacidad en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 			break;
 		case(2016):
-			printf("La capacidad del primer embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse-13+mes].dosmildieciseis);
-			printf("La capacidad del segundo embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse2-13+mes].dosmildieciseis);
+			printf("La capacidad del primer embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse-13+mes].dosmildieciseis);
+			printf("La capacidad del segundo embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse2-13+mes].dosmildieciseis);
 			if(cuenca[l_r_embalse2-13+mes].dosmildieciseis>cuenca[l_r_embalse-13+mes].dosmildieciseis){
 			   max_mes=	cuenca[l_r_embalse2-13+mes].dosmildieciseis;
 			   min_mes=cuenca[l_r_embalse-13+mes].dosmildieciseis;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse-13+mes].dosmildieciseis>cuenca[l_r_embalse2-13+mes].dosmildieciseis){
 			   max_mes=	cuenca[l_r_embalse-13+mes].dosmildieciseis;
 			   min_mes=cuenca[l_r_embalse2-13+mes].dosmildieciseis;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes..\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse2-13+mes].dosmildieciseis==cuenca[l_r_embalse-13+mes].dosmildieciseis){
-			   printf("%s y %s tinen la misma capacidad en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s y %s tinen la misma capacidad en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 			break;
 		case(2017):
-			printf("La capacidad del primer embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse-13+mes].dosmildiecisiete);
-			printf("La capacidad del segundo embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse2-13+mes].dosmildiecisiete);
+			printf("La capacidad del primer embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse-13+mes].dosmildiecisiete);
+			printf("La capacidad del segundo embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse2-13+mes].dosmildiecisiete);
 			if(cuenca[l_r_embalse2-13+mes].dosmildiecisiete>cuenca[l_r_embalse-13+mes].dosmildiecisiete){
 			   max_mes=	cuenca[l_r_embalse2-13+mes].dosmildiecisiete;
 			   min_mes=cuenca[l_r_embalse-13+mes].dosmildiecisiete;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse-13+mes].dosmildiecisiete>cuenca[l_r_embalse2-13+mes].dosmildiecisiete){
 			   max_mes=	cuenca[l_r_embalse-13+mes].dosmildiecisiete;
 			   min_mes=cuenca[l_r_embalse2-13+mes].dosmildiecisiete;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse2-13+mes].dosmildiecisiete==cuenca[l_r_embalse-13+mes].dosmildiecisiete){
-			   printf("%s y %s tinen la misma capacidad en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s y %s tinen la misma capacidad en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 			break;
 		case(2018):
-			printf("La capacidad del primer embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse-13+mes].dosmildieciocho);
-			printf("La capacidad del segundo embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse2-13+mes].dosmildieciocho);
+			printf("La capacidad del primer embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse-13+mes].dosmildieciocho);
+			printf("La capacidad del segundo embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse2-13+mes].dosmildieciocho);
 			if(cuenca[l_r_embalse2-13+mes].dosmildieciocho>cuenca[l_r_embalse-13+mes].dosmildieciocho){
 			   max_mes=	cuenca[l_r_embalse2-13+mes].dosmildieciocho;
 			   min_mes=cuenca[l_r_embalse-13+mes].dosmildieciocho;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse-13+mes].dosmildieciocho>cuenca[l_r_embalse2-13+mes].dosmildieciocho){
 			   max_mes=	cuenca[l_r_embalse-13+mes].dosmildieciocho;
 			   min_mes=cuenca[l_r_embalse2-13+mes].dosmildieciocho;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse2-13+mes].dosmildieciocho==cuenca[l_r_embalse-13+mes].dosmildieciocho){
-			   printf("%s y %s tinen la misma capacidad en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s y %s tinen la misma capacidad en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 			break;
 		case(2019):
-			printf("La capacidad del primer embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse-13+mes].dosmildiecinueve);
-			printf("La capacidad del segundo embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse2-13+mes].dosmildiecinueve);
+			printf("La capacidad del primer embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse-13+mes].dosmildiecinueve);
+			printf("La capacidad del segundo embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse2-13+mes].dosmildiecinueve);
 			if(cuenca[l_r_embalse2-13+mes].dosmildiecinueve>cuenca[l_r_embalse-13+mes].dosmildiecinueve){
 			   max_mes=	cuenca[l_r_embalse2-13+mes].dosmildiecinueve;
 			   min_mes=cuenca[l_r_embalse-13+mes].dosmildiecinueve;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse-13+mes].dosmildiecinueve>cuenca[l_r_embalse2-13+mes].dosmildiecinueve){
 			   max_mes=	cuenca[l_r_embalse-13+mes].dosmildiecinueve;
 			   min_mes=cuenca[l_r_embalse2-13+mes].dosmildiecinueve;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse2-13+mes].dosmildiecinueve==cuenca[l_r_embalse-13+mes].dosmildiecinueve){
-			   printf("%s y %s tinen la misma capacidad en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s y %s tinen la misma capacidad en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 			break;
 		case(2020):
-			printf("La capacidad del primer embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse-13+mes].dosmilveinte);
-			printf("La capacidad del segundo embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse2-13+mes].dosmilveinte);
+			printf("La capacidad del primer embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse-13+mes].dosmilveinte);
+			printf("La capacidad del segundo embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse2-13+mes].dosmilveinte);
 			if(cuenca[l_r_embalse2-13+mes].dosmilveinte>cuenca[l_r_embalse-13+mes].dosmilveinte){
 			   max_mes=	cuenca[l_r_embalse2-13+mes].dosmilveinte;
 			   min_mes=cuenca[l_r_embalse-13+mes].dosmilveinte;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse-13+mes].dosmilveinte>cuenca[l_r_embalse2-13+mes].dosmilveinte){
 			   max_mes=	cuenca[l_r_embalse-13+mes].dosmilveinte;
 			   min_mes=cuenca[l_r_embalse2-13+mes].dosmilveinte;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse2-13+mes].dosmilveinte==cuenca[l_r_embalse-13+mes].dosmilveinte){
-			   printf("%s y %s tinen la misma capacidad en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s y %s tinen la misma capacidad en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 			break;
 		case(2021):
-			printf("La capacidad del primer embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse-13+mes].dosmilveintiuno);
-			printf("La capacidad del segundo embalse %s en %s del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes),anyo,cuenca[l_r_embalse2-13+mes].dosmilveintiuno);
+			printf("La capacidad del primer embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse-13+mes].dosmilveintiuno);
+			printf("La capacidad del segundo embalse %s en el %i mes del %i es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,mes,anyo,cuenca[l_r_embalse2-13+mes].dosmilveintiuno);
 			if(cuenca[l_r_embalse2-13+mes].dosmildoce>cuenca[l_r_embalse-13+mes].dosmilveintiuno){
 			   max_mes=	cuenca[l_r_embalse2-13+mes].dosmilveintiuno;
 			   min_mes=cuenca[l_r_embalse-13+mes].dosmilveintiuno;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse-13+mes].dosmilveintiuno>cuenca[l_r_embalse2-13+mes].dosmilveintiuno){
 			   max_mes=	cuenca[l_r_embalse-13+mes].dosmilveintiuno;
 			   min_mes=cuenca[l_r_embalse2-13+mes].dosmilveintiuno;
-			   printf("%s sobrepaso en %.2f hm^3 a %s en %s.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s sobrepaso en %.2f hm^3 a %s en el %i mes.\n", cuenca[l_r_embalse-1].embalse_nombre,res_mes=max_mes-min_mes,cuenca[l_r_embalse2-1].embalse_nombre,mes);}
 	        if(cuenca[l_r_embalse2-13+mes].dosmilveintiuno==cuenca[l_r_embalse-13+mes].dosmilveintiuno){
-			   printf("%s y %s tinen la misma capacidad en %s.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,meses_nombre(mes));}
+			   printf("%s y %s tienen la misma capacidad en el %i mes.\n", cuenca[l_r_embalse2-1].embalse_nombre,cuenca[l_r_embalse-1].embalse_nombre,mes);}
 			break;
 		
 	}
@@ -851,7 +844,7 @@ void comparacion_mes( int mes_anyo, int anyo, int mes, int l_r_embalse, int l_r_
 
 
 //CAPACIDAD MAX
-void capacidad_max( int l_r_embalse, int l_r_embalse2, frase cuenca[],frase embalse[]){
+void capacidad_max( int l_r_embalse, int l_r_embalse2, linea cuenca[],Embalse embalse[]){
 	float max_capM,min_capM,dif_capM;
 printf("La capacidad maxima que puede contener los embalses elegidos, %s y %s, es %.2f y %.2f respectivamente.\n", cuenca[l_r_embalse-1].embalse_nombre, cuenca[l_r_embalse2-1].embalse_nombre, embalse[l_r_embalse/12-1].etotal,embalse[l_r_embalse2/12-1].etotal);
 if(embalse[l_r_embalse2/12-1].etotal>embalse[l_r_embalse/12-1].etotal){
@@ -872,11 +865,17 @@ if(embalse[l_r_embalse2/12-1].etotal==embalse[l_r_embalse/12-1].etotal){
 
 
 //SUPERFICIE
-void superficie( int l_r_embalse, int l_r_embalse2, frase cuenca[], DatosComparacion comp[]){
+void superficie( int l_r_embalse, int l_r_embalse2, linea cuenca[], DatosComparacion comp[]){
 	float max_sup,min_sup,dif_sup;
    
 printf("La superficie del primer embalse, %s, es %.2f.\n", cuenca[l_r_embalse-1].embalse_nombre,comp[l_r_embalse/12-1].superficie);
+if(comp[l_r_embalse/12-1].superficie==0){
+	printf("La superficie de %s no esta disponible.\n", cuenca[l_r_embalse-1].embalse_nombre );
+}
 printf("La superficie del segundo embalse, %s, es %.2f.\n",cuenca[l_r_embalse2-1].embalse_nombre,comp[l_r_embalse2/12-1].superficie);
+if(comp[l_r_embalse2/12-1].superficie==0){
+	printf("La superficie de %s no esta disponible.\n", cuenca[l_r_embalse2-1].embalse_nombre );
+}
 if(comp[l_r_embalse2/12-1].superficie>comp[l_r_embalse/12-1].superficie){
 	max_sup=comp[l_r_embalse2/12-1].superficie;
 	min_sup=comp[l_r_embalse/12-1].superficie;
@@ -895,7 +894,7 @@ if(comp[l_r_embalse/12-1].superficie==comp[l_r_embalse2/12-1].superficie){
 
 
 //TIPO DE EMBALSE:
-void tipo_embalse(DatosComparacion comp[],int l_r_embalse, int l_r_embalse2, frase cuenca[]){
+void tipo_embalse(DatosComparacion comp[],int l_r_embalse, int l_r_embalse2, linea cuenca[]){
 	if(strcmp(comp[l_r_embalse/12-1].tipo_presa,comp[l_r_embalse2/12-1].tipo_presa)!=0){
 	printf("El primer embalse, %s, tiene un embalse de tipo %s, mientras que el segundo embalse, %s, tiene un embalse de tipo %s.\n",cuenca[l_r_embalse-1].embalse_nombre,comp[l_r_embalse/12-1].tipo_presa, cuenca[l_r_embalse2-1].embalse_nombre,comp[l_r_embalse2/12-1].tipo_presa);
 }else{
@@ -905,7 +904,7 @@ void tipo_embalse(DatosComparacion comp[],int l_r_embalse, int l_r_embalse2, fra
 
 
 //USO DE EMBALSE:
-void uso_embalse(DatosComparacion comp[],int l_r_embalse, int l_r_embalse2, frase cuenca[]){
+void uso_embalse(DatosComparacion comp[],int l_r_embalse, int l_r_embalse2, linea cuenca[]){
 	if(strcmp(comp[l_r_embalse/12-1].uso_abastecimiento,comp[l_r_embalse2/12-1].uso_abastecimiento)!=0){
 	if(strcmp(comp[l_r_embalse/12-1].uso_abastecimiento,"Si")==0){
 		printf("Solo el embalse, %s, se usa para abastecimiento.\n",cuenca[l_r_embalse-1].embalse_nombre );
@@ -1001,7 +1000,7 @@ if(strcmp(comp[l_r_embalse/12-1].uso_restaurante,comp[l_r_embalse2/12-1].uso_res
 
 
 //CAMBIO DE GUION A ESPACIO
-char cambios_espacios_embalses (frase cuenca [], int l_r_embalse, int l_r_embalse2){
+char cambios_espacios_embalses (linea cuenca [], int l_r_embalse, int l_r_embalse2){
 	int c=0;
 	int b=0;
 	char cambio[100];
@@ -1050,3 +1049,4 @@ char cambios_espacios_tipo_presa (DatosComparacion comp[], int l_r_embalse, int 
 	strcpy(comp[l_r_embalse/12-1].tipo_presa,cambio);
 	strcpy(comp[l_r_embalse2/12-1].tipo_presa,cambio2);
 }
+
