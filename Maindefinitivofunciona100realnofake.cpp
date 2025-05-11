@@ -114,19 +114,19 @@ int main(void)//system cls importantes antes de cada funcion
 				if (n == 2)
 				{
 					system("cls");
-					porcentajes_main(j,cuencas[], posiciones_cuencas[]);
+					porcentajes_main(j,cuencas, posiciones_cuencas);
 					system("pause");
 				}
 				if (n == 3)
 				{
 					system("cls");
-					comparacion_principal(j,cuencas[], posiciones_cuencas[]);
+					comparacion_principal(j,cuencas, posiciones_cuencas);
 					system("pause");
 				}
 				if (n == 4)
 				{
 					system("cls");
-					maxymin_main(j,cuencas[], posiciones_cuencas[], maxmin[], C_cuenca[]);
+					maxymin_main(j,cuencas, posiciones_cuencas, maxmin, C_cuenca);
 
 				}
 
