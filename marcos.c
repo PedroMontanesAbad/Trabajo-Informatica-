@@ -95,3 +95,22 @@ for (i=0;i<j;i++){
 	anyo = seleccion_anyo(anyo, C_anyo);
 	media_anyo_embalse(j, anyo, num_cuenca, num_embalse, cuenca[], posiciones_cuencas[], maxmin[]) {
 }
+
+
+float media_anyo_embalse(int j,int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[]){		//  Vector 1 es cuencas y vector 2 es posiciones cuencas
+	int i;
+	float suma,media;
+	switch(anyo){
+	case(2012):
+		for (i=vector2[num_cuenca-1]+(num_embalse-1)*12;i<vector2[num_cuenca-1]+(num_embalse)*12;i++){
+			suma = suma + vector[i].dosmildoce;
+			printf("dato:%f\n", vector[i].dosmildoce);
+			printf("linea:%i\n",i);
+		}
+		media = suma / 12;
+		printf("%f\n", media);
+	}
+	return media;	
+}
+
+float max_y_min_embalse(
