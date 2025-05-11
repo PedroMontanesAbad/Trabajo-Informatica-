@@ -1,5 +1,5 @@
 
-#include "funciones_comunes.h"
+#include "lib.h"
 
 
 
