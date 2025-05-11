@@ -172,11 +172,16 @@ int main(void)//system cls importantes antes de cada funcion
 
 
 				if (n == 1)
-					system("color 46");
+				system("color 46");
+				if (n == 5)
+				system("color 56");
+				if (n == 6)
+				system("color 97");
 				if (n == 7)
-					system("color 56");
+				system("color 65");
 				if (n == 8)
-					system("color 97");
+				system("color 80");
+					
 				else if (n == 2)
 				{
 					system("cls");
