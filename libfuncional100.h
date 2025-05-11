@@ -76,6 +76,7 @@ void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[
 float media_anyo(int j,int anyo, linea vector[]);
 float media_anyo_embalse(int j,int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[]);
 float max_y_min_embalse(int j,int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[], int vector3[]);
+void maxymin_main(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[], int vector3[], char C_cuenca[]);
 int seleccion_embalse(int num_embalse, int vector2[], int num_cuenca, char C_embalse[]);
 int seleccion_anyo(int anyo, char C_anyo[]);
 int seleccion_mes(int N_mes, char C_mes[]);
