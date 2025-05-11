@@ -1325,6 +1325,73 @@ void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[
 
 }
 
+//MEDIA DE UN AÑO:
+
+float media_anyo(int j,int anyo, linea vector[]){		// Vector es cuencas
+	int i;
+	float suma=0,media;
+	switch(anyo){
+		case(2012):
+			for (i=0;i<j;i++){
+				suma = suma + vector[i].dosmildoce;
+				
+			}
+			media = suma / j;
+			printf("%f\n", media);
+		break;
+		
+	}
+	return media;
+}
+
+//MEDIA DE UN AÑO DE UN EMBALSE EN CONCRETO:
+
+float media_anyo_embalse(int j,int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[]){		//  Vector 1 es cuencas y vector 2 es posiciones cuencas
+	int i;
+	float suma,media;
+	switch(anyo){
+	case(2012):
+		for (i=vector2[num_cuenca-1]+(num_embalse-1)*12;i<vector2[num_cuenca-1]+(num_embalse)*12;i++){
+			suma = suma + vector[i].dosmildoce;
+			printf("dato:%f\n", vector[i].dosmildoce);
+			printf("linea:%i\n",i);
+		}
+		media = suma / 12;
+		printf("%f\n", media);
+	}
+	return media;	
+}
+//MAXIMO Y MINIMO DE UN EMBALSE UN AÑO EN CONCRETO:
+float max_y_min_embalse(int j,int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[], int vector3[]){ // Vector 3 es vector auxiliar para guardar los datos obtenidos
+	int i,mesM,mesm;
+	float maximo=0,minimo=1000;
+	switch(anyo){
+	case(2012):
+		for (i=vector2[num_cuenca-1]+(num_embalse-1)*12;i<vector2[num_cuenca-1]+(num_embalse)*12;i++){
+			if (vector[i].dosmildoce > maximo)
+			{
+				maximo = vector[i].dosmildoce;
+				mesM = (i+1) % 12;
+			}
+			if (vector[i].dosmildoce < minimo)
+			{
+				minimo = vector[i].dosmildoce;
+				mesm = (i+1) % 12;
+			}
+			
+		}
+		break;
+		
+	
+	}
+	vector3[0] = maximo;
+	vector3[1] = mesM;
+	vector3[2] = minimo;
+	vector3[3] = mesm;	
+	//printf("El maximo es %f en el mes %i, el minimo es %f en el mes %i", vector3[0],vector3[1],vector3[2],vector3[3]);
+	
+}
+
 // SELECCIÓN DE EMBALSES:
 
 int seleccion_embalse(int num_embalse, int vector2[], int num_cuenca, char C_embalse[]) {
