@@ -114,13 +114,13 @@ int main(void)//system cls importantes antes de cada funcion
 				if (n == 2)
 				{
 					system("cls");
-					porcentajes_main();
+					porcentajes_main(j,cuencas[], posiciones_cuencas[]);
 					system("pause");
 				}
 				if (n == 3)
 				{
 					system("cls");
-					comparacion_principal();
+					comparacion_principal(j,cuencas[], posiciones_cuencas[]);
 					system("pause");
 				}
 				if (n == 4)
