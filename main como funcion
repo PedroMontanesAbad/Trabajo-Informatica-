@@ -1,6 +1,6 @@
-int main(){
+int main%(int j,linea cuenca[],Embalse embalse[],int posiciones_cuencas){
 	
-	int f=0,j=0, k=0, embalse_coincide=0, c,i;
+	int f=0, k=0, embalse_coincide=0, c,i;
 	
 	char C_cuenca[2], C_embalse[2], C_mes[2], C_anyo[5], cambio[100];
 
