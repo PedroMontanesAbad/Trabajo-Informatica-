@@ -17,10 +17,12 @@ typedef struct {
 	float dosmilveinte;
 	float dosmilveintiuno;
 	//
+	}linea;
+typedef struct {
 	char embalse_nom[50];
 	float etotal;
 	//
-}frase;
+}Embalse;
 //
 typedef struct {
     char nombre_embalse[100];
@@ -38,39 +40,38 @@ typedef struct {
 } DatosComparacion;
 //
 
-void nombres_cuencas(int vb, frase cuenca[]);
+void nombres_cuencas(int vb, linea cuenca[]);
 
 int seleccion_cuenca_1(int num_cuenca, char C_cuenca[]);
 
-void nombreseleccion_embalse_1(int num_cuenca,frase cuenca[], int* num_embalse, int* l_r_embalse);
+void nombreseleccion_embalse_1(int num_cuenca,linea cuenca[], int* num_embalse, int* l_r_embalse);
 
 int seleccion_cuenca_2(int num_cuenca2, char C_cuenca2[]);
 
-void nombreseleccion_embalse_2(int num_cuenca2,frase cuenca[], int* num_embalse2, int* l_r_embalse2);
+void nombreseleccion_embalse_2(int num_cuenca2,linea cuenca[], int* num_embalse2, int* l_r_embalse2);
 
 int tipo_comparacion(int mes_anyo);
 
-void comparacion_anyo(int mes_anyo, int anyo, int l_r_embalse, int l_r_embalse2, frase cuenca[]);
+void comparacion_anyo(int mes_anyo, int anyo, int l_r_embalse, int l_r_embalse2, linea cuenca[]);
 
-int seleccion_anyo(int anyo);
+int seleccion_anyos(int anyo);
 
-void comparacion_mes(int mes_anyo, int anyo, int mes, int l_r_embalse, int l_r_embalse2, frase cuenca[]);
+void comparacion_mes(int mes_anyo, int anyo, int mes, int l_r_embalse, int l_r_embalse2, linea cuenca[]);
 
-int seleccion_mes(int mes);
+int seleccion_mese(int mes);
 
-char *meses_nombre(int mes);
+void capacidad_max(int l_r_embalse, int l_r_embalse2,linea cuenca[],Embalse embalse[]);
 
-void capacidad_max(int l_r_embalse, int l_r_embalse2, frase cuenca[],frase embalse[]);
+void superficie(int l_r_embalse, int l_r_embalse2, linea cuenca[], DatosComparacion comp[]);
 
-void superficie(int l_r_embalse, int l_r_embalse2, frase cuenca[], DatosComparacion comp[]);
+void tipo_embalse(DatosComparacion comp[],int l_r_embalse, int l_r_embalse2, linea cuenca[]);
 
-void tipo_embalse(DatosComparacion comp[],int l_r_embalse, int l_r_embalse2, frase cuenca[]);
+void uso_embalse(DatosComparacion comp[],int l_r_embalse, int l_r_embalse2, linea cuenca[]);
 
-void uso_embalse(DatosComparacion comp[],int l_r_embalse, int l_r_embalse2, frase cuenca[]);
-
-char cambios_espacios_embalses (frase cuenca [], int l_r_embalse, int l_r_embalse2);
+char cambios_espacios_embalses (linea cuenca [], int l_r_embalse, int l_r_embalse2);
 
 char cambios_espacios_tipo_presa (DatosComparacion comp[], int l_r_embalse, int l_r_embalse2);
+
 
 
 
