@@ -47,3 +47,5 @@ posiciones_cuencas[f]=j; //Añadimos un ultimo valor señalando el fin de los da
 	max_y_min_embalse(j, anyo, num_cuenca, num_embalse, cuenca[], posiciones_cuencas[], maxmin[]) { 
 }
 
+void medias_main(){
+}
