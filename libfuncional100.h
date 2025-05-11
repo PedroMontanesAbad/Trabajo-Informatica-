@@ -70,7 +70,6 @@ void Fecha();
 void SeisCuadrados();
 
 void porcentajes_main();
-void nombres_embalses(int j,linea vector[]);
 void nombres_cuencas(int j, linea cuenca[]);
 int seleccion_cuenca(int num_cuenca, char C_cuenca[]);
 void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[]);
