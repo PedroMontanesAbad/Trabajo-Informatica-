@@ -54,7 +54,7 @@ int main(void)//system cls importantes antes de cada funcion
 	posiciones_cuencas[f] = j;
 
 	int n;
-	char c, basura;
+	char c;
 	system("color 0A");
 
 	do
