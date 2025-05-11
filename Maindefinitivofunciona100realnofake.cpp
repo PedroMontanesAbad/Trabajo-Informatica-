@@ -3,6 +3,55 @@
 
 int main(void)//system cls importantes antes de cada funcion
 {
+	//ABRIMOS FICHEROS:
+
+	FILE* tabla;
+	tabla = fopen("texto_proyecto.csv", "r");
+
+	if (tabla == NULL) // Si el resultado es NULL mensaje de error
+	{
+		printf("Error al abrir el fichero.\n");
+
+	}
+
+	FILE* lista;
+	lista = fopen("Embalses_capacidad.txt", "r");
+
+	if (lista == NULL) // Si el resultado es NULL mensaje de error
+	{
+		printf("Error al abrir el fichero 2.\n");
+
+	}
+
+	//SE LEE EL PRIMER FICHERO:
+
+		//EL PUNTERO AVANZA LA PRIMERA LINEA QUE NO CONTIENE DATOS:
+		fseek(tabla, 90, SEEK_SET);
+	
+	while (fscanf(tabla, "%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica, cuenca[j].embalse_nombre, &cuenca[j].mes, &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho, &cuenca[j].dosmildiecinueve, &cuenca[j].dosmilveinte, &cuenca[j].dosmilveintiuno) != EOF)
+	{
+
+		//printf("Linea %i:\n", j);
+		//printf("%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , cuenca[j].mes , cuenca[j].dosmildoce, cuenca[j].dosmiltrece, cuenca[j].dosmilcatorce, cuenca[j].dosmilquince, cuenca[j].dosmildieciseis, cuenca[j].dosmildiecisiete, cuenca[j].dosmildieciocho,  cuenca[j].dosmildiecinueve,  cuenca[j].dosmilveinte,  cuenca[j].dosmilveintiuno );
+
+		j++;
+	}
+
+	//CREAMOS VECTOR AUXILIAR QUE ALMACENE LA POSICION DE LAS CUENCAS:
+	
+	for (i = 0;i < j;i++) {
+
+		if (strcmp(cuenca[i].cuenca_hidrografica, cuenca[i - 1].cuenca_hidrografica) != 0) {
+
+			posiciones_cuencas[f] = i;
+			//printf("\ni es %i",posiciones_cuencas[f]);
+			f++;
+		}
+	}
+
+	//añadimos la número 16
+
+	posiciones_cuencas[f] = j;
 
 	int n;
 	char c, basura;
