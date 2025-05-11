@@ -10,25 +10,6 @@ int main(){
 
 	linea cuenca[4236], embalse [353];
 		
-//ABRIMOS FICHEROS:
-	
-	FILE *tabla;
-	tabla = fopen("texto_proyecto.csv","r");
-	
-	if (tabla == NULL) // Si el resultado es NULL mensaje de error
-	{
-	printf("Error al abrir el fichero.\n");
-	return -1;
-	}
-
-	FILE *lista;
-	lista = fopen("Embalses_capacidad.txt","r");
-	
-	if (lista == NULL) // Si el resultado es NULL mensaje de error
-	{
-	printf("Error al abrir el fichero 2.\n");
-	return -1;
-	}
 
 //SE LEE EL PRIMER FICHERO:
 	
