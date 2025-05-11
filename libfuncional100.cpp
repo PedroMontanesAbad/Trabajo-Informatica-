@@ -2070,27 +2070,84 @@ void maxymin_main(int j, int anyo, int num_cuenca, int num_embalse, linea vector
 
 
 	//INTERFAZ
-	void gotoxy(int x, int y)
+void gotoxy(int x, int y)
+{
+	HANDLE Identiventana;
+
+	Identiventana = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	COORD Coordenadas;
+	Coordenadas.X = x;
+	Coordenadas.Y = y;
+
+	SetConsoleCursorPosition(Identiventana, Coordenadas);
+}
+
+void DibujarMenu()
+{
+	int x = 19, y = 8, i, fila = 81, columna = 21;//De espacio hay -1
+
+	////Dibujar Cuadrados////
 	{
-		HANDLE Identiventana;
-
-		Identiventana = GetStdHandle(STD_OUTPUT_HANDLE);
-
-		COORD Coordenadas;
-		Coordenadas.X = x;
-		Coordenadas.Y = y;
-
-		SetConsoleCursorPosition(Identiventana, Coordenadas);
-	}
-
-	void DibujarMenu()
-	{
-		int x = 19, y = 8, i, fila = 81, columna = 21;//De espacio hay -1
-
-		////Dibujar Cuadrados////
+		//Cuadrado Grande
 		{
-			//Cuadrado Grande
+			for (i = 0; i < fila; i++)//Fila Arriba
 			{
+				x++;
+				gotoxy(x, y);
+				printf("%c", 205);
+			}
+			gotoxy(x, y);
+			printf("%c", 187);
+			for (i = 0; i < columna; i++)//Columna derecha
+			{
+				y++;
+				gotoxy(x, y);
+				printf("%c", 186);
+
+			}
+			gotoxy(x, y);
+			printf("%c", 188);
+			for (i = 0; i < fila; i++)//Fila abajo
+			{
+				x--;
+				gotoxy(x, y);
+				printf("%c", 205);
+			}
+			gotoxy(x, y);
+			printf("%c", 200);
+			for (i = 0; i < columna; i++)//Columna izquierda
+			{
+				y--;
+				gotoxy(x, y);
+				printf("%c", 186);
+			}
+			gotoxy(x, y);
+			printf("%c", 201);
+		}
+
+		//Cuadrados
+		{
+			//Columna centro
+			{
+				x = 60, y = 8;
+				gotoxy(x, y);
+				printf("%c", 203);
+				for (i = 0; i < columna; i++)
+				{
+					y++;
+					gotoxy(x, y);
+					printf("%c", 186);
+				}
+				gotoxy(x, y);
+				printf("%c", 202);
+			}
+
+			//Fila 1
+			{
+				x = 19, y = 15;
+				gotoxy(x, y);
+				printf("%c", 204);
 				for (i = 0; i < fila; i++)//Fila Arriba
 				{
 					x++;
@@ -2098,179 +2155,180 @@ void maxymin_main(int j, int anyo, int num_cuenca, int num_embalse, linea vector
 					printf("%c", 205);
 				}
 				gotoxy(x, y);
-				printf("%c", 187);
-				for (i = 0; i < columna; i++)//Columna derecha
-				{
-					y++;
-					gotoxy(x, y);
-					printf("%c", 186);
+				printf("%c", 185);
 
-				}
+			}
+
+			//Fila 2
+			{
+				x = 19, y = 22;
 				gotoxy(x, y);
-				printf("%c", 188);
-				for (i = 0; i < fila; i++)//Fila abajo
+				printf("%c", 204);
+				for (i = 0; i < fila; i++)//Fila Arriba
 				{
-					x--;
+					x++;
 					gotoxy(x, y);
 					printf("%c", 205);
 				}
 				gotoxy(x, y);
-				printf("%c", 200);
-				for (i = 0; i < columna; i++)//Columna izquierda
-				{
-					y--;
-					gotoxy(x, y);
-					printf("%c", 186);
-				}
-				gotoxy(x, y);
-				printf("%c", 201);
+				printf("%c", 185);
 			}
 
-			//Cuadrados
-			{
-				//Columna centro
-				{
-					x = 60, y = 8;
-					gotoxy(x, y);
-					printf("%c", 203);
-					for (i = 0; i < columna; i++)
-					{
-						y++;
-						gotoxy(x, y);
-						printf("%c", 186);
-					}
-					gotoxy(x, y);
-					printf("%c", 202);
-				}
+			gotoxy(60, 15), printf("%c", 206);
+			gotoxy(60, 22), printf("%c", 206);
 
-				//Fila 1
-				{
-					x = 19, y = 15;
-					gotoxy(x, y);
-					printf("%c", 204);
-					for (i = 0; i < fila; i++)//Fila Arriba
-					{
-						x++;
-						gotoxy(x, y);
-						printf("%c", 205);
-					}
-					gotoxy(x, y);
-					printf("%c", 185);
-
-				}
-
-				//Fila 2
-				{
-					x = 19, y = 22;
-					gotoxy(x, y);
-					printf("%c", 204);
-					for (i = 0; i < fila; i++)//Fila Arriba
-					{
-						x++;
-						gotoxy(x, y);
-						printf("%c", 205);
-					}
-					gotoxy(x, y);
-					printf("%c", 185);
-				}
-
-				gotoxy(60, 15), printf("%c", 206);
-				gotoxy(60, 22), printf("%c", 206);
-
-			}
 		}
 	}
+}
 
 
+
+//Texto0
+void Texto0()
+{
 	int x, y;
-	//Texto0
-	void Texto0()
+	//Titulo// 
 	{
-		//Titulo// 
-		{
-			gotoxy(55, 4);
-			printf("MENU PRINCIPAL");
-		}
-
-
-		//Textos
-		{
-			////Texto Primer Cuadrado////
-			{
-				x = 20;
-				y = 9;
-				gotoxy(x, y);
-				printf("LISTADOS");
-				gotoxy(x, 14);
-				printf("Presionar ( 1 )");
-
-			}
-			////// Segundo cuadrado/////
-			{
-				x = 61;
-				y = 9;
-				gotoxy(x, y);
-				printf("INFORMACION GENERAL");
-				gotoxy(x, 14);
-				printf("Presionar ( 2 )");
-
-			}
-			//// Tercer cuadrado////
-			{
-				x = 20;
-				y = 16;
-				gotoxy(x, y);
-				printf("CUESTIONARIO");
-				gotoxy(x, 21);
-				printf("Presionar ( 3 )");
-
-			}
-			//// Cuarto cuadrado////
-			{
-				x = 61;
-				y = 16;
-				gotoxy(x, y);
-				printf("PALABRA DEL DIA");
-				gotoxy(x, 21);
-				printf("Presionar ( 4 )");
-
-			}
-			//// 5 cuadrado////
-			{
-				x = 20;
-				y = 23;
-				gotoxy(x, y);
-				printf("AJUSTES");
-				gotoxy(x, 28);
-				printf("Presionar ( 5 )");
-
-			}
-			//// 6 cuadrado////
-			{
-				x = 61;
-				y = 23;
-				gotoxy(x, y);
-				printf("SALIR DEL PROGRAMA");
-				gotoxy(x, 28);
-				printf("Presionar ( 6 )");
-
-			}
-		}
-
-		gotoxy(55, 7);
-		printf("Ir a: ");
-		gotoxy(65, 7);
+		gotoxy(55, 4);
+		printf("MENU PRINCIPAL");
 	}
 
-	//Texto1
-	void Texto1()
-	{
-		int x = 19, y = 9, i, fila = 81, columna = 20;
 
-		////Dibujar Cuadrados 2X2////
+	//Textos
+	{
+		////Texto Primer Cuadrado////
 		{
-			//Cuadrado Grande
+			x = 20;
+			y = 9;
+			gotoxy(x, y);
+			printf("CUENCAS");
+			gotoxy(x, 14);
+			printf("Presionar ( 1 )");
+
+		}
+		////// Segundo cuadrado/////
+		{
+			x = 61;
+			y = 9;
+			gotoxy(x, y);
+			printf("EMBALSES");
+			gotoxy(x, 14);
+			printf("Presionar ( 2 )");
+
+		}
+		//// Tercer cuadrado////
+		{
+			x = 20;
+			y = 16;
+			gotoxy(x, y);
+			printf("CUESTIONARIO");
+			gotoxy(x, 21);
+			printf("Presionar ( 3 )");
+
+		}
+		//// Cuarto cuadrado////
+		{
+			x = 61;
+			y = 16;
+			gotoxy(x, y);
+			printf("PALABRA DEL DIA");
+			gotoxy(x, 21);
+			printf("Presionar ( 4 )");
+
+		}
+		//// 5 cuadrado////
+		{
+			x = 20;
+			y = 23;
+			gotoxy(x, y);
+			printf("AJUSTES");
+			gotoxy(x, 28);
+			printf("Presionar ( 5 )");
+
+		}
+		//// 6 cuadrado////
+		{
+			x = 61;
+			y = 23;
+			gotoxy(x, y);
+			printf("SALIR DEL PROGRAMA");
+			gotoxy(x, 28);
+			printf("Presionar ( 6 )");
+
+		}
+	}
+
+	gotoxy(55, 7);
+	printf("Ir a: ");
+	gotoxy(65, 7);
+}
+
+//Texto1
+void Texto1()
+{
+	
+	int x = 19, y = 9, i, fila = 81, columna = 20;
+
+	////Dibujar Cuadrados 2X2////
+	{
+		//Cuadrado Grande
+		{
+			for (i = 0; i < fila; i++)//Fila Arriba
 			{
+				x++;
+				gotoxy(x, y);
+				printf("%c", 205);
+			}
+			gotoxy(x, y);
+			printf("%c", 187);
+			for (i = 0; i < columna; i++)//Columna derecha
+			{
+				y++;
+				gotoxy(x, y);
+				printf("%c", 186);
+
+			}
+			gotoxy(x, y);
+			printf("%c", 188);
+			for (i = 0; i < fila; i++)//Fila abajo
+			{
+				x--;
+				gotoxy(x, y);
+				printf("%c", 205);
+			}
+			gotoxy(x, y);
+			printf("%c", 200);
+			for (i = 0; i < columna; i++)//Columna izquierda
+			{
+				y--;
+				gotoxy(x, y);
+				printf("%c", 186);
+			}
+			gotoxy(x, y);
+			printf("%c", 201);
+		}
+		//Separador
+		{
+			//Columna centro
+			{
+				x = 60, y = 9;
+				gotoxy(x, y);
+				printf("%c", 203);
+				for (i = 0; i < columna; i++)
+				{
+					y++;
+					gotoxy(x, y);
+					printf("%c", 186);
+				}
+				gotoxy(x, y);
+				printf("%c", 202);
+			}
+
+			//Fila 
+			{
+				x = 19, y = 19;
+				gotoxy(x, y);
+				printf("%c", 204);
 				for (i = 0; i < fila; i++)//Fila Arriba
 				{
 					x++;
@@ -2278,192 +2336,134 @@ void maxymin_main(int j, int anyo, int num_cuenca, int num_embalse, linea vector
 					printf("%c", 205);
 				}
 				gotoxy(x, y);
-				printf("%c", 187);
-				for (i = 0; i < columna; i++)//Columna derecha
-				{
-					y++;
-					gotoxy(x, y);
-					printf("%c", 186);
-
-				}
-				gotoxy(x, y);
-				printf("%c", 188);
-				for (i = 0; i < fila; i++)//Fila abajo
-				{
-					x--;
-					gotoxy(x, y);
-					printf("%c", 205);
-				}
-				gotoxy(x, y);
-				printf("%c", 200);
-				for (i = 0; i < columna; i++)//Columna izquierda
-				{
-					y--;
-					gotoxy(x, y);
-					printf("%c", 186);
-				}
-				gotoxy(x, y);
-				printf("%c", 201);
-			}
-			//Separador
-			{
-				//Columna centro
-				{
-					x = 60, y = 9;
-					gotoxy(x, y);
-					printf("%c", 203);
-					for (i = 0; i < columna; i++)
-					{
-						y++;
-						gotoxy(x, y);
-						printf("%c", 186);
-					}
-					gotoxy(x, y);
-					printf("%c", 202);
-				}
-
-				//Fila 
-				{
-					x = 19, y = 19;
-					gotoxy(x, y);
-					printf("%c", 204);
-					for (i = 0; i < fila; i++)//Fila Arriba
-					{
-						x++;
-						gotoxy(x, y);
-						printf("%c", 205);
-					}
-					gotoxy(x, y);
-					printf("%c", 185);
-
-				}
-
-				gotoxy(60, 19), printf("%c", 206);
-			}
-
-
-			//Texto 
-			{
-				//TITULO
-				gotoxy(53, 4);
-				printf("LISTADOS");
-
-				//Primer Cuadrado
-				gotoxy(20, 10);
-				printf("LISTADO DE CUENCAS");
-				gotoxy(20, 18);
-				printf("Presionar ( 1 )");
-
-				//Segundo Cuadrado
-				gotoxy(61, 10);
-				printf("LISTADO DE EMBALSES");
-				gotoxy(61, 18);
-				printf("Presionar ( 2 )");
-
-				//Tercer Cuadrado
-				gotoxy(20, 20);
-				printf("VOLVER AL MENU");
-				gotoxy(20, 28);
-				printf("Presionar ( 3 )");
-
-				//Cuarto Cuadrado
-				gotoxy(61, 20);
-				printf("SALIR DEL PROGRAMA");
-				gotoxy(61, 28);
-				printf("Presionar ( 4 )");
-
+				printf("%c", 185);
 
 			}
 
-			gotoxy(55, 7);
-			printf("Ir a: ");
-			gotoxy(65, 7);
-		}
-	}
-
-	//Texto2
-	void Texto2()
-	{
-		//Titulo// 
-		{
-			gotoxy(55, 4);
-			printf("INFORMACION GENERAL");
+			gotoxy(60, 19), printf("%c", 206);
 		}
 
 
-		//Textos
+		//Texto 
 		{
-			////Texto Primer Cuadrado////
-			{
-				x = 20;
-				y = 9;
-				gotoxy(x, y);
-				printf("MEDIAS");
-				gotoxy(x, 14);
-				printf("Presionar ( 1 )");
-			}
-			////// Segundo cuadrado/////
-			{
-				x = 61;
-				y = 9;
-				gotoxy(x, y);
-				printf("PORCENTAJES");
-				gotoxy(x, 14);
-				printf("Presionar ( 2 )");
-			}
-			//// Tercer cuadrado////
-			{
-				x = 20;
-				y = 16;
-				gotoxy(x, y);
-				printf("COMPARACION");
-				gotoxy(x, 21);
-				printf("Presionar ( 3 )");
+			//TITULO
+			gotoxy(53, 4);
+			printf("CUENCAS");
 
-			}
-			//// Cuarto cuadrado////
-			{
-				x = 61;
-				y = 16;
-				gotoxy(x, y);
-				printf("MAXIMO Y MINIMO");
-				gotoxy(x, 21);
-				printf("Presionar ( 4 )");
+			//Primer Cuadrado
+			gotoxy(20, 10);
+			printf("NOMBRES DE CUENCAS");
+			gotoxy(20, 18);
+			printf("Presionar ( 1 )");
 
-			}
-			//// 5 cuadrado////
-			{
-				x = 20;
-				y = 23;
-				gotoxy(x, y);
-				printf("VOLVER AL MENU");
-				gotoxy(x, 28);
-				printf("Presionar ( 5 )");
+			//Segundo Cuadrado
+			gotoxy(61, 10);
+			printf("NOMBRES DE CUENCAS");
+			gotoxy(61, 18);
+			printf("Presionar ( 2 )");
 
-			}
-			//// 6 cuadrado////
-			{
-				x = 61;
-				y = 23;
-				gotoxy(x, y);
-				printf("SALIR DEL PROGRAMA");
-				gotoxy(x, 28);
-				printf("Presionar ( 6 )");
+			//Tercer Cuadrado
+			gotoxy(20, 20);
+			printf("VOLVER AL MENU");
+			gotoxy(20, 28);
+			printf("Presionar ( 3 )");
 
-			}
+			//Cuarto Cuadrado
+			gotoxy(61, 20);
+			printf("SALIR DEL PROGRAMA");
+			gotoxy(61, 28);
+			printf("Presionar ( 4 )");
+
+
 		}
 
 		gotoxy(55, 7);
 		printf("Ir a: ");
 		gotoxy(65, 7);
 	}
+}
+
+//Texto2
+void Texto2()
+{
+	int x, y;
+	//Titulo// 
+	{
+		gotoxy(55, 4);
+		printf("EMBALSES");
+	}
 
 
+	//Textos
+	{
+		////Texto Primer Cuadrado////
+		{
+			x = 20;
+			y = 9;
+			gotoxy(x, y);
+			printf("MEDIDAS");
+			gotoxy(x, 14);
+			printf("Presionar ( 1 )");
+		}
+		////// Segundo cuadrado/////
+		{
+			x = 61;
+			y = 9;
+			gotoxy(x, y);
+			printf("PORCENTAJES");
+			gotoxy(x, 14);
+			printf("Presionar ( 2 )");
+		}
+		//// Tercer cuadrado////
+		{
+			x = 20;
+			y = 16;
+			gotoxy(x, y);
+			printf("COMPARACION");
+			gotoxy(x, 21);
+			printf("Presionar ( 3 )");
 
+		}
+		//// Cuarto cuadrado////
+		{
+			x = 61;
+			y = 16;
+			gotoxy(x, y);
+			printf("MAXIMO Y MINIMO");
+			gotoxy(x, 21);
+			printf("Presionar ( 4 )");
+
+		}
+		//// 5 cuadrado////
+		{
+			x = 20;
+			y = 23;
+			gotoxy(x, y);
+			printf("VOLVER AL MENU");
+			gotoxy(x, 28);
+			printf("Presionar ( 5 )");
+
+		}
+		//// 6 cuadrado////
+		{
+			x = 61;
+			y = 23;
+			gotoxy(x, y);
+			printf("SALIR DEL PROGRAMA");
+			gotoxy(x, 28);
+			printf("Presionar ( 6 )");
+
+		}
+	}
+
+	gotoxy(55, 7);
+	printf("Ir a: ");
+	gotoxy(65, 7);
+}
 	//Texto5
 	void Texto5()
 	{
-
+		int x, y;
 		//TEXTO
 	//Titulo// 
 		{
@@ -2540,64 +2540,121 @@ void maxymin_main(int j, int anyo, int num_cuenca, int num_embalse, linea vector
 	}
 
 
-	int donut() {
-		float A = 0, B = 0;
-		float i, j;
-		int k;
-		float z[1760];
-		char b[1760];
-		printf("\x1b[2J");
-		for (;;) {
-			memset(b, 32, 1760);
-			memset(z, 0, 7040);
-			for (j = 0; j < 6.28; j += 0.07) {
-				for (i = 0; i < 6.28; i += 0.02) {
-					float c = sin(i);
-					float d = cos(j);
-					float e = sin(A);
-					float f = sin(j);
-					float g = cos(A);
-					float h = d + 2;
-					float D = 1 / (c * h * e + f * g + 5);
-					float l = cos(i);
-					float m = cos(B);
-					float n = sin(B);
-					float t = c * h * g - f * e;
-					int x = 40 + 30 * D * (l * h * m - t * n);
-					int y = 12 + 15 * D * (l * h * n + t * m);
-					int o = x + 80 * y;
-					int N = 8 * ((f * e - c * d * g) * m - c * d * e - f * g - l * d * n);
-					if (22 > y && y > 0 && x > 0 && 80 > x && D > z[o]) {
-						z[o] = D;
-						b[o] = ".,-~:;=!*#$@"[N > 0 ? N : 0];
-					}
+int donut() {
+	float A = 0, B = 0;
+	float i, j;
+	int k;
+	float z[1760];
+	char b[1760];
+	printf("\x1b[2J");
+	for (;;) {
+		memset(b, 32, 1760);
+		memset(z, 0, 7040);
+		for (j = 0; j < 6.28; j += 0.07) {
+			for (i = 0; i < 6.28; i += 0.02) {
+				float c = sin(i);
+				float d = cos(j);
+				float e = sin(A);
+				float f = sin(j);
+				float g = cos(A);
+				float h = d + 2;
+				float D = 1 / (c * h * e + f * g + 5);
+				float l = cos(i);
+				float m = cos(B);
+				float n = sin(B);
+				float t = c * h * g - f * e;
+				int x = 40 + 30 * D * (l * h * m - t * n);
+				int y = 12 + 15 * D * (l * h * n + t * m);
+				int o = x + 80 * y;
+				int N = 8 * ((f * e - c * d * g) * m - c * d * e - f * g - l * d * n);
+				if (22 > y && y > 0 && x > 0 && 80 > x && D > z[o]) {
+					z[o] = D;
+					b[o] = ".,-~:;=!*#$@"[N > 0 ? N : 0];
 				}
 			}
-			printf("\x1b[H");
-			for (k = 0; k < 1761; k++) {
-				putchar(k % 80 ? b[k] : 10);
-				A += 0.00004;
-				B += 0.00002;
-			}
-			Sleep(30); // Usamos Sleep() en lugar de usleep(). El argumento está en milisegundos.
 		}
-		return 0;
+		printf("\x1b[H");
+		for (k = 0; k < 1761; k++) {
+			putchar(k % 80 ? b[k] : 10);
+			A += 0.00004;
+			B += 0.00002;
+		}
+		Sleep(30); // Usamos Sleep() en lugar de usleep(). El argumento está en milisegundos.
 	}
-	//Fecha
-	void Fecha()
+	return 0;
+}
+//Fecha
+void Fecha()
+{
+	printf("%s", __DATE__);
+
+}
+
+void SeisCuadrados()
+{
+	
+	int x = 19, y = 9, i, fila = 81, columna = 20;
+
+	////Dibujar Cuadrados////
 	{
-		printf("%s", __DATE__);
-
-	}
-
-	void SeisCuadrados()
-	{
-		int x = 19, y = 9, i, fila = 81, columna = 20;
-
-		////Dibujar Cuadrados////
+		//Cuadrado Grande
 		{
-			//Cuadrado Grande
+			for (i = 0; i < fila; i++)//Fila Arriba
 			{
+				x++;
+				gotoxy(x, y);
+				printf("%c", 205);
+			}
+			gotoxy(x, y);
+			printf("%c", 187);
+			for (i = 0; i < columna; i++)//Columna derecha
+			{
+				y++;
+				gotoxy(x, y);
+				printf("%c", 186);
+
+			}
+			gotoxy(x, y);
+			printf("%c", 188);
+			for (i = 0; i < fila; i++)//Fila abajo
+			{
+				x--;
+				gotoxy(x, y);
+				printf("%c", 205);
+			}
+			gotoxy(x, y);
+			printf("%c", 200);
+			for (i = 0; i < columna; i++)//Columna izquierda
+			{
+				y--;
+				gotoxy(x, y);
+				printf("%c", 186);
+			}
+			gotoxy(x, y);
+			printf("%c", 201);
+		}
+		//Separador
+		{
+			//Columna centro
+			{
+				x = 60, y = 9;
+				gotoxy(x, y);
+				printf("%c", 203);
+				for (i = 0; i < columna; i++)
+				{
+					y++;
+					gotoxy(x, y);
+					printf("%c", 186);
+				}
+				gotoxy(x, y);
+				printf("%c", 202);
+			}
+
+			//Fila 
+			{
+				x = 19, y = 19;
+				gotoxy(x, y);
+				printf("%c", 204);
 				for (i = 0; i < fila; i++)//Fila Arriba
 				{
 					x++;
@@ -2605,115 +2662,116 @@ void maxymin_main(int j, int anyo, int num_cuenca, int num_embalse, linea vector
 					printf("%c", 205);
 				}
 				gotoxy(x, y);
-				printf("%c", 187);
-				for (i = 0; i < columna; i++)//Columna derecha
+				printf("%c", 185);
+
+			}
+
+			gotoxy(60, 19), printf("%c", 206);
+		}
+
+
+		//Texto 
+		{
+
+			//Primer Cuadrado
+			gotoxy(20, 10);
+			printf("-----------------");
+			gotoxy(20, 18);
+			printf("Presionar ( 1 )");
+
+			//Segundo Cuadrado
+			gotoxy(61, 10);
+			printf("-----------------");
+			gotoxy(61, 18);
+			printf("Presionar ( 2 )");
+
+			//Tercer Cuadrado
+			gotoxy(20, 20);
+			printf("-----------------");
+			gotoxy(20, 28);
+			printf("Presionar ( 3 )");
+
+			//Cuarto Cuadrado
+			gotoxy(61, 20);
+			printf("-----------------");
+			gotoxy(61, 28);
+			printf("Presionar ( 4 )");
+
+			//TITULO
+			gotoxy(53, 4);
+			printf("-----------------");
+		}
+
+		gotoxy(55, 7);
+		printf("Ir a: ");
+		gotoxy(65, 7);
+	}
+}
+void cuadradosDosPorDos()
+{
+	
+	int x = 19, y = 9, i, fila = 81, columna = 20;
+
+	////Dibujar Cuadrados 2X2////
+	{
+		//Cuadrado Grande
+		{
+			for (i = 0; i < fila; i++)//Fila Arriba
+			{
+				x++;
+				gotoxy(x, y);
+				printf("%c", 205);
+			}
+			gotoxy(x, y);
+			printf("%c", 187);
+			for (i = 0; i < columna; i++)//Columna derecha
+			{
+				y++;
+				gotoxy(x, y);
+				printf("%c", 186);
+
+			}
+			gotoxy(x, y);
+			printf("%c", 188);
+			for (i = 0; i < fila; i++)//Fila abajo
+			{
+				x--;
+				gotoxy(x, y);
+				printf("%c", 205);
+			}
+			gotoxy(x, y);
+			printf("%c", 200);
+			for (i = 0; i < columna; i++)//Columna izquierda
+			{
+				y--;
+				gotoxy(x, y);
+				printf("%c", 186);
+			}
+			gotoxy(x, y);
+			printf("%c", 201);
+		}
+		//Separador
+		{
+			//Columna centro
+			{
+				x = 60, y = 9;
+				gotoxy(x, y);
+				printf("%c", 203);
+				for (i = 0; i < columna; i++)
 				{
 					y++;
 					gotoxy(x, y);
 					printf("%c", 186);
-
 				}
 				gotoxy(x, y);
-				printf("%c", 188);
-				for (i = 0; i < fila; i++)//Fila abajo
-				{
-					x--;
-					gotoxy(x, y);
-					printf("%c", 205);
-				}
+				printf("%c", 202);
+			}
+
+			//Fila 
+			{
+				x = 19, y = 19;
 				gotoxy(x, y);
-				printf("%c", 200);
-				for (i = 0; i < columna; i++)//Columna izquierda
-				{
-					y--;
-					gotoxy(x, y);
-					printf("%c", 186);
-				}
-				gotoxy(x, y);
-				printf("%c", 201);
-			}
-			//Separador
-			{
-				//Columna centro
-				{
-					x = 60, y = 9;
-					gotoxy(x, y);
-					printf("%c", 203);
-					for (i = 0; i < columna; i++)
-					{
-						y++;
-						gotoxy(x, y);
-						printf("%c", 186);
-					}
-					gotoxy(x, y);
-					printf("%c", 202);
-				}
-
-				//Fila 
-				{
-					x = 19, y = 19;
-					gotoxy(x, y);
-					printf("%c", 204);
-					for (i = 0; i < fila; i++)//Fila Arriba
-					{
-						x++;
-						gotoxy(x, y);
-						printf("%c", 205);
-					}
-					gotoxy(x, y);
-					printf("%c", 185);
-
-				}
-
-				gotoxy(60, 19), printf("%c", 206);
-			}
-
-
-			//Texto 
-			{
-
-				//Primer Cuadrado
-				gotoxy(20, 10);
-				printf("-----------------");
-				gotoxy(20, 18);
-				printf("Presionar ( 1 )");
-
-				//Segundo Cuadrado
-				gotoxy(61, 10);
-				printf("-----------------");
-				gotoxy(61, 18);
-				printf("Presionar ( 2 )");
-
-				//Tercer Cuadrado
-				gotoxy(20, 20);
-				printf("-----------------");
-				gotoxy(20, 28);
-				printf("Presionar ( 3 )");
-
-				//Cuarto Cuadrado
-				gotoxy(61, 20);
-				printf("-----------------");
-				gotoxy(61, 28);
-				printf("Presionar ( 4 )");
-
-				//TITULO
-				gotoxy(53, 4);
-				printf("-----------------");
-			}
-
-			gotoxy(55, 7);
-			printf("Ir a: ");
-			gotoxy(65, 7);
-		}
-	}
-	void cuadradosDosPorDos()
-	{
-		int x = 19, y = 9, i, fila = 81, columna = 20;
-
-		////Dibujar Cuadrados 2X2////
-		{
-			//Cuadrado Grande
-			{
+				printf("%c", 204);
 				for (i = 0; i < fila; i++)//Fila Arriba
 				{
 					x++;
@@ -2721,70 +2779,14 @@ void maxymin_main(int j, int anyo, int num_cuenca, int num_embalse, linea vector
 					printf("%c", 205);
 				}
 				gotoxy(x, y);
-				printf("%c", 187);
-				for (i = 0; i < columna; i++)//Columna derecha
-				{
-					y++;
-					gotoxy(x, y);
-					printf("%c", 186);
+				printf("%c", 185);
 
-				}
-				gotoxy(x, y);
-				printf("%c", 188);
-				for (i = 0; i < fila; i++)//Fila abajo
-				{
-					x--;
-					gotoxy(x, y);
-					printf("%c", 205);
-				}
-				gotoxy(x, y);
-				printf("%c", 200);
-				for (i = 0; i < columna; i++)//Columna izquierda
-				{
-					y--;
-					gotoxy(x, y);
-					printf("%c", 186);
-				}
-				gotoxy(x, y);
-				printf("%c", 201);
 			}
-			//Separador
-			{
-				//Columna centro
-				{
-					x = 60, y = 9;
-					gotoxy(x, y);
-					printf("%c", 203);
-					for (i = 0; i < columna; i++)
-					{
-						y++;
-						gotoxy(x, y);
-						printf("%c", 186);
-					}
-					gotoxy(x, y);
-					printf("%c", 202);
-				}
 
-				//Fila 
-				{
-					x = 19, y = 19;
-					gotoxy(x, y);
-					printf("%c", 204);
-					for (i = 0; i < fila; i++)//Fila Arriba
-					{
-						x++;
-						gotoxy(x, y);
-						printf("%c", 205);
-					}
-					gotoxy(x, y);
-					printf("%c", 185);
-
-				}
-
-				gotoxy(60, 19), printf("%c", 206);
-			}
+			gotoxy(60, 19), printf("%c", 206);
 		}
 	}
+}
 	//FIN INTERFAZ
 
 
