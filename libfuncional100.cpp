@@ -77,19 +77,19 @@ void palbra_dia_main() {
 //FIN PALABRA DEL DIA
 
 //NOMBRE_CUENCAS_COMPARACION
-void nombres_cuencas(int vb, linea cuenca[]){
-	
-	int numc=0,i;//variables cuenca
-for(i=1;i<vb;i++){
-	if(strcmp(cuenca[i].cuenca_hidrografica,cuenca[i+1].cuenca_hidrografica)!=0){
-		
+void nombres_cuencas(int vb, linea cuenca[]) {
+
+	int numc = 0, i;//variables cuenca
+	for (i = 1;i < vb;i++) {
+		if (strcmp(cuenca[i].cuenca_hidrografica, cuenca[i + 1].cuenca_hidrografica) != 0) {
+
 			numc++;
-			printf("%i-",numc);
-			printf("%s\n",cuenca[i].cuenca_hidrografica);
-			
+			printf("%i-", numc);
+			printf("%s\n", cuenca[i].cuenca_hidrografica);
+
+		}
+
 	}
-	
-}
 }
 //SELECCION CUENCA:
 
@@ -1187,16 +1187,16 @@ char* cambios_espacios_tipo_presa(DatosComparacion comp[], int l_r_embalse, int 
 
 	return comp[l_r_embalse / 12 - 1].tipo_presa;
 	return comp[l_r_embalse2 / 12 - 1].tipo_presa;
-	
+
 }
 
 
 
 //
-void comparacion_principal(int j, linea cuencas[], int posiciones_cuencas[]) {
+void comparacion_principal(int vb, linea cuencas[], int posiciones_cuencas[]) {
 	//variables
 
-	int vb = 0, vc = 0, vco = 0, i;//for y ficheros
+	int vc = 0, vco = 0, i;//for y ficheros
 
 	int num_cuenca = 0, num_embalse, l_r_embalse;//embalse1
 	int num_cuenca2 = 0, num_embalse2, l_r_embalse2;//embalse2
@@ -1372,7 +1372,7 @@ int seleccion_cuenca(int num_cuenca, char C_cuenca[]) {
 //NOMBRES DE EMBALSES:
 
 void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[]) {
-	int i, f = 0, m=0;
+	int i, f = 0, m = 0;
 
 	for (i = vector2[num_cuenca - 1];i < vector2[num_cuenca];i++) {
 		if (i % 12 == 0) {
@@ -1389,69 +1389,69 @@ void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[
 
 //MEDIA DE UN AÑO:
 
-float media_anyo(int j,int anyo, linea vector[]){		// Vector es cuencas
+float media_anyo(int j, int anyo, linea vector[]) {		// Vector es cuencas
 	int i;
-	float suma=0,media;
-	switch(anyo){
-		case(2012):
-			for (i=0;i<j;i++){
-				suma = suma + vector[i].dosmildoce;
-				
-			}
-			media = suma / j;
-			printf("%f\n", media);
+	float suma = 0, media;
+	switch (anyo) {
+	case(2012):
+		for (i = 0;i < j;i++) {
+			suma = suma + vector[i].dosmildoce;
+
+		}
+		media = suma / j;
+		printf("%f\n", media);
 		break;
-		
+
 	}
 	return media;
 }
 
 //MEDIA DE UN AÑO DE UN EMBALSE EN CONCRETO:
 
-float media_anyo_embalse(int j,int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[]){		//  Vector 1 es cuencas y vector 2 es posiciones cuencas
+float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[]) {		//  Vector 1 es cuencas y vector 2 es posiciones cuencas
 	int i;
-	float suma,media;
-	switch(anyo){
+	float suma, media;
+	switch (anyo) {
 	case(2012):
-		for (i=vector2[num_cuenca-1]+(num_embalse-1)*12;i<vector2[num_cuenca-1]+(num_embalse)*12;i++){
+		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
 			suma = suma + vector[i].dosmildoce;
 			printf("dato:%f\n", vector[i].dosmildoce);
-			printf("linea:%i\n",i);
+			printf("linea:%i\n", i);
 		}
 		media = suma / 12;
 		printf("%f\n", media);
 	}
-	return media;	
+	return media;
 }
 //MAXIMO Y MINIMO DE UN EMBALSE UN AÑO EN CONCRETO:
-float max_y_min_embalse(int j,int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[], int vector3[]){ // Vector 3 es vector auxiliar para guardar los datos obtenidos
-	int i,mesM,mesm;
-	float maximo=0,minimo=1000;
-	switch(anyo){
+float max_y_min_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[], int vector3[]) { // Vector 3 es vector auxiliar para guardar los datos obtenidos
+	int i, mesM, mesm;
+	float maximo = 0, minimo = 1000;
+	switch (anyo) {
 	case(2012):
-		for (i=vector2[num_cuenca-1]+(num_embalse-1)*12;i<vector2[num_cuenca-1]+(num_embalse)*12;i++){
+		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
 			if (vector[i].dosmildoce > maximo)
 			{
 				maximo = vector[i].dosmildoce;
-				mesM = (i+1) % 12;
+				mesM = (i + 1) % 12;
 			}
 			if (vector[i].dosmildoce < minimo)
 			{
 				minimo = vector[i].dosmildoce;
-				mesm = (i+1) % 12;
+				mesm = (i + 1) % 12;
 			}
-			
+
 		}
 		break;
-		
-	
+
+
 	}
 	vector3[0] = maximo;
 	vector3[1] = mesM;
 	vector3[2] = minimo;
-	vector3[3] = mesm;	
+	vector3[3] = mesm;
 	//printf("El maximo es %f en el mes %i, el minimo es %f en el mes %i", vector3[0],vector3[1],vector3[2],vector3[3]);
-	
+
 }
 
 // SELECCIÓN DE EMBALSES:
@@ -1704,15 +1704,15 @@ void porcentajes_main(int j, linea cuencas[], int posiciones_cuencas[]) {
 
 	char C_cuenca[2], C_embalse[2], C_mes[2], C_anyo[5], cambio[100];
 
-	int num_embalse=0, anyo=0, N_mes=0, num_cuenca=0, posiciones_cuencas[15];
+	int num_embalse = 0, anyo = 0, N_mes = 0, num_cuenca = 0, posiciones_cuencas[15];
 
 	float porcentaje, capacidad_max, capacidad_actual;
 
 	linea cuenca[4236];
 	Embalse embalse[353];
 
-	
-	
+
+
 
 	//NOMBRES DE CUENCAS ENNUMERADAS
 
@@ -1771,7 +1771,7 @@ void porcentajes_main(int j, linea cuencas[], int posiciones_cuencas[]) {
 
 	cambio_espacios_embalses(cuenca, num_cuenca, posiciones_cuencas, num_embalse);
 
-	printf("El embalse %s de la cuenca %s estaba al %.2f%% de su capadidad, en %i del anyo %i.\n\n", cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].embalse_nombre, cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].cuenca_hidrografica, porcentaje,N_mes, anyo);
+	printf("El embalse %s de la cuenca %s estaba al %.2f%% de su capadidad, en %i del anyo %i.\n\n", cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].embalse_nombre, cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].cuenca_hidrografica, porcentaje, N_mes, anyo);
 
 	//SÓLO SI HAY SEQÍA
 
@@ -1909,7 +1909,7 @@ float media_anyo(int j, int anyo, linea vector[]) {		// Vector es cuencas
 
 float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[]) {		//  Vector 1 es cuencas y vector 2 es posiciones cuencas
 	int i;
-	float suma=0, media;
+	float suma = 0, media;
 	switch (anyo) {
 	case(2012):
 		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
@@ -2058,403 +2058,405 @@ float max_y_min_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea 
 void maxymin_main(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[], int vector3[], char C_cuenca[]) { // Vector 3 es vector auxiliar para guardar los datos obtenidos
 	int num_cuenca, anyo, num_embalse;
 	printf("Selecciona una cuenca, un embalse y un año para calcular su maximo y minimo:\n);
-	nombres_cuencas(j,vector[]);
+		nombres_cuencas(j, vector[]);
 	num_cuenca = seleccion_cuenca(num_cuenca, C_cuenca[]);
 	nombres_cuencas_embalse(j, num_cuenca, vector[], vector2[]);
 	num_embalse = seleccion_embalse(num_embalse, vector2[], num_cuenca, C_embalse[])
-	anyo = seleccion_anyo(anyo, C_anyo[]);
+		anyo = seleccion_anyo(anyo, C_anyo[]);
 	max_y_min_embalse(j, anyo, num_cuenca, num_embalse, vector[], vector2[], vector3[]) { // Vector 3 es vector auxiliar para guardar los datos obtenidos
 
-}
+	}
 
-//INTERFAZ
-void gotoxy(int x, int y)
-{
-	HANDLE Identiventana;
 
-	Identiventana = GetStdHandle(STD_OUTPUT_HANDLE);
 
-	COORD Coordenadas;
-	Coordenadas.X = x;
-	Coordenadas.Y = y;
-
-	SetConsoleCursorPosition(Identiventana, Coordenadas);
-}
-
-void DibujarMenu()
-{
-	int x = 19, y = 8, i, fila = 81, columna = 21;//De espacio hay -1
-
-	////Dibujar Cuadrados////
+	//INTERFAZ
+	void gotoxy(int x, int y)
 	{
-		//Cuadrado Grande
-		{
-			for (i = 0; i < fila; i++)//Fila Arriba
-			{
-				x++;
-				gotoxy(x, y);
-				printf("%c", 205);
-			}
-			gotoxy(x, y);
-			printf("%c", 187);
-			for (i = 0; i < columna; i++)//Columna derecha
-			{
-				y++;
-				gotoxy(x, y);
-				printf("%c", 186);
+		HANDLE Identiventana;
 
-			}
-			gotoxy(x, y);
-			printf("%c", 188);
-			for (i = 0; i < fila; i++)//Fila abajo
-			{
-				x--;
-				gotoxy(x, y);
-				printf("%c", 205);
-			}
-			gotoxy(x, y);
-			printf("%c", 200);
-			for (i = 0; i < columna; i++)//Columna izquierda
-			{
-				y--;
-				gotoxy(x, y);
-				printf("%c", 186);
-			}
-			gotoxy(x, y);
-			printf("%c", 201);
-		}
+		Identiventana = GetStdHandle(STD_OUTPUT_HANDLE);
 
-		//Cuadrados
+		COORD Coordenadas;
+		Coordenadas.X = x;
+		Coordenadas.Y = y;
+
+		SetConsoleCursorPosition(Identiventana, Coordenadas);
+	}
+
+	void DibujarMenu()
+	{
+		int x = 19, y = 8, i, fila = 81, columna = 21;//De espacio hay -1
+
+		////Dibujar Cuadrados////
 		{
-			//Columna centro
+			//Cuadrado Grande
 			{
-				x = 60, y = 8;
+				for (i = 0; i < fila; i++)//Fila Arriba
+				{
+					x++;
+					gotoxy(x, y);
+					printf("%c", 205);
+				}
 				gotoxy(x, y);
-				printf("%c", 203);
-				for (i = 0; i < columna; i++)
+				printf("%c", 187);
+				for (i = 0; i < columna; i++)//Columna derecha
 				{
 					y++;
 					gotoxy(x, y);
 					printf("%c", 186);
+
 				}
 				gotoxy(x, y);
-				printf("%c", 202);
-			}
-
-			//Fila 1
-			{
-				x = 19, y = 15;
-				gotoxy(x, y);
-				printf("%c", 204);
-				for (i = 0; i < fila; i++)//Fila Arriba
+				printf("%c", 188);
+				for (i = 0; i < fila; i++)//Fila abajo
 				{
-					x++;
+					x--;
 					gotoxy(x, y);
 					printf("%c", 205);
 				}
 				gotoxy(x, y);
-				printf("%c", 185);
-
-			}
-
-			//Fila 2
-			{
-				x = 19, y = 22;
-				gotoxy(x, y);
-				printf("%c", 204);
-				for (i = 0; i < fila; i++)//Fila Arriba
+				printf("%c", 200);
+				for (i = 0; i < columna; i++)//Columna izquierda
 				{
-					x++;
-					gotoxy(x, y);
-					printf("%c", 205);
-				}
-				gotoxy(x, y);
-				printf("%c", 185);
-			}
-
-			gotoxy(60, 15), printf("%c", 206);
-			gotoxy(60, 22), printf("%c", 206);
-
-		}
-	}
-}
-
-
-int x, y;
-//Texto0
-void Texto0()
-{
-	//Titulo// 
-	{
-		gotoxy(55, 4);
-		printf("MENU PRINCIPAL");
-	}
-
-
-	//Textos
-	{
-		////Texto Primer Cuadrado////
-		{
-			x = 20;
-			y = 9;
-			gotoxy(x, y);
-			printf("LISTADOS");
-			gotoxy(x, 14);
-			printf("Presionar ( 1 )");
-
-		}
-		////// Segundo cuadrado/////
-		{
-			x = 61;
-			y = 9;
-			gotoxy(x, y);
-			printf("INFORMACION GENERAL");
-			gotoxy(x, 14);
-			printf("Presionar ( 2 )");
-
-		}
-		//// Tercer cuadrado////
-		{
-			x = 20;
-			y = 16;
-			gotoxy(x, y);
-			printf("CUESTIONARIO");
-			gotoxy(x, 21);
-			printf("Presionar ( 3 )");
-
-		}
-		//// Cuarto cuadrado////
-		{
-			x = 61;
-			y = 16;
-			gotoxy(x, y);
-			printf("PALABRA DEL DIA");
-			gotoxy(x, 21);
-			printf("Presionar ( 4 )");
-
-		}
-		//// 5 cuadrado////
-		{
-			x = 20;
-			y = 23;
-			gotoxy(x, y);
-			printf("AJUSTES");
-			gotoxy(x, 28);
-			printf("Presionar ( 5 )");
-
-		}
-		//// 6 cuadrado////
-		{
-			x = 61;
-			y = 23;
-			gotoxy(x, y);
-			printf("SALIR DEL PROGRAMA");
-			gotoxy(x, 28);
-			printf("Presionar ( 6 )");
-
-		}
-	}
-
-	gotoxy(55, 7);
-	printf("Ir a: ");
-	gotoxy(65, 7);
-}
-
-//Texto1
-void Texto1()
-{
-	int x = 19, y = 9, i, fila = 81, columna = 20;
-
-	////Dibujar Cuadrados 2X2////
-	{
-		//Cuadrado Grande
-		{
-			for (i = 0; i < fila; i++)//Fila Arriba
-			{
-				x++;
-				gotoxy(x, y);
-				printf("%c", 205);
-			}
-			gotoxy(x, y);
-			printf("%c", 187);
-			for (i = 0; i < columna; i++)//Columna derecha
-			{
-				y++;
-				gotoxy(x, y);
-				printf("%c", 186);
-
-			}
-			gotoxy(x, y);
-			printf("%c", 188);
-			for (i = 0; i < fila; i++)//Fila abajo
-			{
-				x--;
-				gotoxy(x, y);
-				printf("%c", 205);
-			}
-			gotoxy(x, y);
-			printf("%c", 200);
-			for (i = 0; i < columna; i++)//Columna izquierda
-			{
-				y--;
-				gotoxy(x, y);
-				printf("%c", 186);
-			}
-			gotoxy(x, y);
-			printf("%c", 201);
-		}
-		//Separador
-		{
-			//Columna centro
-			{
-				x = 60, y = 9;
-				gotoxy(x, y);
-				printf("%c", 203);
-				for (i = 0; i < columna; i++)
-				{
-					y++;
+					y--;
 					gotoxy(x, y);
 					printf("%c", 186);
 				}
 				gotoxy(x, y);
-				printf("%c", 202);
+				printf("%c", 201);
 			}
 
-			//Fila 
+			//Cuadrados
 			{
-				x = 19, y = 19;
-				gotoxy(x, y);
-				printf("%c", 204);
-				for (i = 0; i < fila; i++)//Fila Arriba
+				//Columna centro
 				{
-					x++;
+					x = 60, y = 8;
 					gotoxy(x, y);
-					printf("%c", 205);
+					printf("%c", 203);
+					for (i = 0; i < columna; i++)
+					{
+						y++;
+						gotoxy(x, y);
+						printf("%c", 186);
+					}
+					gotoxy(x, y);
+					printf("%c", 202);
 				}
-				gotoxy(x, y);
-				printf("%c", 185);
+
+				//Fila 1
+				{
+					x = 19, y = 15;
+					gotoxy(x, y);
+					printf("%c", 204);
+					for (i = 0; i < fila; i++)//Fila Arriba
+					{
+						x++;
+						gotoxy(x, y);
+						printf("%c", 205);
+					}
+					gotoxy(x, y);
+					printf("%c", 185);
+
+				}
+
+				//Fila 2
+				{
+					x = 19, y = 22;
+					gotoxy(x, y);
+					printf("%c", 204);
+					for (i = 0; i < fila; i++)//Fila Arriba
+					{
+						x++;
+						gotoxy(x, y);
+						printf("%c", 205);
+					}
+					gotoxy(x, y);
+					printf("%c", 185);
+				}
+
+				gotoxy(60, 15), printf("%c", 206);
+				gotoxy(60, 22), printf("%c", 206);
 
 			}
+		}
+	}
 
-			gotoxy(60, 19), printf("%c", 206);
+
+	int x, y;
+	//Texto0
+	void Texto0()
+	{
+		//Titulo// 
+		{
+			gotoxy(55, 4);
+			printf("MENU PRINCIPAL");
 		}
 
 
-		//Texto 
+		//Textos
 		{
-			//TITULO
-			gotoxy(53, 4);
-			printf("LISTADOS");
+			////Texto Primer Cuadrado////
+			{
+				x = 20;
+				y = 9;
+				gotoxy(x, y);
+				printf("LISTADOS");
+				gotoxy(x, 14);
+				printf("Presionar ( 1 )");
 
-			//Primer Cuadrado
-			gotoxy(20, 10);
-			printf("LISTADO DE CUENCAS");
-			gotoxy(20, 18);
-			printf("Presionar ( 1 )");
+			}
+			////// Segundo cuadrado/////
+			{
+				x = 61;
+				y = 9;
+				gotoxy(x, y);
+				printf("INFORMACION GENERAL");
+				gotoxy(x, 14);
+				printf("Presionar ( 2 )");
 
-			//Segundo Cuadrado
-			gotoxy(61, 10);
-			printf("LISTADO DE EMBALSES");
-			gotoxy(61, 18);
-			printf("Presionar ( 2 )");
+			}
+			//// Tercer cuadrado////
+			{
+				x = 20;
+				y = 16;
+				gotoxy(x, y);
+				printf("CUESTIONARIO");
+				gotoxy(x, 21);
+				printf("Presionar ( 3 )");
 
-			//Tercer Cuadrado
-			gotoxy(20, 20);
-			printf("VOLVER AL MENU");
-			gotoxy(20, 28);
-			printf("Presionar ( 3 )");
+			}
+			//// Cuarto cuadrado////
+			{
+				x = 61;
+				y = 16;
+				gotoxy(x, y);
+				printf("PALABRA DEL DIA");
+				gotoxy(x, 21);
+				printf("Presionar ( 4 )");
 
-			//Cuarto Cuadrado
-			gotoxy(61, 20);
-			printf("SALIR DEL PROGRAMA");
-			gotoxy(61, 28);
-			printf("Presionar ( 4 )");
+			}
+			//// 5 cuadrado////
+			{
+				x = 20;
+				y = 23;
+				gotoxy(x, y);
+				printf("AJUSTES");
+				gotoxy(x, 28);
+				printf("Presionar ( 5 )");
 
+			}
+			//// 6 cuadrado////
+			{
+				x = 61;
+				y = 23;
+				gotoxy(x, y);
+				printf("SALIR DEL PROGRAMA");
+				gotoxy(x, 28);
+				printf("Presionar ( 6 )");
 
+			}
 		}
 
 		gotoxy(55, 7);
 		printf("Ir a: ");
 		gotoxy(65, 7);
 	}
-}
 
-//Texto2
-void Texto2()
-{
-	//Titulo// 
+	//Texto1
+	void Texto1()
 	{
-		gotoxy(55, 4);
-		printf("INFORMACION GENERAL");
+		int x = 19, y = 9, i, fila = 81, columna = 20;
+
+		////Dibujar Cuadrados 2X2////
+		{
+			//Cuadrado Grande
+			{
+				for (i = 0; i < fila; i++)//Fila Arriba
+				{
+					x++;
+					gotoxy(x, y);
+					printf("%c", 205);
+				}
+				gotoxy(x, y);
+				printf("%c", 187);
+				for (i = 0; i < columna; i++)//Columna derecha
+				{
+					y++;
+					gotoxy(x, y);
+					printf("%c", 186);
+
+				}
+				gotoxy(x, y);
+				printf("%c", 188);
+				for (i = 0; i < fila; i++)//Fila abajo
+				{
+					x--;
+					gotoxy(x, y);
+					printf("%c", 205);
+				}
+				gotoxy(x, y);
+				printf("%c", 200);
+				for (i = 0; i < columna; i++)//Columna izquierda
+				{
+					y--;
+					gotoxy(x, y);
+					printf("%c", 186);
+				}
+				gotoxy(x, y);
+				printf("%c", 201);
+			}
+			//Separador
+			{
+				//Columna centro
+				{
+					x = 60, y = 9;
+					gotoxy(x, y);
+					printf("%c", 203);
+					for (i = 0; i < columna; i++)
+					{
+						y++;
+						gotoxy(x, y);
+						printf("%c", 186);
+					}
+					gotoxy(x, y);
+					printf("%c", 202);
+				}
+
+				//Fila 
+				{
+					x = 19, y = 19;
+					gotoxy(x, y);
+					printf("%c", 204);
+					for (i = 0; i < fila; i++)//Fila Arriba
+					{
+						x++;
+						gotoxy(x, y);
+						printf("%c", 205);
+					}
+					gotoxy(x, y);
+					printf("%c", 185);
+
+				}
+
+				gotoxy(60, 19), printf("%c", 206);
+			}
+
+
+			//Texto 
+			{
+				//TITULO
+				gotoxy(53, 4);
+				printf("LISTADOS");
+
+				//Primer Cuadrado
+				gotoxy(20, 10);
+				printf("LISTADO DE CUENCAS");
+				gotoxy(20, 18);
+				printf("Presionar ( 1 )");
+
+				//Segundo Cuadrado
+				gotoxy(61, 10);
+				printf("LISTADO DE EMBALSES");
+				gotoxy(61, 18);
+				printf("Presionar ( 2 )");
+
+				//Tercer Cuadrado
+				gotoxy(20, 20);
+				printf("VOLVER AL MENU");
+				gotoxy(20, 28);
+				printf("Presionar ( 3 )");
+
+				//Cuarto Cuadrado
+				gotoxy(61, 20);
+				printf("SALIR DEL PROGRAMA");
+				gotoxy(61, 28);
+				printf("Presionar ( 4 )");
+
+
+			}
+
+			gotoxy(55, 7);
+			printf("Ir a: ");
+			gotoxy(65, 7);
+		}
 	}
 
-
-	//Textos
+	//Texto2
+	void Texto2()
 	{
-		////Texto Primer Cuadrado////
+		//Titulo// 
 		{
-			x = 20;
-			y = 9;
-			gotoxy(x, y);
-			printf("MEDIAS");
-			gotoxy(x, 14);
-			printf("Presionar ( 1 )");
+			gotoxy(55, 4);
+			printf("INFORMACION GENERAL");
 		}
-		////// Segundo cuadrado/////
-		{
-			x = 61;
-			y = 9;
-			gotoxy(x, y);
-			printf("PORCENTAJES");
-			gotoxy(x, 14);
-			printf("Presionar ( 2 )");
-		}
-		//// Tercer cuadrado////
-		{
-			x = 20;
-			y = 16;
-			gotoxy(x, y);
-			printf("COMPARACION");
-			gotoxy(x, 21);
-			printf("Presionar ( 3 )");
 
-		}
-		//// Cuarto cuadrado////
-		{
-			x = 61;
-			y = 16;
-			gotoxy(x, y);
-			printf("MAXIMO Y MINIMO");
-			gotoxy(x, 21);
-			printf("Presionar ( 4 )");
 
-		}
-		//// 5 cuadrado////
+		//Textos
 		{
-			x = 20;
-			y = 23;
-			gotoxy(x, y);
-			printf("VOLVER AL MENU");
-			gotoxy(x, 28);
-			printf("Presionar ( 5 )");
+			////Texto Primer Cuadrado////
+			{
+				x = 20;
+				y = 9;
+				gotoxy(x, y);
+				printf("MEDIAS");
+				gotoxy(x, 14);
+				printf("Presionar ( 1 )");
+			}
+			////// Segundo cuadrado/////
+			{
+				x = 61;
+				y = 9;
+				gotoxy(x, y);
+				printf("PORCENTAJES");
+				gotoxy(x, 14);
+				printf("Presionar ( 2 )");
+			}
+			//// Tercer cuadrado////
+			{
+				x = 20;
+				y = 16;
+				gotoxy(x, y);
+				printf("COMPARACION");
+				gotoxy(x, 21);
+				printf("Presionar ( 3 )");
 
-		}
-		//// 6 cuadrado////
-		{
-			x = 61;
-			y = 23;
-			gotoxy(x, y);
-			printf("SALIR DEL PROGRAMA");
-			gotoxy(x, 28);
-			printf("Presionar ( 6 )");
+			}
+			//// Cuarto cuadrado////
+			{
+				x = 61;
+				y = 16;
+				gotoxy(x, y);
+				printf("MAXIMO Y MINIMO");
+				gotoxy(x, 21);
+				printf("Presionar ( 4 )");
 
+			}
+			//// 5 cuadrado////
+			{
+				x = 20;
+				y = 23;
+				gotoxy(x, y);
+				printf("VOLVER AL MENU");
+				gotoxy(x, 28);
+				printf("Presionar ( 5 )");
+
+			}
+			//// 6 cuadrado////
+			{
+				x = 61;
+				y = 23;
+				gotoxy(x, y);
+				printf("SALIR DEL PROGRAMA");
+				gotoxy(x, 28);
+				printf("Presionar ( 6 )");
+
+			}
 		}
+
+		gotoxy(55, 7);
+		printf("Ir a: ");
+		gotoxy(65, 7);
 	}
-
-	gotoxy(55, 7);
-	printf("Ir a: ");
-	gotoxy(65, 7);
-}
 
 
 
@@ -2474,30 +2476,30 @@ void Texto2()
 		{
 			////Texto Primer Cuadrado////
 			{
-			x = 20;
-			y = 10;
-			gotoxy(x, y);
-			printf("CAMBIAR COLOR:");
-			x = 20;
-			y = 12;
-			gotoxy(x, y);
-			printf("MODO DIABLO:1");
-			x = 20;
-			y = 13;
-			gotoxy(x, y);
-			printf("VIOLETA:5");
-			x = 20;
-			y = 14;
-			gotoxy(x, y);
-			printf("AZUL:6");
-			x = 20;
-			y = 15;
-			gotoxy(x, y);
-			printf("AMARILLO:7");
-			x = 20;
-			y = 16;
-			gotoxy(x, y);
-			printf("GRIS:8");
+				x = 20;
+				y = 10;
+				gotoxy(x, y);
+				printf("CAMBIAR COLOR:");
+				x = 20;
+				y = 12;
+				gotoxy(x, y);
+				printf("MODO DIABLO:1");
+				x = 20;
+				y = 13;
+				gotoxy(x, y);
+				printf("VIOLETA:5");
+				x = 20;
+				y = 14;
+				gotoxy(x, y);
+				printf("AZUL:6");
+				x = 20;
+				y = 15;
+				gotoxy(x, y);
+				printf("AMARILLO:7");
+				x = 20;
+				y = 16;
+				gotoxy(x, y);
+				printf("GRIS:8");
 
 			}
 			////// Segundo cuadrado/////
@@ -2538,475 +2540,475 @@ void Texto2()
 	}
 
 
-int donut() {
-	float A = 0, B = 0;
-	float i, j;
-	int k;
-	float z[1760];
-	char b[1760];
-	printf("\x1b[2J");
-	for (;;) {
-		memset(b, 32, 1760);
-		memset(z, 0, 7040);
-		for (j = 0; j < 6.28; j += 0.07) {
-			for (i = 0; i < 6.28; i += 0.02) {
-				float c = sin(i);
-				float d = cos(j);
-				float e = sin(A);
-				float f = sin(j);
-				float g = cos(A);
-				float h = d + 2;
-				float D = 1 / (c * h * e + f * g + 5);
-				float l = cos(i);
-				float m = cos(B);
-				float n = sin(B);
-				float t = c * h * g - f * e;
-				int x = 40 + 30 * D * (l * h * m - t * n);
-				int y = 12 + 15 * D * (l * h * n + t * m);
-				int o = x + 80 * y;
-				int N = 8 * ((f * e - c * d * g) * m - c * d * e - f * g - l * d * n);
-				if (22 > y && y > 0 && x > 0 && 80 > x && D > z[o]) {
-					z[o] = D;
-					b[o] = ".,-~:;=!*#$@"[N > 0 ? N : 0];
+	int donut() {
+		float A = 0, B = 0;
+		float i, j;
+		int k;
+		float z[1760];
+		char b[1760];
+		printf("\x1b[2J");
+		for (;;) {
+			memset(b, 32, 1760);
+			memset(z, 0, 7040);
+			for (j = 0; j < 6.28; j += 0.07) {
+				for (i = 0; i < 6.28; i += 0.02) {
+					float c = sin(i);
+					float d = cos(j);
+					float e = sin(A);
+					float f = sin(j);
+					float g = cos(A);
+					float h = d + 2;
+					float D = 1 / (c * h * e + f * g + 5);
+					float l = cos(i);
+					float m = cos(B);
+					float n = sin(B);
+					float t = c * h * g - f * e;
+					int x = 40 + 30 * D * (l * h * m - t * n);
+					int y = 12 + 15 * D * (l * h * n + t * m);
+					int o = x + 80 * y;
+					int N = 8 * ((f * e - c * d * g) * m - c * d * e - f * g - l * d * n);
+					if (22 > y && y > 0 && x > 0 && 80 > x && D > z[o]) {
+						z[o] = D;
+						b[o] = ".,-~:;=!*#$@"[N > 0 ? N : 0];
+					}
 				}
 			}
+			printf("\x1b[H");
+			for (k = 0; k < 1761; k++) {
+				putchar(k % 80 ? b[k] : 10);
+				A += 0.00004;
+				B += 0.00002;
+			}
+			Sleep(30); // Usamos Sleep() en lugar de usleep(). El argumento está en milisegundos.
 		}
-		printf("\x1b[H");
-		for (k = 0; k < 1761; k++) {
-			putchar(k % 80 ? b[k] : 10);
-			A += 0.00004;
-			B += 0.00002;
-		}
-		Sleep(30); // Usamos Sleep() en lugar de usleep(). El argumento está en milisegundos.
-	}
-	return 0;
-}
-//Fecha
-void Fecha()
-{
-	printf("%s", __DATE__);
-
-}
-
-void SeisCuadrados()
-{
-	int x = 19, y = 9, i, fila = 81, columna = 20;
-
-	////Dibujar Cuadrados////
-	{
-		//Cuadrado Grande
-		{
-			for (i = 0; i < fila; i++)//Fila Arriba
-			{
-				x++;
-				gotoxy(x, y);
-				printf("%c", 205);
-			}
-			gotoxy(x, y);
-			printf("%c", 187);
-			for (i = 0; i < columna; i++)//Columna derecha
-			{
-				y++;
-				gotoxy(x, y);
-				printf("%c", 186);
-
-			}
-			gotoxy(x, y);
-			printf("%c", 188);
-			for (i = 0; i < fila; i++)//Fila abajo
-			{
-				x--;
-				gotoxy(x, y);
-				printf("%c", 205);
-			}
-			gotoxy(x, y);
-			printf("%c", 200);
-			for (i = 0; i < columna; i++)//Columna izquierda
-			{
-				y--;
-				gotoxy(x, y);
-				printf("%c", 186);
-			}
-			gotoxy(x, y);
-			printf("%c", 201);
-		}
-		//Separador
-		{
-			//Columna centro
-			{
-				x = 60, y = 9;
-				gotoxy(x, y);
-				printf("%c", 203);
-				for (i = 0; i < columna; i++)
-				{
-					y++;
-					gotoxy(x, y);
-					printf("%c", 186);
-				}
-				gotoxy(x, y);
-				printf("%c", 202);
-			}
-
-			//Fila 
-			{
-				x = 19, y = 19;
-				gotoxy(x, y);
-				printf("%c", 204);
-				for (i = 0; i < fila; i++)//Fila Arriba
-				{
-					x++;
-					gotoxy(x, y);
-					printf("%c", 205);
-				}
-				gotoxy(x, y);
-				printf("%c", 185);
-
-			}
-
-			gotoxy(60, 19), printf("%c", 206);
-		}
-
-
-		//Texto 
-		{
-
-			//Primer Cuadrado
-			gotoxy(20, 10);
-			printf("-----------------");
-			gotoxy(20, 18);
-			printf("Presionar ( 1 )");
-
-			//Segundo Cuadrado
-			gotoxy(61, 10);
-			printf("-----------------");
-			gotoxy(61, 18);
-			printf("Presionar ( 2 )");
-
-			//Tercer Cuadrado
-			gotoxy(20, 20);
-			printf("-----------------");
-			gotoxy(20, 28);
-			printf("Presionar ( 3 )");
-
-			//Cuarto Cuadrado
-			gotoxy(61, 20);
-			printf("-----------------");
-			gotoxy(61, 28);
-			printf("Presionar ( 4 )");
-
-			//TITULO
-			gotoxy(53, 4);
-			printf("-----------------");
-		}
-
-		gotoxy(55, 7);
-		printf("Ir a: ");
-		gotoxy(65, 7);
-	}
-}
-void cuadradosDosPorDos()
-{
-	int x = 19, y = 9, i, fila = 81, columna = 20;
-
-	////Dibujar Cuadrados 2X2////
-	{
-		//Cuadrado Grande
-		{
-			for (i = 0; i < fila; i++)//Fila Arriba
-			{
-				x++;
-				gotoxy(x, y);
-				printf("%c", 205);
-			}
-			gotoxy(x, y);
-			printf("%c", 187);
-			for (i = 0; i < columna; i++)//Columna derecha
-			{
-				y++;
-				gotoxy(x, y);
-				printf("%c", 186);
-
-			}
-			gotoxy(x, y);
-			printf("%c", 188);
-			for (i = 0; i < fila; i++)//Fila abajo
-			{
-				x--;
-				gotoxy(x, y);
-				printf("%c", 205);
-			}
-			gotoxy(x, y);
-			printf("%c", 200);
-			for (i = 0; i < columna; i++)//Columna izquierda
-			{
-				y--;
-				gotoxy(x, y);
-				printf("%c", 186);
-			}
-			gotoxy(x, y);
-			printf("%c", 201);
-		}
-		//Separador
-		{
-			//Columna centro
-			{
-				x = 60, y = 9;
-				gotoxy(x, y);
-				printf("%c", 203);
-				for (i = 0; i < columna; i++)
-				{
-					y++;
-					gotoxy(x, y);
-					printf("%c", 186);
-				}
-				gotoxy(x, y);
-				printf("%c", 202);
-			}
-
-			//Fila 
-			{
-				x = 19, y = 19;
-				gotoxy(x, y);
-				printf("%c", 204);
-				for (i = 0; i < fila; i++)//Fila Arriba
-				{
-					x++;
-					gotoxy(x, y);
-					printf("%c", 205);
-				}
-				gotoxy(x, y);
-				printf("%c", 185);
-
-			}
-
-			gotoxy(60, 19), printf("%c", 206);
-		}
-	}
-}
-//FIN INTERFAZ
-
-
-//Inicio funciones del cuestionario
-
-
-int pregunta_inicial() {
-	int valor;
-	printf("\n \n??Iniciar cuestionario??\n");
-
-	printf("\t1-SI\n\t2-NO\n");
-
-	do {
-		scanf("%d", &valor);
-		while ((getchar()) != '\n');
-	} while (valor != 1 && valor != 2);
-
-	return valor;
-}
-
-int valor_letra_introducida() {
-
-	int i = 0;
-	char letra;
-	char cadena[10];
-
-	printf("Introduzca la respuesta: ");
-
-	do {
-		fgets(cadena, sizeof(cadena), stdin);
-		letra = toupper(cadena[0]);
-
-		if (letra != 'A' && letra != 'B' && letra != 'C' && letra != 'D' && i > 0) {
-			printf("\nCaracter incorrecto. Introduzca la respuesta de nuevo:");
-		}
-
-		i++;
-
-	} while (letra != 'A' && letra != 'B' && letra != 'C' && letra != 'D');
-
-	return letra;
-}
-
-int preguntas_cuestionario(int i) {
-
-	char letra;
-	int valor;
-
-	switch (i) {
-	case 0:
-		printf("PREGUNTA N 1: \n");
-		printf("??En que continente esta el embalse artificial mas grande del mundo??");
-		printf("\n \tA)America \n \tB)Europa \n \tC)Africa \n \tD)Asia\n");
-		valor = valor_letra_introducida();
-		break;
-	case  1:
-		printf("\nPREGUNTA N 2: \n");
-		printf("??Que pais de Europa tiene el mayor numero de embalses??");
-		printf("\n \tA)Albania \n \tB)Rumania \n \tC)Noruega \n \tD)Espanya\n");
-		valor = valor_letra_introducida();
-		break;
-	case  2:
-		printf("\nPREGUNTA N 3: \n");
-		printf("??Pais en el que se encuentra el embalse mas grande de Europa??");
-		printf("\n \tA)Francia \n \tB)Ucrania \n \tC)Italia \n \tD)Suecia\n");
-		valor = valor_letra_introducida();
-		break;
-	case  3:
-		printf("\nPREGUNTA N 4: \n");
-		printf("??Que factor influye en mayor medida a el nivel de agua en los embalses de Espanya??");
-		printf("\n \tA)Altitud de las montanyas \n \tB)Poblacion de la zona \n \tC)Temperatura media del mar \n \tD)Precipitaciones y sequias\n");
-		valor = valor_letra_introducida();
-		break;
-	case  4:
-		printf("\nPREGUNTA N 5: \n");
-		printf("??Donde se encuentra el embalse mas antiguo de Espanya??");
-		printf("\n \tA)Extremadura \n \tB)Asturias \n \tC)Castilla y Leon \n \tD)Pais Vasco\n");
-		valor = valor_letra_introducida();
-		break;
-	case  5:
-		printf("\nPREGUNTA N 6: \n");
-		printf("??Cual fue el anyo desde el 2004 en el que hubo mas agua embalsada en todo el pais??");
-		printf("\n \tA)2008 \n \tB)2021 \n \tC)2013 \n \tD)2017\n");
-		valor = valor_letra_introducida();
-		break;
-	}
-
-	return valor - 'A' + 1;
-}
-
-void mostrar_resultado(int correcta, int i) {
-
-	if (correcta) {
-		printf("\n \t \t!!Respuesta correcta!!\n");
-		printf("\n\t \t \t        X\n");
-		printf("\t \t \t       X\n");
-		printf("\t \t \t      X \n");
-		printf("\t \t \tX   X\n");
-		printf("\t \t \t X X\n");
-		printf("\t \t \t  X \n");
-	}
-	else {
-		printf("\n \t \t!!Respuesta incorrecta!!: La respuesta era la ");
-		switch (i) {
-		case 0: printf("C-Africa"); break;
-		case 1: printf("D-Espanya"); break;
-		case 2: printf("B-Ucrania"); break;
-		case 3: printf("D-Precipitaciones y sequias"); break;
-		case 4: printf("A-Extremadura"); break;
-		case 5: printf("C-2013"); break;
-		}
-		printf("\n \n\t \t \tX   X\n");
-		printf("\t \t \t X X\n");
-		printf("\t \t \t  X\n");
-		printf("\t \t \t X X\n");
-		printf("\t \t \tX   X\n");
-	}
-}
-
-void informacion_respuestas(int i) {
-	switch (i) {
-	case 0:
-		printf("\n \n-En Africa se encuentra el embalse y lago artifical mas grande del mundo, el lago Kariba en la fronterea entre Zimbawe y Zambia: Este posee un  volumen de 130 km^3 y desemboca en el Oceano Indico.\n");
-		break;
-	case 1:
-		printf("\n \n-Espanya es el pais de Europa con mas embalses y uno de los que mas tiene en todo el mundo. Son mas de 1200 los embalses de mas de 1hm^3 de capacidad que hay repartidos por el pais. No es de extranyar el numero debido a la geografia y clima del pais que favorece la creacion de estas estructuras. \n");
-		break;
-	case 2:
-		printf("\n \n-La presa de Kuibuyshev, en Rusia, es la presa mas grande de Europa, con una capacidad de 58km^3.\n");
-		break;
-	case 3:
-		printf("\n \n-El nivel de los embalses depende principalmente del balance entre el agua que reciben (principalmente de la lluvia y el deshielo) y la que se extrae para riego, consumo y otros usos. Las precipitaciones y las sequias tienen un impacto directo, mucho mas que otros factores como la altitud o la densidad poblacional.\n");
-		break;
-	case 4:
-		printf("\n \n-El embalse mas antiguo de Espanya se encuentra en la Comunidad Autonoma de Extremadura, mas concretamente en Merida. Es el embalse de Proserpina, fue construido por los romanos entre el I y II d.C y todavia sigue en uso (con fines recreativos). \n");
-		break;
-	case 5:
-		printf("\n \n-El anyo con mas acumulacion fue el 2013, con 63.000 hm^3 acumulados, lo que representaba sobre la media un 111/100. \n");
-		break;
-	}
-}
-
-void tabla_errores(int correcta, int i) {
-	printf("\n \t \t ***************");
-	if (correcta) {
-		printf("\n \t \t *PREGUNTA %d*SI*", i + 1);
-	}
-	else {
-		printf("\n \t \t *PREGUNTA %d*NO*", i + 1);
-	}
-}
-
-void premios_concurso(int numero_aciertos) {
-	printf("\n \nTu número de aciertos es %d", numero_aciertos);
-
-	switch (numero_aciertos) {
-	case 0:
-
-		printf("\n !!Felicidades!! ");
-		printf("\n   _______\n  |       |\n  |  X_X  |  !Has conseguido no acertar nada! \n  |_______|\n");
-
-		break;
-
-	case 1:
-	case 2:
-		printf("\n Bueno, al menos lo has intentado ¿no?. ");
-		printf("\n    .-\"      \"-.\\n   /   O    O   \\\\n  |      /\\      |     Poco a poco\\n  |     ====     |     Sigue aprendiendo.\\n   \\            /\\n    '-.______.–'\\n");
-
-		break;
-
-	case 3:
-	case 4:
-		printf("\n ¡Buen intento! Vas mejorando. ");
-		printf("\n    .-\"      \"-. \n   /   O    O   \\ \n  |      /\\      |     !Ya estas cerca! \n  |     ====     |     En nada lo tienes. \n   \\            / \n    '-.______.–' \n");
-
-		break;
-
-	case 5:
-		printf("\n !Casi perfecto! ");
-		printf("\n     _______\n    /       \\\n   |  _____  |\n   | |     | |\n   | |_____| |  Te mereces una medalla\n    \\_______/\n     \\_____/\n");
-
-		break;
-
-	case 6:
-		printf("\n !Eres un maestro de embalses!");
-		printf("\n      ___________\n     '._==_==_=_.' \n     .-\\:      /-.\n    | (|:.     |) |   Aqui tienes tu trofeo. \n     '-|:.     |-'\n       \\::.    /\n        '::. .'\n          ) (\n        _.' '._\n       \"\"\"\"\"\"\"\n");
-
-		break;
-	}
-}
-
-int cuestionario() {
-
-	printf("\nOimos, vemos y hablamos sobre los embalses cotidianamente, nos abastecen de agua para el consumo y la agricultura y tienen un impacto en el dia a dia del que el ciudadano promedio no es consciente. Dicho esto, ??sabras lo suficiente como para llevarte el premio al que mas sabe de embalses??");
-
-	int valor_pregunta = pregunta_inicial(), respuestas[6], respuestas_correctas[6] = { 3,4,2,4,1,3 };
-
-	if (valor_pregunta == 1) {
-		printf("\t \t \t*********************************\n");
-		printf("\t \t \t*    CUESTIONARIO DE EMBALSES   *\n");
-		printf("\t \t \t*********************************\n");
-
-		for (int i = 0;i < 6;i++) {
-			respuestas[i] = preguntas_cuestionario(i);
-			mostrar_resultado(respuestas[i] == respuestas_correctas[i], i);
-			informacion_respuestas(i);
-		}
-
-		int numero_aciertos = 0;
-		for (int i = 0;i < 6;i++) {
-			tabla_errores(respuestas[i] == respuestas_correctas[i], i);
-			if (respuestas[i] == respuestas_correctas[i]) {
-				numero_aciertos++;
-			}
-		}
-
-		printf("\n \t \t ***************");
-		premios_concurso(numero_aciertos);
-
-	}
-	else if (valor_pregunta == 2) {
-		printf("\njoe :(");
 		return 0;
 	}
-	return 0;
-}
-//Final funciones del cuestionario
+	//Fecha
+	void Fecha()
+	{
+		printf("%s", __DATE__);
+
+	}
+
+	void SeisCuadrados()
+	{
+		int x = 19, y = 9, i, fila = 81, columna = 20;
+
+		////Dibujar Cuadrados////
+		{
+			//Cuadrado Grande
+			{
+				for (i = 0; i < fila; i++)//Fila Arriba
+				{
+					x++;
+					gotoxy(x, y);
+					printf("%c", 205);
+				}
+				gotoxy(x, y);
+				printf("%c", 187);
+				for (i = 0; i < columna; i++)//Columna derecha
+				{
+					y++;
+					gotoxy(x, y);
+					printf("%c", 186);
+
+				}
+				gotoxy(x, y);
+				printf("%c", 188);
+				for (i = 0; i < fila; i++)//Fila abajo
+				{
+					x--;
+					gotoxy(x, y);
+					printf("%c", 205);
+				}
+				gotoxy(x, y);
+				printf("%c", 200);
+				for (i = 0; i < columna; i++)//Columna izquierda
+				{
+					y--;
+					gotoxy(x, y);
+					printf("%c", 186);
+				}
+				gotoxy(x, y);
+				printf("%c", 201);
+			}
+			//Separador
+			{
+				//Columna centro
+				{
+					x = 60, y = 9;
+					gotoxy(x, y);
+					printf("%c", 203);
+					for (i = 0; i < columna; i++)
+					{
+						y++;
+						gotoxy(x, y);
+						printf("%c", 186);
+					}
+					gotoxy(x, y);
+					printf("%c", 202);
+				}
+
+				//Fila 
+				{
+					x = 19, y = 19;
+					gotoxy(x, y);
+					printf("%c", 204);
+					for (i = 0; i < fila; i++)//Fila Arriba
+					{
+						x++;
+						gotoxy(x, y);
+						printf("%c", 205);
+					}
+					gotoxy(x, y);
+					printf("%c", 185);
+
+				}
+
+				gotoxy(60, 19), printf("%c", 206);
+			}
+
+
+			//Texto 
+			{
+
+				//Primer Cuadrado
+				gotoxy(20, 10);
+				printf("-----------------");
+				gotoxy(20, 18);
+				printf("Presionar ( 1 )");
+
+				//Segundo Cuadrado
+				gotoxy(61, 10);
+				printf("-----------------");
+				gotoxy(61, 18);
+				printf("Presionar ( 2 )");
+
+				//Tercer Cuadrado
+				gotoxy(20, 20);
+				printf("-----------------");
+				gotoxy(20, 28);
+				printf("Presionar ( 3 )");
+
+				//Cuarto Cuadrado
+				gotoxy(61, 20);
+				printf("-----------------");
+				gotoxy(61, 28);
+				printf("Presionar ( 4 )");
+
+				//TITULO
+				gotoxy(53, 4);
+				printf("-----------------");
+			}
+
+			gotoxy(55, 7);
+			printf("Ir a: ");
+			gotoxy(65, 7);
+		}
+	}
+	void cuadradosDosPorDos()
+	{
+		int x = 19, y = 9, i, fila = 81, columna = 20;
+
+		////Dibujar Cuadrados 2X2////
+		{
+			//Cuadrado Grande
+			{
+				for (i = 0; i < fila; i++)//Fila Arriba
+				{
+					x++;
+					gotoxy(x, y);
+					printf("%c", 205);
+				}
+				gotoxy(x, y);
+				printf("%c", 187);
+				for (i = 0; i < columna; i++)//Columna derecha
+				{
+					y++;
+					gotoxy(x, y);
+					printf("%c", 186);
+
+				}
+				gotoxy(x, y);
+				printf("%c", 188);
+				for (i = 0; i < fila; i++)//Fila abajo
+				{
+					x--;
+					gotoxy(x, y);
+					printf("%c", 205);
+				}
+				gotoxy(x, y);
+				printf("%c", 200);
+				for (i = 0; i < columna; i++)//Columna izquierda
+				{
+					y--;
+					gotoxy(x, y);
+					printf("%c", 186);
+				}
+				gotoxy(x, y);
+				printf("%c", 201);
+			}
+			//Separador
+			{
+				//Columna centro
+				{
+					x = 60, y = 9;
+					gotoxy(x, y);
+					printf("%c", 203);
+					for (i = 0; i < columna; i++)
+					{
+						y++;
+						gotoxy(x, y);
+						printf("%c", 186);
+					}
+					gotoxy(x, y);
+					printf("%c", 202);
+				}
+
+				//Fila 
+				{
+					x = 19, y = 19;
+					gotoxy(x, y);
+					printf("%c", 204);
+					for (i = 0; i < fila; i++)//Fila Arriba
+					{
+						x++;
+						gotoxy(x, y);
+						printf("%c", 205);
+					}
+					gotoxy(x, y);
+					printf("%c", 185);
+
+				}
+
+				gotoxy(60, 19), printf("%c", 206);
+			}
+		}
+	}
+	//FIN INTERFAZ
+
+
+	//Inicio funciones del cuestionario
+
+
+	int pregunta_inicial() {
+		int valor;
+		printf("\n \n??Iniciar cuestionario??\n");
+
+		printf("\t1-SI\n\t2-NO\n");
+
+		do {
+			scanf("%d", &valor);
+			while ((getchar()) != '\n');
+		} while (valor != 1 && valor != 2);
+
+		return valor;
+	}
+
+	int valor_letra_introducida() {
+
+		int i = 0;
+		char letra;
+		char cadena[10];
+
+		printf("Introduzca la respuesta: ");
+
+		do {
+			fgets(cadena, sizeof(cadena), stdin);
+			letra = toupper(cadena[0]);
+
+			if (letra != 'A' && letra != 'B' && letra != 'C' && letra != 'D' && i > 0) {
+				printf("\nCaracter incorrecto. Introduzca la respuesta de nuevo:");
+			}
+
+			i++;
+
+		} while (letra != 'A' && letra != 'B' && letra != 'C' && letra != 'D');
+
+		return letra;
+	}
+
+	int preguntas_cuestionario(int i) {
+
+		char letra;
+		int valor;
+
+		switch (i) {
+		case 0:
+			printf("PREGUNTA N 1: \n");
+			printf("??En que continente esta el embalse artificial mas grande del mundo??");
+			printf("\n \tA)America \n \tB)Europa \n \tC)Africa \n \tD)Asia\n");
+			valor = valor_letra_introducida();
+			break;
+		case  1:
+			printf("\nPREGUNTA N 2: \n");
+			printf("??Que pais de Europa tiene el mayor numero de embalses??");
+			printf("\n \tA)Albania \n \tB)Rumania \n \tC)Noruega \n \tD)Espanya\n");
+			valor = valor_letra_introducida();
+			break;
+		case  2:
+			printf("\nPREGUNTA N 3: \n");
+			printf("??Pais en el que se encuentra el embalse mas grande de Europa??");
+			printf("\n \tA)Francia \n \tB)Ucrania \n \tC)Italia \n \tD)Suecia\n");
+			valor = valor_letra_introducida();
+			break;
+		case  3:
+			printf("\nPREGUNTA N 4: \n");
+			printf("??Que factor influye en mayor medida a el nivel de agua en los embalses de Espanya??");
+			printf("\n \tA)Altitud de las montanyas \n \tB)Poblacion de la zona \n \tC)Temperatura media del mar \n \tD)Precipitaciones y sequias\n");
+			valor = valor_letra_introducida();
+			break;
+		case  4:
+			printf("\nPREGUNTA N 5: \n");
+			printf("??Donde se encuentra el embalse mas antiguo de Espanya??");
+			printf("\n \tA)Extremadura \n \tB)Asturias \n \tC)Castilla y Leon \n \tD)Pais Vasco\n");
+			valor = valor_letra_introducida();
+			break;
+		case  5:
+			printf("\nPREGUNTA N 6: \n");
+			printf("??Cual fue el anyo desde el 2004 en el que hubo mas agua embalsada en todo el pais??");
+			printf("\n \tA)2008 \n \tB)2021 \n \tC)2013 \n \tD)2017\n");
+			valor = valor_letra_introducida();
+			break;
+		}
+
+		return valor - 'A' + 1;
+	}
+
+	void mostrar_resultado(int correcta, int i) {
+
+		if (correcta) {
+			printf("\n \t \t!!Respuesta correcta!!\n");
+			printf("\n\t \t \t        X\n");
+			printf("\t \t \t       X\n");
+			printf("\t \t \t      X \n");
+			printf("\t \t \tX   X\n");
+			printf("\t \t \t X X\n");
+			printf("\t \t \t  X \n");
+		}
+		else {
+			printf("\n \t \t!!Respuesta incorrecta!!: La respuesta era la ");
+			switch (i) {
+			case 0: printf("C-Africa"); break;
+			case 1: printf("D-Espanya"); break;
+			case 2: printf("B-Ucrania"); break;
+			case 3: printf("D-Precipitaciones y sequias"); break;
+			case 4: printf("A-Extremadura"); break;
+			case 5: printf("C-2013"); break;
+			}
+			printf("\n \n\t \t \tX   X\n");
+			printf("\t \t \t X X\n");
+			printf("\t \t \t  X\n");
+			printf("\t \t \t X X\n");
+			printf("\t \t \tX   X\n");
+		}
+	}
+
+	void informacion_respuestas(int i) {
+		switch (i) {
+		case 0:
+			printf("\n \n-En Africa se encuentra el embalse y lago artifical mas grande del mundo, el lago Kariba en la fronterea entre Zimbawe y Zambia: Este posee un  volumen de 130 km^3 y desemboca en el Oceano Indico.\n");
+			break;
+		case 1:
+			printf("\n \n-Espanya es el pais de Europa con mas embalses y uno de los que mas tiene en todo el mundo. Son mas de 1200 los embalses de mas de 1hm^3 de capacidad que hay repartidos por el pais. No es de extranyar el numero debido a la geografia y clima del pais que favorece la creacion de estas estructuras. \n");
+			break;
+		case 2:
+			printf("\n \n-La presa de Kuibuyshev, en Rusia, es la presa mas grande de Europa, con una capacidad de 58km^3.\n");
+			break;
+		case 3:
+			printf("\n \n-El nivel de los embalses depende principalmente del balance entre el agua que reciben (principalmente de la lluvia y el deshielo) y la que se extrae para riego, consumo y otros usos. Las precipitaciones y las sequias tienen un impacto directo, mucho mas que otros factores como la altitud o la densidad poblacional.\n");
+			break;
+		case 4:
+			printf("\n \n-El embalse mas antiguo de Espanya se encuentra en la Comunidad Autonoma de Extremadura, mas concretamente en Merida. Es el embalse de Proserpina, fue construido por los romanos entre el I y II d.C y todavia sigue en uso (con fines recreativos). \n");
+			break;
+		case 5:
+			printf("\n \n-El anyo con mas acumulacion fue el 2013, con 63.000 hm^3 acumulados, lo que representaba sobre la media un 111/100. \n");
+			break;
+		}
+	}
+
+	void tabla_errores(int correcta, int i) {
+		printf("\n \t \t ***************");
+		if (correcta) {
+			printf("\n \t \t *PREGUNTA %d*SI*", i + 1);
+		}
+		else {
+			printf("\n \t \t *PREGUNTA %d*NO*", i + 1);
+		}
+	}
+
+	void premios_concurso(int numero_aciertos) {
+		printf("\n \nTu número de aciertos es %d", numero_aciertos);
+
+		switch (numero_aciertos) {
+		case 0:
+
+			printf("\n !!Felicidades!! ");
+			printf("\n   _______\n  |       |\n  |  X_X  |  !Has conseguido no acertar nada! \n  |_______|\n");
+
+			break;
+
+		case 1:
+		case 2:
+			printf("\n Bueno, al menos lo has intentado ¿no?. ");
+			printf("\n    .-\"      \"-.\\n   /   O    O   \\\\n  |      /\\      |     Poco a poco\\n  |     ====     |     Sigue aprendiendo.\\n   \\            /\\n    '-.______.–'\\n");
+
+			break;
+
+		case 3:
+		case 4:
+			printf("\n ¡Buen intento! Vas mejorando. ");
+			printf("\n    .-\"      \"-. \n   /   O    O   \\ \n  |      /\\      |     !Ya estas cerca! \n  |     ====     |     En nada lo tienes. \n   \\            / \n    '-.______.–' \n");
+
+			break;
+
+		case 5:
+			printf("\n !Casi perfecto! ");
+			printf("\n     _______\n    /       \\\n   |  _____  |\n   | |     | |\n   | |_____| |  Te mereces una medalla\n    \\_______/\n     \\_____/\n");
+
+			break;
+
+		case 6:
+			printf("\n !Eres un maestro de embalses!");
+			printf("\n      ___________\n     '._==_==_=_.' \n     .-\\:      /-.\n    | (|:.     |) |   Aqui tienes tu trofeo. \n     '-|:.     |-'\n       \\::.    /\n        '::. .'\n          ) (\n        _.' '._\n       \"\"\"\"\"\"\"\n");
+
+			break;
+		}
+	}
+
+	int cuestionario() {
+
+		printf("\nOimos, vemos y hablamos sobre los embalses cotidianamente, nos abastecen de agua para el consumo y la agricultura y tienen un impacto en el dia a dia del que el ciudadano promedio no es consciente. Dicho esto, ??sabras lo suficiente como para llevarte el premio al que mas sabe de embalses??");
+
+		int valor_pregunta = pregunta_inicial(), respuestas[6], respuestas_correctas[6] = { 3,4,2,4,1,3 };
+
+		if (valor_pregunta == 1) {
+			printf("\t \t \t*********************************\n");
+			printf("\t \t \t*    CUESTIONARIO DE EMBALSES   *\n");
+			printf("\t \t \t*********************************\n");
+
+			for (int i = 0;i < 6;i++) {
+				respuestas[i] = preguntas_cuestionario(i);
+				mostrar_resultado(respuestas[i] == respuestas_correctas[i], i);
+				informacion_respuestas(i);
+			}
+
+			int numero_aciertos = 0;
+			for (int i = 0;i < 6;i++) {
+				tabla_errores(respuestas[i] == respuestas_correctas[i], i);
+				if (respuestas[i] == respuestas_correctas[i]) {
+					numero_aciertos++;
+				}
+			}
+
+			printf("\n \t \t ***************");
+			premios_concurso(numero_aciertos);
+
+		}
+		else if (valor_pregunta == 2) {
+			printf("\njoe :(");
+			return 0;
+		}
+		return 0;
+	}
+	//Final funciones del cuestionario
