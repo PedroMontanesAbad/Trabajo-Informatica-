@@ -7,25 +7,75 @@
 #include <float.h>
 #include <stdlib.h>
 
-//PALABRA DIA
-typedef struct {
-	char posicion[365];
-}linea_palabradia;
+//PALABRA DEL DIA
+//FECHA ACTUAL DESDE 1970
 
-//FECHA ACTUAL 
+struct tm* fecha_actual() {
 
-struct tm* fecha_actual();
+	time_t tiempo = time(NULL); // ALMACENAMOS SEGUNDOS TRANSCURRIDOS DESDE 1970 EN tiempo
 
-//DÍA DEL AÑO
+	return localtime(&tiempo); //CONVIERTE EL TIEMPO EN SEGUNDOS Y DEVUELVE UN PUNTERO DE LA ESTRUCTURA struct tm (ya creada)
+}
 
-int dia_anyo(struct tm* fecha);
+//OBTENEMOS EL DÍA DEL AÑO
 
-//PALABRA DEL DÍA
+int dia_anyo(struct tm* fecha) {
 
-void palabra_d(int dia, linea_palabradia digitos[]);
+	char C_dia[4];
+	int dia;
 
-void palbra_dia_main();
-//PALABRA DIA FINAL
+	strftime(C_dia, sizeof(C_dia), "%j", fecha);//%j DEVUELVE EL Nº DE DÍAS TRANSCURRIDOS DESDE EL 1 DE ENERO., FUNCIÓN ESPECÍFICA DEL TIME.H
+
+	sscanf(C_dia, "%i", &dia);
+
+	return dia;
+
+}
+
+//OBTENEMOS LA PALABRA DEL DÍA
+
+void palabra_d(int dia, linea_palabradia digitos[]) {
+	printf("TU(S) PALABRA(S) DE HOY:\n\n%s\n", digitos[dia - 1].posicion);
+}
+
+void palbra_dia_main() {
+
+	int dia, t = 0;
+
+	linea_palabradia digitos[400];
+
+	//OBTENEMOS EL DÍA DEL AÑO ACTUAL: 
+
+	struct tm* fecha = fecha_actual();
+
+	dia = dia_anyo(fecha);
+	//se pondría en el main
+		//ABRIMOS EL FICHERO
+
+	FILE* palabra_dia;
+	palabra_dia = fopen("palabra_dia.txt", "r");
+	if (palabra_dia == NULL) {
+		printf("error");
+	}
+
+	//LEEMOS EL FICHERO
+
+	while (fscanf(palabra_dia, "%[^\n]", digitos[t].posicion) != EOF) {
+		fgetc(palabra_dia);
+		t++;
+	}
+	//hasta aquí
+		//TU(S) PALABRA(S):
+
+	palabra_d(dia, digitos);
+
+	//CERRAMOS FICHERO
+
+	fclose(palabra_dia);
+
+}
+//FIN PALABRA DEL DIA
+
 
 //SELECCION CUENCA:
 
