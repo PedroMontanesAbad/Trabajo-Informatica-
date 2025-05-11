@@ -48,4 +48,11 @@ posiciones_cuencas[f]=j; //Añadimos un ultimo valor señalando el fin de los da
 }
 
 void medias_main(){
+	printf("Selecciona una cuenca, un embalse y un año para calcular su maximo y minimo:\n);
+	nombres_cuencas(j,cuenca[]);
+	num_cuenca = seleccion_cuenca(num_cuenca, C_cuenca);
+	nombres_cuencas_embalse(j, num_cuenca, cuenca[], posiciones_cuencas);
+	num_embalse = seleccion_embalse(num_embalse, posicinoes_cuencas, num_cuenca, C_embalse)
+	anyo = seleccion_anyo(anyo, C_anyo);
+	media_anyo_embalse(j, anyo, num_cuenca, num_embalse, cuenca[], posiciones_cuencas[], maxmin[]) {
 }
