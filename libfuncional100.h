@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
-#include <iostream>
+//#include <iostream>
 #include <math.h>
 #include <time.h>
 #include <stdint.h>
