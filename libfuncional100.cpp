@@ -1150,7 +1150,7 @@ void comparacion_principal() {
 	FILE* F_comparacion;
 	F_comparacion = fopen("comparacion2.txt", "r");
 	if (F_comparacion == NULL) {
-		printf("Error al abrir el fichero de comparación.\n");
+		printf("Error al abrir el fichero de comparacion.\n");
 		return;
 	}
 
@@ -2104,7 +2104,7 @@ void Texto0()
 			x = 20;
 			y = 9;
 			gotoxy(x, y);
-			printf("CUENCAS");
+			printf("LISTADOS");
 			gotoxy(x, 14);
 			printf("Presionar ( 1 )");
 
@@ -2114,7 +2114,7 @@ void Texto0()
 			x = 61;
 			y = 9;
 			gotoxy(x, y);
-			printf("EMBALSES");
+			printf("INFORMACION GENERAL");
 			gotoxy(x, 14);
 			printf("Presionar ( 2 )");
 
@@ -2250,17 +2250,17 @@ void Texto1()
 		{
 			//TITULO
 			gotoxy(53, 4);
-			printf("CUENCAS");
+			printf("LISTADOS");
 
 			//Primer Cuadrado
 			gotoxy(20, 10);
-			printf("NOMBRES DE CUENCAS");
+			printf("LISTADO DE CUENCAS");
 			gotoxy(20, 18);
 			printf("Presionar ( 1 )");
 
 			//Segundo Cuadrado
 			gotoxy(61, 10);
-			printf("NOMBRES DE CUENCAS");
+			printf("LISTADO DE EMBALSES");
 			gotoxy(61, 18);
 			printf("Presionar ( 2 )");
 
@@ -2291,7 +2291,7 @@ void Texto2()
 	//Titulo// 
 	{
 		gotoxy(55, 4);
-		printf("EMBALSES");
+		printf("INFORMACION GENERAL");
 	}
 
 
@@ -2302,7 +2302,7 @@ void Texto2()
 			x = 20;
 			y = 9;
 			gotoxy(x, y);
-			printf("MEDIDAS");
+			printf("MEDIAS");
 			gotoxy(x, 14);
 			printf("Presionar ( 1 )");
 		}
