@@ -1972,6 +1972,17 @@ float max_y_min_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea 
 	//printf("El maximo es %f en el mes %i, el minimo es %f en el mes %i", vector3[0],vector3[1],vector3[2],vector3[3]);
 	return 0;
 }
+void maxymin_main(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[], int vector3[], char C_cuenca[]) { // Vector 3 es vector auxiliar para guardar los datos obtenidos
+	int num_cuenca, anyo, num_embalse;
+	printf("Selecciona una cuenca, un embalse y un año para calcular su maximo y minimo:\n);
+	nombres_cuencas(j,vector[]);
+	num_cuenca = seleccion_cuenca(num_cuenca, C_cuenca[]);
+	nombres_cuencas_embalse(j, num_cuenca, vector[], vector2[]);
+	num_embalse = seleccion_embalse(num_embalse, vector2[], num_cuenca, C_embalse[])
+	anyo = seleccion_anyo(anyo, C_anyo[]);
+	max_y_min_embalse(j, anyo, num_cuenca, num_embalse, vector[], vector2[], vector3[]) { // Vector 3 es vector auxiliar para guardar los datos obtenidos
+
+}
 
 //INTERFAZ
 void gotoxy(int x, int y)
