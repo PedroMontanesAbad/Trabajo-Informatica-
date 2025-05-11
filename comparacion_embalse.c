@@ -503,7 +503,7 @@ while(mes_anyo<=0||mes_anyo>2);
 
 
 //SELECCION AÑO:
-int seleccion_anyo(int anyo){
+int seleccion_anyos(int anyo){
 	do {
 		printf("\nIntroduce el anyo deseado 2012-2021.\n");
 		scanf("%i",&anyo);
@@ -515,7 +515,7 @@ int seleccion_anyo(int anyo){
 
 
 //SELECCION MES:
-int seleccion_mes(int mes){
+int seleccion_mese(int mes){
 	do {
 		printf("\nIntroduce el mes deseado 1-12.\n");
 		scanf("%i",&mes);
