@@ -2474,20 +2474,30 @@ void Texto2()
 		{
 			////Texto Primer Cuadrado////
 			{
-				x = 20;
-				y = 10;
-				gotoxy(x, y);
-				printf("MODO DIABLO:1");
-				x = 20;
-				y = 11;
-				gotoxy(x, y);
-				printf("VIOLETA:7");
-				x = 20;
-				y = 12;
-				gotoxy(x, y);
-				printf("AZUL:8");
-				gotoxy(x, 18);
-				printf("");
+			x = 20;
+			y = 10;
+			gotoxy(x, y);
+			printf("CAMBIAR COLOR:");
+			x = 20;
+			y = 12;
+			gotoxy(x, y);
+			printf("MODO DIABLO:1");
+			x = 20;
+			y = 13;
+			gotoxy(x, y);
+			printf("VIOLETA:5");
+			x = 20;
+			y = 14;
+			gotoxy(x, y);
+			printf("AZUL:6");
+			x = 20;
+			y = 15;
+			gotoxy(x, y);
+			printf("AMARILLO:7");
+			x = 20;
+			y = 16;
+			gotoxy(x, y);
+			printf("GRIS:8");
 
 			}
 			////// Segundo cuadrado/////
