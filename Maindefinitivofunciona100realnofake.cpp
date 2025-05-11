@@ -24,6 +24,7 @@ int main(void)//system cls importantes antes de cada funcion
 		system("cls");
 		n = c - '0';
 
+
 		switch (n)
 		{
 		case 1:
@@ -35,20 +36,6 @@ int main(void)//system cls importantes antes de cada funcion
 				
 				n = c - '0';
 				
-				if (n == 1)
-				{
-					system("cls");
-					lista_cuencas();
-					system("pause");
-				}
-				
-				if (n == 2)
-				{
-					system("cls");
-					lista_embalses();
-					system("pause");
-				}
-					
 				if (n == 3)
 				{
 					n = 0;
@@ -60,7 +47,7 @@ int main(void)//system cls importantes antes de cada funcion
 					system("cls");
 					exit(-1);
 				}
-				system("cls");
+				
 			} while (n != 5);
 
 			break;
@@ -75,6 +62,7 @@ int main(void)//system cls importantes antes de cada funcion
 
 				if (n == 1)
 				{
+					
 
 				}
 				if (n == 2)
@@ -85,7 +73,9 @@ int main(void)//system cls importantes antes de cada funcion
 				}
 				if (n == 3)
 				{
-					//comparacion();
+					system("cls");
+					comparacion_principal();
+					system("pause");
 				}
 				if (n == 4)
 				{
@@ -109,40 +99,16 @@ int main(void)//system cls importantes antes de cada funcion
 			break;
 		case 3://cuestionario
 			cuestionario();
-			system("pause");
 			system("cls");
 			
 		case 4://palabra del dia
-			do
-			{
-				DibujarMenu();
-				Texto4();
-
-				scanf_s("%c", &c, 1);
-				n = c - '0';
-
-				if (n == 5)
-				{
-					n = 0;
-					break;
-
-				}
-				else if (n == 6)
-				{
-					system("cls");
-					exit(-1);
-				}
-				system("cls");
-			} while (n != 5);
-
-			break;
+			
 		case 5://AJUSTES
 			do
 			{
 				cuadradosDosPorDos();
 				Texto5();
 				scanf_s("%c", &c, 1);
-
 				n = c - '0';
 				
 
@@ -160,19 +126,19 @@ int main(void)//system cls importantes antes de cada funcion
 					//system("pause");
 			//pause solo necesario para los printf, para funciones no parece ser necesarios
 				}
-				else if (n == 5)
+				else if (n == 3)
 				{
 					n = 0;
 					break;
 
 				}
-				else if (n == 6)
+				else if (n == 4)
 				{
 					system("cls");
 					exit(-1);
 				}
 				system("cls");
-			} while (n != 5);
+			} while (n != 4);
 
 			break;
 		case 6:
@@ -184,9 +150,9 @@ int main(void)//system cls importantes antes de cada funcion
 	} while (n < 1 || n>6);
 
 	scanf_s("%c", &c, 1);	
-
 	n = c - '0';
 
 
 	return 0;
 }
+
