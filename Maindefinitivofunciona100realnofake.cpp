@@ -4,7 +4,7 @@
 int main(void)//system cls importantes antes de cada funcion
 {
 	//ABRIMOS FICHEROS:
-
+	char C_cuenca[2], C_embalse[2], C_mes[2], C_anyo[5], cambio[100];
 	FILE* tabla;
 	tabla = fopen("texto_proyecto.csv", "r");
 
