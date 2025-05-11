@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
-//#include <iostream>
+#include <iostream>
 #include <math.h>
 #include <time.h>
 #include <stdint.h>
@@ -56,18 +56,40 @@ typedef struct {
 
 } Embalse;
 
+//PALABRA DIA
+typedef struct {
+	char posicion[365];
+}linea_palabradia;
+
+//FECHA ACTUAL 
+
+struct tm* fecha_actual();
+
+//DÍA DEL AÑO
+
+int dia_anyo(struct tm* fecha);
+
+//PALABRA DEL DÍA
+
+void palabra_d(int dia, linea_palabradia digitos[]);
+
+void palbra_dia_main();
+//PALABRA DIA FINAL
+
+
+//inicio interfaz
 void gotoxy(int x, int y);
 void DibujarMenu();
 void cuadradosDosPorDos();
 void Texto0();
 void Texto1();
 void Texto2();
-
-
 void Texto5();
 int donut();
 void Fecha();
 void SeisCuadrados();
+//final interfaz
+
 
 void porcentajes_main();
 void nombres_cuencas(int j, linea cuenca[]);
