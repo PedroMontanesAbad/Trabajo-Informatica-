@@ -1,8 +1,6 @@
 
 #include "lib.h"
 
-
-
 int main(void)//system cls importantes antes de cada funcion
 {
 
@@ -99,7 +97,11 @@ int main(void)//system cls importantes antes de cada funcion
 			break;
 		case 3://cuestionario
 			cuestionario();
+			system("pause");
+			n=7; //Cuando hace el break sigue haciendo el bucle
 			system("cls");
+			
+			break;
 			
 		case 4://palabra del dia
 			
@@ -155,4 +157,3 @@ int main(void)//system cls importantes antes de cada funcion
 
 	return 0;
 }
-
