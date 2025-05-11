@@ -1,4 +1,4 @@
-#include "lib.h"
+#include "libfuncional00.h"
 
 //vector2[] es posiciones_cuencas[15]
 //vector es linea cuenca[4236]
