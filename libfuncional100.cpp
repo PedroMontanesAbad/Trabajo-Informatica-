@@ -76,7 +76,21 @@ void palbra_dia_main() {
 }
 //FIN PALABRA DEL DIA
 
-
+//NOMBRE_CUENCAS_COMPARACION
+void nombres_cuencas(int vb, linea cuenca[]){
+	
+	int numc=0,i;//variables cuenca
+for(i=1;i<vb;i++){
+	if(strcmp(cuenca[i].cuenca_hidrografica,cuenca[i+1].cuenca_hidrografica)!=0){
+		
+			numc++;
+			printf("%i-",numc);
+			printf("%s\n",cuenca[i].cuenca_hidrografica);
+			
+	}
+	
+}
+}
 //SELECCION CUENCA:
 
 int seleccion_cuenca_1(int num_cuenca, char C_cuenca[]) {
