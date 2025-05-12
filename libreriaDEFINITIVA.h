@@ -1,4 +1,3 @@
-
 #ifndef _LIB_H_
 #define _LIB_H_
 
@@ -48,16 +47,13 @@ typedef struct {
 	char uso_restaurante[5];
 } DatosComparacion;
 
-
-
-
 typedef struct {
 	char embalse_nom[50];
 	float etotal;
 
 } Embalse;
-
-//PALABRA DIA
+//palabra del dia
+// 
 typedef struct {
 	char posicion[365];
 }linea_palabradia;
@@ -65,6 +61,12 @@ typedef struct {
 //FECHA ACTUAL 
 
 struct tm* fecha_actual();
+void nombres_embalses_p(int j, linea vector[]);
+void nombres_cuencas_p(int j, linea vector[]);
+float max_y_min_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea cuenca[],int posiciones_cuencas[], int maxmin[]);
+int maxymin_main();
+int medias_main();
+float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[]);
 
 //DÍA DEL AÑO
 
@@ -74,11 +76,9 @@ int dia_anyo(struct tm* fecha);
 
 void palabra_d(int dia, linea_palabradia digitos[]);
 
-void palbra_dia_main();
-//PALABRA DIA FINAL
+void palabra_dia_main();
+//final palabra del dia
 
-
-//inicio interfaz
 void gotoxy(int x, int y);
 void DibujarMenu();
 void cuadradosDosPorDos();
@@ -89,17 +89,11 @@ void Texto5();
 int donut();
 void Fecha();
 void SeisCuadrados();
-//final interfaz
-
 
 void porcentajes_main();
 void nombres_cuencas(int j, linea cuenca[]);
 int seleccion_cuenca(int num_cuenca, char C_cuenca[]);
 void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[]);
-float media_anyo(int j, int anyo, linea vector[]);
-float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[]);
-float max_y_min_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[], int vector3[]);
-void maxymin_main(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[], int vector3[], char C_cuenca[]);
 int seleccion_embalse(int num_embalse, int vector2[], int num_cuenca, char C_embalse[]);
 int seleccion_anyo(int anyo, char C_anyo[]);
 int seleccion_mes(int N_mes, char C_mes[]);
@@ -119,8 +113,8 @@ void informacion_respuestas(int i);
 void tabla_errores(int correcta, int i);
 void premios_concurso(int numero_aciertos);
 
-//COMPARACION
-void nombres_cuencas(int vb, linea cuenca[]);
+//COMPARACION{
+void nombres_cuencas_e(int vb, linea cuenca[]);
 
 int seleccion_cuenca_1(int num_cuenca, char C_cuenca[]);
 
@@ -142,19 +136,14 @@ int seleccion_mese(int mes);
 
 
 void capacidad_max(int l_r_embalse, int l_r_embalse2, linea cuenca[], Embalse embalse[]);
-
 void superficie(int l_r_embalse, int l_r_embalse2, linea cuenca[], DatosComparacion comp[]);
-
 void tipo_embalse(DatosComparacion comp[], int l_r_embalse, int l_r_embalse2, linea cuenca[]);
-
 void uso_embalse(DatosComparacion comp[], int l_r_embalse, int l_r_embalse2, linea cuenca[]);
-
 char* cambios_espacios_embalses(linea cuenca[], int l_r_embalse, int l_r_embalse2);
-
 char* cambios_espacios_tipo_presa(DatosComparacion comp[], int l_r_embalse, int l_r_embalse2);
 
 
-//
+
 void comparacion_principal();
 //FIN COMPARACION
 #endif
