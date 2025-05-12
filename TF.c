@@ -1,4 +1,5 @@
-#include "lib.h"
+#include "TF.h"
+#include "TF.h"
 
 
 //MAX Y MIN, MEDIA
@@ -77,11 +78,11 @@ int maxymin_main() {
 
 	printf("*********************************\n\n");
 
-	printf("Selecciona una cuenca, un embalse y un año para calcular su maximo y minimo:\n");
+	printf("Selecciona una cuenca, un embalse y un anyo para calcular su maximo y minimo:\n");
 		nombres_cuencas(j, cuenca);
 		num_cuenca = seleccion_cuenca(num_cuenca, C_cuenca);
-	nombres_cuencas_embalse(j, num_cuenca, cuenca, posiciones_cuencas);
-	num_embalse = seleccion_embalse(num_embalse, posiciones_cuencas, num_cuenca, C_embalse);
+		nombres_cuencas_embalse(j, num_cuenca, cuenca, posiciones_cuencas);
+		num_embalse = seleccion_embalse(num_embalse, posiciones_cuencas, num_cuenca, C_embalse);
 		anyo = seleccion_anyo(anyo, C_anyo);
 		max_y_min_embalse(j, anyo, num_cuenca, num_embalse, cuenca, posiciones_cuencas, maxmin);
 		free(cuenca);
@@ -141,13 +142,15 @@ int medias_main() {
 				f++;
 			}
 		}
-	printf("Selecciona una cuenca, un embalse y un año para calcular su maximo y minimo:\n");
+	printf("Selecciona una cuenca, un embalse y un anyo para calcular su media:\n");
 		nombres_cuencas(j, cuenca);
-	num_cuenca = seleccion_cuenca(num_cuenca, C_cuenca);
-	nombres_cuencas_embalse(j, num_cuenca, cuenca, posiciones_cuencas);
-	num_embalse = seleccion_embalse(num_embalse, posiciones_cuencas, num_cuenca, C_embalse);
+		num_cuenca = seleccion_cuenca(num_cuenca, C_cuenca);
+		nombres_cuencas_embalse(j, num_cuenca, cuenca, posiciones_cuencas);
+		num_embalse = seleccion_embalse(num_embalse, posiciones_cuencas, num_cuenca, C_embalse);
 		anyo = seleccion_anyo(anyo, C_anyo);
+		printf("\nLa media es: ");
 		media_anyo_embalse(j, anyo, num_cuenca, num_embalse, cuenca, posiciones_cuencas);
+		printf("\n");
 		free(cuenca);
 		fclose(tabla);
 
@@ -840,7 +843,6 @@ void comparacion_anyo(int mes_anyo, int anyo, int l_r_embalse, int l_r_embalse2,
 }
 
 
-//COMPARACION SEGUN MES
 //COMPARACION SEGUN MES
 void comparacion_mes(int mes_anyo, int anyo, int mes, int l_r_embalse, int l_r_embalse2, linea cuenca[]) {
 	float res_mes, max_mes, min_mes;
@@ -1880,7 +1882,7 @@ void porcentajes_main() {
 
 	cambio_espacios_embalses(cuenca, num_cuenca, posiciones_cuencas, num_embalse);
 
-	printf("El embalse %s de la cuenca %s estaba al %.2f%% de su capadidad, en %i del anyo %i.", cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].embalse_nombre, cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].cuenca_hidrografica, porcentaje,N_mes, anyo);
+	printf("\nEl embalse %s de la cuenca %s estaba al %.2f%% de su capadidad, en %i del anyo %i.", cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].embalse_nombre, cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].cuenca_hidrografica, porcentaje,N_mes, anyo);
 
 	//SÓLO SI HAY SEQÍA
 
@@ -2104,7 +2106,7 @@ float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea
 			
 		}
 		media = suma / 12;
-		printf("%f\n", media);
+		printf("%.2f\n", media);
 		break;
 
 	case(2013):
@@ -2113,7 +2115,7 @@ float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea
 			
 		}
 		media = suma / 12;
-		printf("%f\n", media);
+		printf("%.2f\n", media);
 		break;
 
 	case(2014):
@@ -2122,7 +2124,7 @@ float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea
 			
 		}
 		media = suma / 12;
-		printf("%f\n", media);
+		printf("%.2f\n", media);
 		break;
 
 	case(2015):
@@ -2131,7 +2133,7 @@ float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea
 			
 		}
 		media = suma / 12;
-		printf("%f\n", media);
+		printf("%.2f\n", media);
 		break;
 
 
@@ -2141,7 +2143,7 @@ float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea
 			
 		}
 		media = suma / 12;
-		printf("%f\n", media);
+		printf("%.2f\n", media);
 		break;
 
 
@@ -2151,7 +2153,7 @@ float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea
 			
 		}
 		media = suma / 12;
-		printf("%f\n", media);
+		printf("%.2f\n", media);
 		break;
 
 
@@ -2161,7 +2163,7 @@ float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea
 			
 		}
 		media = suma / 12;
-		printf("%f\n", media);
+		printf("%.2f\n", media);
 		break;
 
 
@@ -2171,7 +2173,7 @@ float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea
 			
 		}
 		media = suma / 12;
-		printf("%f\n", media);
+		printf("%.2f\n", media);
 		break;
 
 
@@ -2181,7 +2183,7 @@ float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea
 			
 		}
 		media = suma / 12;
-		printf("%f\n", media);
+		printf("%.2f\n", media);
 		break;
 
 
@@ -2191,7 +2193,7 @@ float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea
 			
 		}
 		media = suma / 12;
-		printf("%f\n", media);
+		printf("%.2f\n", media);
 		break;
 
 	default:
@@ -2230,7 +2232,7 @@ float max_y_min_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea 
 	vector3[1] = mesM;
 	vector3[2] = minimo;
 	vector3[3] = mesm;
-	printf("El maximo es %f en el mes %i, el minimo es %f en el mes %i\n", maximo,vector3[1],minimo,vector3[3]);
+	printf("\nEl maximo es %.2f en el mes %i, el minimo es %.2f en el mes %i\n", maximo,vector3[1],minimo,vector3[3]);
 	return 0;
 }
 
