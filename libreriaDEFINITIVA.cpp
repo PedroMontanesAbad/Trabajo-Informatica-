@@ -1,96 +1,169 @@
 #include "lib.h"
 
 
+//MAX Y MIN, MEDIA
+void nombres_embalses_p(int j, linea vector[]) {		// Vector es cuencas
+	int i, f = 0;
+	for (i = 0;i < j;i++) {
+		if (i % 12 == 0) {
+			printf("%i. %s\n", f + 1, vector[i].embalse_nombre);
+			f++;
+
+		}
+	}
+}
+
+void nombres_cuencas_p(int j, linea vector[]) {			// Vector 1 es cuencas y vector 2 posiciones cuencas
+	int i, f = 0;
+	for (i = 0;i < j;i++) {
+		if (strcmp(vector[i].cuenca_hidrografica, vector[i - 1].cuenca_hidrografica) != 0) {
+			printf("%i. %s\n", f + 1, vector[i].cuenca_hidrografica);
+			f++;
+		}
+	}
+}
+
+int maxymin_main() {
+
+	char C_cuenca[2], C_embalse[2], C_mes[2], C_anyo[5], cambio[100];
+
+	int i, j = 0, anyo=0, num_cuenca=0, num_embalse=0, f = 0;
+
+	int maxmin[4];
+
+	int posiciones_cuencas[17];
+
+	float media;
+
+	linea* cuenca = NULL;
+
+
+	cuenca = (linea*)malloc(4236 * sizeof(linea));
+
+	if (cuenca == NULL) {
+		printf("Error al reservar memoria.\n");
+		return -1;
+	}
+
+	FILE* tabla;
+	tabla = fopen("texto_proyecto.csv", "r");
+	if (tabla == NULL) // Si el resultado es NULL mensaje de error
+	{
+		printf("Error al abrir el fichero.\n");
+		return -1;
+	}
+	//Poner que el puntero avance una linea
+
+	fseek(tabla, 90, SEEK_SET);
+	while (fscanf(tabla, "%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica, cuenca[j].embalse_nombre, &cuenca[j].mes, &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho, &cuenca[j].dosmildiecinueve, &cuenca[j].dosmilveinte, &cuenca[j].dosmilveintiuno) != EOF)
+	{
+		j++;
+	}
+
+	//Almacenar posiciones cuencas
+	//Aparecen irregularmente debemos compararlas para no repetir
+	for (i = 0;i < j;i++) {
+
+		if (strcmp(cuenca[i].cuenca_hidrografica, cuenca[i - 1].cuenca_hidrografica) != 0) {
+			posiciones_cuencas[f] = i;
+			f++;
+		}
+	}
+	posiciones_cuencas[f] = j; //Añadimos un ultimo valor señalando el fin de los datos
+
+	printf("\n*********************************\n");
+
+	printf("*       MAXIMOS Y MINIMOS       *\n");
+
+	printf("*********************************\n\n");
+
+	printf("Selecciona una cuenca, un embalse y un año para calcular su maximo y minimo:\n");
+		nombres_cuencas(j, cuenca);
+		num_cuenca = seleccion_cuenca(num_cuenca, C_cuenca);
+	nombres_cuencas_embalse(j, num_cuenca, cuenca, posiciones_cuencas);
+	num_embalse = seleccion_embalse(num_embalse, posiciones_cuencas, num_cuenca, C_embalse);
+		anyo = seleccion_anyo(anyo, C_anyo);
+		max_y_min_embalse(j, anyo, num_cuenca, num_embalse, cuenca, posiciones_cuencas, maxmin);
+		free(cuenca);
+
+		return 0;
+	}
+int medias_main() {
+	
+
+		char C_cuenca[2], C_embalse[2], C_mes[2], C_anyo[5], cambio[100];
+
+		int i, j = 0, anyo=1, num_cuenca=1, num_embalse=1, f = 0;
+
+
+		int posiciones_cuencas[16];
+
+		float media;
+
+
+		linea* cuenca = NULL;
+		
+
+		cuenca = (linea*)malloc(4236 * sizeof(linea));
+
+		if (cuenca == NULL) {
+			printf("Error al reservar memoria.\n");
+			return -1;
+		}
+
+		FILE* tabla;
+		tabla = fopen("texto_proyecto.csv", "r");
+		if (tabla == NULL) // Si el resultado es NULL mensaje de error
+		{
+			printf("Error al abrir el fichero.\n");
+			return -1;
+		}
+		//Poner que el puntero avance una linea
+
+		fseek(tabla, 90, SEEK_SET);
+		while (fscanf(tabla, "%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica, cuenca[j].embalse_nombre, &cuenca[j].mes, &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho, &cuenca[j].dosmildiecinueve, &cuenca[j].dosmilveinte, &cuenca[j].dosmilveintiuno) != EOF)
+		{
+			j++;
+		}
+		
+		printf("\n*********************************\n");
+
+		printf("*        CALCULO MEDIAS        *\n");
+
+		printf("*********************************\n\n");
+
+		//Almacenar posiciones cuencas
+		//Aparecen irregularmente debemos compararlas para no repetir
+		for (i = 0;i < j;i++) {
+
+			if (strcmp(cuenca[i].cuenca_hidrografica, cuenca[i - 1].cuenca_hidrografica) != 0) {
+				posiciones_cuencas[f] = i;
+				f++;
+			}
+		}
+	printf("Selecciona una cuenca, un embalse y un año para calcular su maximo y minimo:\n");
+		nombres_cuencas(j, cuenca);
+	num_cuenca = seleccion_cuenca(num_cuenca, C_cuenca);
+	nombres_cuencas_embalse(j, num_cuenca, cuenca, posiciones_cuencas);
+	num_embalse = seleccion_embalse(num_embalse, posiciones_cuencas, num_cuenca, C_embalse);
+		anyo = seleccion_anyo(anyo, C_anyo);
+		media_anyo_embalse(j, anyo, num_cuenca, num_embalse, cuenca, posiciones_cuencas);
+		free(cuenca);
+		fclose(tabla);
+
+		return 0;
+	}
+//FIN MAX Y MIN, MEDIA
+
+
 //COMPARACION
 #include <stdio.h>
 #include <string.h>
 #include <float.h>
 #include <stdlib.h>
 
-//PALABRA DEL DIA
-//FECHA ACTUAL DESDE 1970
 
-struct tm* fecha_actual() {
 
-	time_t tiempo = time(NULL); // ALMACENAMOS SEGUNDOS TRANSCURRIDOS DESDE 1970 EN tiempo
-
-	return localtime(&tiempo); //CONVIERTE EL TIEMPO EN SEGUNDOS Y DEVUELVE UN PUNTERO DE LA ESTRUCTURA struct tm (ya creada)
-}
-
-//OBTENEMOS EL DÍA DEL AÑO
-
-int dia_anyo(struct tm* fecha) {
-
-	char C_dia[4];
-	int dia;
-
-	strftime(C_dia, sizeof(C_dia), "%j", fecha);//%j DEVUELVE EL Nº DE DÍAS TRANSCURRIDOS DESDE EL 1 DE ENERO., FUNCIÓN ESPECÍFICA DEL TIME.H
-
-	sscanf(C_dia, "%i", &dia);
-
-	return dia;
-
-}
-
-//OBTENEMOS LA PALABRA DEL DÍA
-
-void palabra_d(int dia, linea_palabradia digitos[]) {
-	printf("TU(S) PALABRA(S) DE HOY:\n\n%s\n", digitos[dia - 1].posicion);
-}
-
-void palbra_dia_main() {
-
-	int dia, t = 0;
-
-	linea_palabradia digitos[400];
-
-	//OBTENEMOS EL DÍA DEL AÑO ACTUAL: 
-
-	struct tm* fecha = fecha_actual();
-
-	dia = dia_anyo(fecha);
-	//se pondría en el main
-		//ABRIMOS EL FICHERO
-
-	FILE* palabra_dia;
-	palabra_dia = fopen("palabra_dia.txt", "r");
-	if (palabra_dia == NULL) {
-		printf("error");
-	}
-
-	//LEEMOS EL FICHERO
-
-	while (fscanf(palabra_dia, "%[^\n]", digitos[t].posicion) != EOF) {
-		fgetc(palabra_dia);
-		t++;
-	}
-	//hasta aquí
-		//TU(S) PALABRA(S):
-
-	palabra_d(dia, digitos);
-
-	//CERRAMOS FICHERO
-
-	fclose(palabra_dia);
-
-}
-//FIN PALABRA DEL DIA
-
-//NOMBRE_CUENCAS_COMPARACION
-void nombres_cuencas(int vb, linea cuenca[]) {
-
-	int numc = 0, i;//variables cuenca
-	for (i = 1;i < vb;i++) {
-		if (strcmp(cuenca[i].cuenca_hidrografica, cuenca[i + 1].cuenca_hidrografica) != 0) {
-
-			numc++;
-			printf("%i-", numc);
-			printf("%s\n", cuenca[i].cuenca_hidrografica);
-
-		}
-
-	}
-}
 //SELECCION CUENCA:
 
 int seleccion_cuenca_1(int num_cuenca, char C_cuenca[]) {
@@ -768,6 +841,7 @@ void comparacion_anyo(int mes_anyo, int anyo, int l_r_embalse, int l_r_embalse2,
 
 
 //COMPARACION SEGUN MES
+//COMPARACION SEGUN MES
 void comparacion_mes(int mes_anyo, int anyo, int mes, int l_r_embalse, int l_r_embalse2, linea cuenca[]) {
 	float res_mes, max_mes, min_mes;
 
@@ -1187,21 +1261,34 @@ char* cambios_espacios_tipo_presa(DatosComparacion comp[], int l_r_embalse, int 
 
 	return comp[l_r_embalse / 12 - 1].tipo_presa;
 	return comp[l_r_embalse2 / 12 - 1].tipo_presa;
+	
+}
+void nombres_cuencas_e(int vb, linea cuenca[]) {
 
+	int numc = 0, i;//variables cuenca
+	for (i = 1;i < vb;i++) {
+		if (strcmp(cuenca[i].cuenca_hidrografica, cuenca[i + 1].cuenca_hidrografica) != 0) {
+
+			numc++;
+			printf("%i-", numc);
+			printf("%s\n", cuenca[i].cuenca_hidrografica);
+
+		}
+
+	}
 }
 
 
-
 //
-void comparacion_principal(int vb, linea cuencas[], int posiciones_cuencas[]) {
+void comparacion_principal() {
 	//variables
 
-	int vc = 0, vco = 0, i;//for y ficheros
+	int vb = 0, vc = 0, vco = 0, i;//for y ficheros
 
 	int num_cuenca = 0, num_embalse, l_r_embalse;//embalse1
 	int num_cuenca2 = 0, num_embalse2, l_r_embalse2;//embalse2
 	int mes_anyo = 0, anyo = 0, mes = 0;//fechas y meses
-	char C_cuenca[2];
+	char C_cuenca[3];
 
 	linea* cuenca = NULL;
 	Embalse* embalse = NULL;
@@ -1217,16 +1304,36 @@ void comparacion_principal(int vb, linea cuencas[], int posiciones_cuencas[]) {
 	}
 
 	//Fich
+	FILE* base;
+	base = fopen("texto_proyecto.csv", "r");
+	if (base == NULL) {
+		printf("Error al abrir el fichero base.\n");
+		return;
+	}
+	FILE* capacidad;
+	capacidad = fopen("Embalses_capacidad.txt", "r");
+	if (capacidad == NULL) {
+		printf("Error al abrir el fichero de capacidad.\n");
+		return;
+	}
 	FILE* F_comparacion;
 	F_comparacion = fopen("comparacion2.txt", "r");
 	if (F_comparacion == NULL) {
-		printf("Error al abrir el fichero de comparacion.\n");
+		printf("Error al abrir el fichero de comparación.\n");
 		return;
 	}
 
 
 	//
 
+	fseek(base, 90, SEEK_SET);
+	while (fscanf(base, "%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[vb].cuenca_hidrografica, cuenca[vb].embalse_nombre, &cuenca[vb].mes, &cuenca[vb].dosmildoce, &cuenca[vb].dosmiltrece, &cuenca[vb].dosmilcatorce, &cuenca[vb].dosmilquince, &cuenca[vb].dosmildieciseis, &cuenca[vb].dosmildiecisiete, &cuenca[vb].dosmildieciocho, &cuenca[vb].dosmildiecinueve, &cuenca[vb].dosmilveinte, &cuenca[vb].dosmilveintiuno) != EOF)
+	{
+
+
+
+		vb++;
+	}
 	while (fscanf(capacidad, "%s\t%f\n", embalse[vc].embalse_nom, &embalse[vc].etotal) != EOF) {
 
 		vc++;
@@ -1236,11 +1343,16 @@ void comparacion_principal(int vb, linea cuencas[], int posiciones_cuencas[]) {
 
 	}
 
+	printf("\n*********************************\n");
+
+	printf("*      COMPARACION EMBALSES     *\n");
+
+	printf("*********************************\n\n");
 
 	do {
 
 		//LISTA CUENCAS
-		nombres_cuencas(vb, cuenca);
+		nombres_cuencas_e(vb, cuenca);
 
 		//SELECCION CUENCA
 		num_cuenca = seleccion_cuenca_1(num_cuenca, C_cuenca);
@@ -1249,7 +1361,7 @@ void comparacion_principal(int vb, linea cuencas[], int posiciones_cuencas[]) {
 		nombreseleccion_embalse_1(num_cuenca, cuenca, &num_embalse, &l_r_embalse);
 
 		//2 LISTA CUENCAS:
-		nombres_cuencas(vb, cuenca);
+		nombres_cuencas_e(vb, cuenca);
 
 		//SELECCION 2 CUENCA:
 		num_cuenca2 = seleccion_cuenca_2(num_cuenca2, C_cuenca);
@@ -1322,6 +1434,8 @@ void nombres_cuencas(int j, linea vector[]) {
 
 	int f = 0, i;
 	int posiciones_cuencas[15];
+
+
 	for (i = 0;i < j;i++) {
 
 
@@ -1372,7 +1486,7 @@ int seleccion_cuenca(int num_cuenca, char C_cuenca[]) {
 //NOMBRES DE EMBALSES:
 
 void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[]) {
-	int i, f = 0, m = 0;
+	int i, f = 0, m=0;
 
 	for (i = vector2[num_cuenca - 1];i < vector2[num_cuenca];i++) {
 		if (i % 12 == 0) {
@@ -1384,73 +1498,6 @@ void nombres_cuencas_embalse(int j, int num_cuenca, linea vector[], int vector2[
 		}
 
 	}
-
-}
-
-//MEDIA DE UN AÑO:
-
-float media_anyo(int j, int anyo, linea vector[]) {		// Vector es cuencas
-	int i;
-	float suma = 0, media;
-	switch (anyo) {
-	case(2012):
-		for (i = 0;i < j;i++) {
-			suma = suma + vector[i].dosmildoce;
-
-		}
-		media = suma / j;
-		printf("%f\n", media);
-		break;
-
-	}
-	return media;
-}
-
-//MEDIA DE UN AÑO DE UN EMBALSE EN CONCRETO:
-
-float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[]) {		//  Vector 1 es cuencas y vector 2 es posiciones cuencas
-	int i;
-	float suma, media;
-	switch (anyo) {
-	case(2012):
-		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
-			suma = suma + vector[i].dosmildoce;
-			printf("dato:%f\n", vector[i].dosmildoce);
-			printf("linea:%i\n", i);
-		}
-		media = suma / 12;
-		printf("%f\n", media);
-	}
-	return media;
-}
-//MAXIMO Y MINIMO DE UN EMBALSE UN AÑO EN CONCRETO:
-float max_y_min_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[], int vector3[]) { // Vector 3 es vector auxiliar para guardar los datos obtenidos
-	int i, mesM, mesm;
-	float maximo = 0, minimo = 1000;
-	switch (anyo) {
-	case(2012):
-		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
-			if (vector[i].dosmildoce > maximo)
-			{
-				maximo = vector[i].dosmildoce;
-				mesM = (i + 1) % 12;
-			}
-			if (vector[i].dosmildoce < minimo)
-			{
-				minimo = vector[i].dosmildoce;
-				mesm = (i + 1) % 12;
-			}
-
-		}
-		break;
-
-
-	}
-	vector3[0] = maximo;
-	vector3[1] = mesM;
-	vector3[2] = minimo;
-	vector3[3] = mesm;
-	//printf("El maximo es %f en el mes %i, el minimo es %f en el mes %i", vector3[0],vector3[1],vector3[2],vector3[3]);
 
 }
 
@@ -1698,22 +1745,84 @@ void sequia(int porcentaje) {
 
 //<MAIN> 
 
-void porcentajes_main(int j, linea cuencas[], int posiciones_cuencas[]) {
+void porcentajes_main() {
 
 	int f = 0, j = 0, k = 0, embalse_coincide = 0, c, i;
 
-	char C_cuenca[2], C_embalse[2], C_mes[2], C_anyo[5], cambio[100];
+	char C_cuenca[2], C_embalse[2], C_mes[2], C_anyo[5];
 
-	int num_embalse = 0, anyo = 0, N_mes = 0, num_cuenca = 0, posiciones_cuencas[15];
+	int num_embalse=0, anyo=0, N_mes=0, num_cuenca=0, posiciones_cuencas[17];
 
 	float porcentaje, capacidad_max, capacidad_actual;
 
-	linea cuenca[4236];
-	Embalse embalse[353];
+	linea* cuenca = NULL;
+	Embalse* embalse = NULL;
+	
 
+	cuenca = (linea*)malloc(4236 * sizeof(linea));
+	embalse = (Embalse*)malloc(353 * sizeof(Embalse));
+	
 
+	if (cuenca == NULL || embalse == NULL ) {
+		printf("Error al reservar memoria.\n");
+		return;
+	}
 
+	//ABRIMOS FICHEROS:
 
+	FILE* tabla;
+	tabla = fopen("texto_proyecto.csv", "r");
+
+	if (tabla == NULL) // Si el resultado es NULL mensaje de error
+	{
+		printf("Error al abrir el fichero.\n");
+
+	}
+
+	FILE* lista;
+	lista = fopen("Embalses_capacidad.txt", "r");
+
+	if (lista == NULL) // Si el resultado es NULL mensaje de error
+	{
+		printf("Error al abrir el fichero 2.\n");
+
+	}
+
+	//SE LEE EL PRIMER FICHERO:
+
+		//Poner que el puntero avance una linea
+	fseek(tabla, 90, SEEK_SET);
+	while (fscanf(tabla, "%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica, cuenca[j].embalse_nombre, &cuenca[j].mes, &cuenca[j].dosmildoce, &cuenca[j].dosmiltrece, &cuenca[j].dosmilcatorce, &cuenca[j].dosmilquince, &cuenca[j].dosmildieciseis, &cuenca[j].dosmildiecisiete, &cuenca[j].dosmildieciocho, &cuenca[j].dosmildiecinueve, &cuenca[j].dosmilveinte, &cuenca[j].dosmilveintiuno) != EOF)
+	{
+
+		//printf("Linea %i:\n", j);
+		//printf("%[^,],%[^,],%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", cuenca[j].cuenca_hidrografica , cuenca[j].embalse_nombre , cuenca[j].mes , cuenca[j].dosmildoce, cuenca[j].dosmiltrece, cuenca[j].dosmilcatorce, cuenca[j].dosmilquince, cuenca[j].dosmildieciseis, cuenca[j].dosmildiecisiete, cuenca[j].dosmildieciocho,  cuenca[j].dosmildiecinueve,  cuenca[j].dosmilveinte,  cuenca[j].dosmilveintiuno );
+
+		j++;
+	}
+
+	// las comparamos para no repetir
+
+	for (i = 0;i < j;i++) {
+
+		if (strcmp(cuenca[i].cuenca_hidrografica, cuenca[i - 1].cuenca_hidrografica) != 0) {
+
+			posiciones_cuencas[f] = i;
+			//printf("\ni es %i",posiciones_cuencas[f]);
+			f++;
+		}
+	}
+
+	//añadimos la número 16
+
+	posiciones_cuencas[f] = j;
+
+	printf("*********************************\n");
+
+	printf("*     CALCULO DE PORCENTAJES    *\n");
+
+	printf("*********************************\n\n");
+	
 	//NOMBRES DE CUENCAS ENNUMERADAS
 
 
@@ -1771,25 +1880,103 @@ void porcentajes_main(int j, linea cuencas[], int posiciones_cuencas[]) {
 
 	cambio_espacios_embalses(cuenca, num_cuenca, posiciones_cuencas, num_embalse);
 
-	printf("El embalse %s de la cuenca %s estaba al %.2f%% de su capadidad, en %i del anyo %i.\n\n", cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].embalse_nombre, cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].cuenca_hidrografica, porcentaje, N_mes, anyo);
+	printf("El embalse %s de la cuenca %s estaba al %.2f%% de su capadidad, en %i del anyo %i.", cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].embalse_nombre, cuenca[posiciones_cuencas[num_cuenca - 1] + (num_embalse - 1) * 12].cuenca_hidrografica, porcentaje,N_mes, anyo);
 
 	//SÓLO SI HAY SEQÍA
 
 	sequia(porcentaje);
 
+	free(cuenca);
+	free(embalse);
+
 	fclose(tabla);
 	fclose(lista);
-
+	
 }
 
 //FIN PORCENTAJE
 
 
+//PALABRA DEL DIA
+//FECHA ACTUAL DESDE 1970
 
+struct tm* fecha_actual() {
+
+	time_t tiempo = time(NULL); // ALMACENAMOS SEGUNDOS TRANSCURRIDOS DESDE 1970 EN tiempo
+
+	return localtime(&tiempo); //CONVIERTE EL TIEMPO EN SEGUNDOS Y DEVUELVE UN PUNTERO DE LA ESTRUCTURA struct tm (ya creada)
+}
+
+//OBTENEMOS EL DÍA DEL AÑO
+
+int dia_anyo(struct tm* fecha) {
+
+	char C_dia[4];
+	int dia;
+
+	strftime(C_dia, sizeof(C_dia), "%j", fecha);//%j DEVUELVE EL Nº DE DÍAS TRANSCURRIDOS DESDE EL 1 DE ENERO., FUNCIÓN ESPECÍFICA DEL TIME.H
+
+	sscanf(C_dia, "%i", &dia);
+
+	return dia;
+
+}
+
+//OBTENEMOS LA PALABRA DEL DÍA
+
+void palabra_d(int dia, linea_palabradia digitos[]) {
+	printf("TU(S) PALABRA(S) DE HOY:\n\n%s", digitos[dia - 1].posicion);
+}
+
+void palabra_dia_main() {
+
+	int dia, t = 0;
+
+	linea_palabradia digitos[400];
+
+	//OBTENEMOS EL DÍA DEL AÑO ACTUAL: 
+
+	struct tm* fecha = fecha_actual();
+
+	dia = dia_anyo(fecha);
+	//se pondría en el main
+		//ABRIMOS EL FICHERO
+
+	FILE* palabra_dia;
+	palabra_dia = fopen("palabra_dia.txt", "r");
+	if (palabra_dia == NULL) {
+		printf("error");
+	}
+
+	//LEEMOS EL FICHERO
+
+	printf("\n*********************************\n");
+
+	printf("*        PALABRA DEL DIA        *\n");
+
+	printf("*********************************\n\n");
+
+	while (fscanf(palabra_dia, "%[^\n]", digitos[t].posicion) != EOF) {
+		fgetc(palabra_dia);
+		t++;
+	}
+	//hasta aquí
+		//TU(S) PALABRA(S):
+
+	palabra_d(dia, digitos);
+
+	//CERRAMOS FICHERO
+
+	fclose(palabra_dia);
+
+}
+//final palabra del dia
 
 
 void nombres_embalses(int j, linea vector[]) {		// Vector es cuencas
 	int i, f = 0;
+
+
 	for (i = 0;i < j;i++) {
 		if (i % 12 == 0) {
 			printf("%i. %s\n", f + 1, vector[i].embalse_nombre);
@@ -1909,109 +2096,99 @@ float media_anyo(int j, int anyo, linea vector[]) {		// Vector es cuencas
 
 float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[]) {		//  Vector 1 es cuencas y vector 2 es posiciones cuencas
 	int i;
-	float suma = 0, media;
+	float suma=0, media;
 	switch (anyo) {
 	case(2012):
 		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
 			suma = suma + vector[i].dosmildoce;
-			printf("dato:%f\n", vector[i].dosmildoce);
-			printf("linea:%i\n", i);
+			
 		}
 		media = suma / 12;
-		//printf("%f\n", media);
+		printf("%f\n", media);
 		break;
 
 	case(2013):
 		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
 			suma = suma + vector[i].dosmiltrece;
-			printf("dato:%f\n", vector[i].dosmiltrece);
-			printf("linea:%i\n", i);
+			
 		}
 		media = suma / 12;
-		//printf("%f\n", media);
+		printf("%f\n", media);
 		break;
 
 	case(2014):
 		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
 			suma = suma + vector[i].dosmilcatorce;
-			printf("dato:%f\n", vector[i].dosmilcatorce);
-			printf("linea:%i\n", i);
+			
 		}
 		media = suma / 12;
-		//printf("%f\n", media);
+		printf("%f\n", media);
 		break;
 
 	case(2015):
 		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
 			suma = suma + vector[i].dosmilquince;
-			printf("dato:%f\n", vector[i].dosmilquince);
-			printf("linea:%i\n", i);
+			
 		}
 		media = suma / 12;
-		//printf("%f\n", media);
+		printf("%f\n", media);
 		break;
 
 
 	case(2016):
 		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
 			suma = suma + vector[i].dosmildieciseis;
-			printf("dato:%f\n", vector[i].dosmildieciseis);
-			printf("linea:%i\n", i);
+			
 		}
 		media = suma / 12;
-		//printf("%f\n", media);
+		printf("%f\n", media);
 		break;
 
 
 	case(2017):
 		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
 			suma = suma + vector[i].dosmildiecisiete;
-			printf("dato:%f\n", vector[i].dosmildiecisiete);
-			printf("linea:%i\n", i);
+			
 		}
 		media = suma / 12;
-		//printf("%f\n", media);
+		printf("%f\n", media);
 		break;
 
 
 	case(2018):
 		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
 			suma = suma + vector[i].dosmildieciocho;
-			printf("dato:%f\n", vector[i].dosmildieciocho);
-			printf("linea:%i\n", i);
+			
 		}
 		media = suma / 12;
-		//printf("%f\n", media);
+		printf("%f\n", media);
 		break;
 
 
 	case(2019):
 		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
 			suma = suma + vector[i].dosmildiecinueve;
-			printf("dato:%f\n", vector[i].dosmildiecinueve);
-			printf("linea:%i\n", i);
+			
 		}
 		media = suma / 12;
-		//printf("%f\n", media);
+		printf("%f\n", media);
 		break;
 
 
 	case(2020):
 		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
 			suma = suma + vector[i].dosmilveinte;
-			printf("dato:%f\n", vector[i].dosmilveinte);
-			printf("linea:%i\n", i);
+			
 		}
 		media = suma / 12;
-		//printf("%f\n", media);
+		printf("%f\n", media);
 		break;
 
 
 	case(2021):
 		for (i = vector2[num_cuenca - 1] + (num_embalse - 1) * 12;i < vector2[num_cuenca - 1] + (num_embalse) * 12;i++) {
 			suma = suma + vector[i].dosmilveintiuno;
-			printf("dato:%f\n", vector[i].dosmilveintiuno);
-			printf("linea:%i\n", i);
+			
 		}
 		media = suma / 12;
 		printf("%f\n", media);
@@ -2023,11 +2200,12 @@ float media_anyo_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea
 		break;
 
 	}
+	
 	return media;
 }
 
 float max_y_min_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[], int vector3[]) { // Vector 3 es vector auxiliar para guardar los datos obtenidos
-	int i, mesM, mesm;
+	int i, mesM=0, mesm=0;
 	float maximo = 0, minimo = 1000;
 	switch (anyo) {
 	case(2012):
@@ -2052,24 +2230,11 @@ float max_y_min_embalse(int j, int anyo, int num_cuenca, int num_embalse, linea 
 	vector3[1] = mesM;
 	vector3[2] = minimo;
 	vector3[3] = mesm;
-	//printf("El maximo es %f en el mes %i, el minimo es %f en el mes %i", vector3[0],vector3[1],vector3[2],vector3[3]);
+	printf("El maximo es %f en el mes %i, el minimo es %f en el mes %i\n", maximo,vector3[1],minimo,vector3[3]);
 	return 0;
 }
-void maxymin_main(int j, int anyo, int num_cuenca, int num_embalse, linea vector[], int vector2[], int vector3[], char C_cuenca[]) { // Vector 3 es vector auxiliar para guardar los datos obtenidos
-	int num_cuenca, anyo, num_embalse;
-	printf("Selecciona una cuenca, un embalse y un año para calcular su maximo y minimo:\n);
-		nombres_cuencas(j, vector[]);
-	num_cuenca = seleccion_cuenca(num_cuenca, C_cuenca[]);
-	nombres_cuencas_embalse(j, num_cuenca, vector[], vector2[]);
-	num_embalse = seleccion_embalse(num_embalse, vector2[], num_cuenca, C_embalse[])
-		anyo = seleccion_anyo(anyo, C_anyo[]);
-	max_y_min_embalse(j, anyo, num_cuenca, num_embalse, vector[], vector2[], vector3[]) { // Vector 3 es vector auxiliar para guardar los datos obtenidos
 
-	}
-
-
-
-	//INTERFAZ
+//INTERFAZ
 void gotoxy(int x, int y)
 {
 	HANDLE Identiventana;
@@ -2201,7 +2366,7 @@ void Texto0()
 			x = 20;
 			y = 9;
 			gotoxy(x, y);
-			printf("CUENCAS");
+			printf("LISTADOS");
 			gotoxy(x, 14);
 			printf("Presionar ( 1 )");
 
@@ -2211,7 +2376,7 @@ void Texto0()
 			x = 61;
 			y = 9;
 			gotoxy(x, y);
-			printf("EMBALSES");
+			printf("INFORMACION GENERAL");
 			gotoxy(x, 14);
 			printf("Presionar ( 2 )");
 
@@ -2348,7 +2513,7 @@ void Texto1()
 		{
 			//TITULO
 			gotoxy(53, 4);
-			printf("CUENCAS");
+			printf("LISTADOS");
 
 			//Primer Cuadrado
 			gotoxy(20, 10);
@@ -2358,7 +2523,7 @@ void Texto1()
 
 			//Segundo Cuadrado
 			gotoxy(61, 10);
-			printf("NOMBRES DE CUENCAS");
+			printf("NOMBRES DE EMBALSES");
 			gotoxy(61, 18);
 			printf("Presionar ( 2 )");
 
@@ -2390,7 +2555,7 @@ void Texto2()
 	//Titulo// 
 	{
 		gotoxy(55, 4);
-		printf("EMBALSES");
+		printf("INFORMACION GENERAL");
 	}
 
 
@@ -2401,7 +2566,7 @@ void Texto2()
 			x = 20;
 			y = 9;
 			gotoxy(x, y);
-			printf("MEDIDAS");
+			printf("MEDIAS");
 			gotoxy(x, 14);
 			printf("Presionar ( 1 )");
 		}
@@ -2487,19 +2652,19 @@ void Texto2()
 				x = 20;
 				y = 13;
 				gotoxy(x, y);
-				printf("VIOLETA:5");
+				printf("VIOLETA:2");
 				x = 20;
 				y = 14;
 				gotoxy(x, y);
-				printf("AZUL:6");
+				printf("AZUL:5");
 				x = 20;
 				y = 15;
 				gotoxy(x, y);
-				printf("AMARILLO:7");
+				printf("AMARILLO:6");
 				x = 20;
 				y = 16;
 				gotoxy(x, y);
-				printf("GRIS:8");
+				printf("GRIS:7");
 
 			}
 			////// Segundo cuadrado/////
@@ -2509,7 +2674,7 @@ void Texto2()
 				gotoxy(x, y);
 				printf("SORPRESA");
 				gotoxy(x, 18);
-				printf("Presionar ( 2 )");
+				printf("Presionar numero secreto");
 
 			}
 			//// Tercer cuadrado////
@@ -2787,230 +2952,235 @@ void cuadradosDosPorDos()
 		}
 	}
 }
-	//FIN INTERFAZ
+//FIN INTERFAZ
 
 
-	//Inicio funciones del cuestionario
+//Inicio funciones del cuestionario
+int pregunta_inicial() {
+	int valor;
+	printf("\n \n??Iniciar cuestionario??\n");
 
+	printf("\t1-SI\n\t2-NO\n");
 
-	int pregunta_inicial() {
-		int valor;
-		printf("\n \n??Iniciar cuestionario??\n");
+	do {
+		scanf("%d", &valor);
+		while ((getchar()) != '\n');
+	} while (valor != 1 && valor != 2);
 
-		printf("\t1-SI\n\t2-NO\n");
+	return valor;
+}
 
-		do {
-			scanf("%d", &valor);
-			while ((getchar()) != '\n');
-		} while (valor != 1 && valor != 2);
+int valor_letra_introducida() {
 
-		return valor;
+	int i = 0;
+	char letra;
+	char cadena[10];
+
+	printf("Introduzca la respuesta: ");
+
+	do {
+		fgets(cadena, sizeof(cadena), stdin);
+		letra = toupper(cadena[0]);
+
+		if (letra != 'A' && letra != 'B' && letra != 'C' && letra != 'D' && i > 0) {
+			printf("\nCaracter incorrecto. Introduzca la respuesta de nuevo:");
+		}
+
+		i++;
+
+	} while (letra != 'A' && letra != 'B' && letra != 'C' && letra != 'D');
+
+	return letra;
+}
+
+int preguntas_cuestionario(int i) {
+
+	char letra;
+	int valor;
+
+	switch (i) {
+	case 0:
+		printf("PREGUNTA N 1: \n");
+		printf("??En que continente esta el embalse artificial mas grande del mundo??");
+		printf("\n \tA)America \n \tB)Europa \n \tC)Africa \n \tD)Asia\n");
+		valor = valor_letra_introducida();
+		break;
+	case  1:
+		printf("\nPREGUNTA N 2: \n");
+		printf("??Que pais de Europa tiene el mayor numero de embalses??");
+		printf("\n \tA)Albania \n \tB)Rumania \n \tC)Noruega \n \tD)Espanya\n");
+		valor = valor_letra_introducida();
+		break;
+	case  2:
+		printf("\nPREGUNTA N 3: \n");
+		printf("??Pais en el que se encuentra el embalse mas grande de Europa??");
+		printf("\n \tA)Francia \n \tB)Ucrania \n \tC)Italia \n \tD)Suecia\n");
+		valor = valor_letra_introducida();
+		break;
+	case  3:
+		printf("\nPREGUNTA N 4: \n");
+		printf("??Que factor influye en mayor medida a el nivel de agua en los embalses de Espanya??");
+		printf("\n \tA)Altitud de las montanyas \n \tB)Poblacion de la zona \n \tC)Temperatura media del mar \n \tD)Precipitaciones y sequias\n");
+		valor = valor_letra_introducida();
+		break;
+	case  4:
+		printf("\nPREGUNTA N 5: \n");
+		printf("??Donde se encuentra el embalse mas antiguo de Espanya??");
+		printf("\n \tA)Extremadura \n \tB)Asturias \n \tC)Castilla y Leon \n \tD)Pais Vasco\n");
+		valor = valor_letra_introducida();
+		break;
+	case  5:
+		printf("\nPREGUNTA N 6: \n");
+		printf("??Cual fue el anyo desde el 2004 en el que hubo mas agua embalsada en todo el pais??");
+		printf("\n \tA)2008 \n \tB)2021 \n \tC)2013 \n \tD)2017\n");
+		valor = valor_letra_introducida();
+		break;
 	}
 
-	int valor_letra_introducida() {
+	return valor - 'A' + 1;
+}
 
-		int i = 0;
-		char letra;
-		char cadena[10];
+void mostrar_resultado(int correcta, int i) {
 
-		printf("Introduzca la respuesta: ");
-
-		do {
-			fgets(cadena, sizeof(cadena), stdin);
-			letra = toupper(cadena[0]);
-
-			if (letra != 'A' && letra != 'B' && letra != 'C' && letra != 'D' && i > 0) {
-				printf("\nCaracter incorrecto. Introduzca la respuesta de nuevo:");
-			}
-
-			i++;
-
-		} while (letra != 'A' && letra != 'B' && letra != 'C' && letra != 'D');
-
-		return letra;
+	if (correcta) {
+		printf("\n \t \t!!Respuesta correcta!!\n");
+		printf("\n\t \t \t        X\n");
+		printf("\t \t \t       X\n");
+		printf("\t \t \t      X \n");
+		printf("\t \t \tX   X\n");
+		printf("\t \t \t X X\n");
+		printf("\t \t \t  X \n");
 	}
-
-	int preguntas_cuestionario(int i) {
-
-		char letra;
-		int valor;
-
+	else {
+		printf("\n \t \t!!Respuesta incorrecta!!: La respuesta era la ");
 		switch (i) {
-		case 0:
-			printf("PREGUNTA N 1: \n");
-			printf("??En que continente esta el embalse artificial mas grande del mundo??");
-			printf("\n \tA)America \n \tB)Europa \n \tC)Africa \n \tD)Asia\n");
-			valor = valor_letra_introducida();
-			break;
-		case  1:
-			printf("\nPREGUNTA N 2: \n");
-			printf("??Que pais de Europa tiene el mayor numero de embalses??");
-			printf("\n \tA)Albania \n \tB)Rumania \n \tC)Noruega \n \tD)Espanya\n");
-			valor = valor_letra_introducida();
-			break;
-		case  2:
-			printf("\nPREGUNTA N 3: \n");
-			printf("??Pais en el que se encuentra el embalse mas grande de Europa??");
-			printf("\n \tA)Francia \n \tB)Ucrania \n \tC)Italia \n \tD)Suecia\n");
-			valor = valor_letra_introducida();
-			break;
-		case  3:
-			printf("\nPREGUNTA N 4: \n");
-			printf("??Que factor influye en mayor medida a el nivel de agua en los embalses de Espanya??");
-			printf("\n \tA)Altitud de las montanyas \n \tB)Poblacion de la zona \n \tC)Temperatura media del mar \n \tD)Precipitaciones y sequias\n");
-			valor = valor_letra_introducida();
-			break;
-		case  4:
-			printf("\nPREGUNTA N 5: \n");
-			printf("??Donde se encuentra el embalse mas antiguo de Espanya??");
-			printf("\n \tA)Extremadura \n \tB)Asturias \n \tC)Castilla y Leon \n \tD)Pais Vasco\n");
-			valor = valor_letra_introducida();
-			break;
-		case  5:
-			printf("\nPREGUNTA N 6: \n");
-			printf("??Cual fue el anyo desde el 2004 en el que hubo mas agua embalsada en todo el pais??");
-			printf("\n \tA)2008 \n \tB)2021 \n \tC)2013 \n \tD)2017\n");
-			valor = valor_letra_introducida();
-			break;
+		case 0: printf("C-Africa"); break;
+		case 1: printf("D-Espanya"); break;
+		case 2: printf("B-Ucrania"); break;
+		case 3: printf("D-Precipitaciones y sequias"); break;
+		case 4: printf("A-Extremadura"); break;
+		case 5: printf("C-2013"); break;
 		}
-
-		return valor - 'A' + 1;
+		printf("\n \n\t \t \tX   X\n");
+		printf("\t \t \t X X\n");
+		printf("\t \t \t  X\n");
+		printf("\t \t \t X X\n");
+		printf("\t \t \tX   X\n");
 	}
+}
 
-	void mostrar_resultado(int correcta, int i) {
+void informacion_respuestas(int i) {
+	switch (i) {
+	case 0:
+		printf("\n \n-En Africa se encuentra el embalse y lago artifical mas grande del mundo, el lago Kariba en la fronterea entre Zimbawe y Zambia: Este posee un  volumen de 130 km^3 y desemboca en el Oceano Indico.\n");
+		break;
+	case 1:
+		printf("\n \n-Espanya es el pais de Europa con mas embalses y uno de los que mas tiene en todo el mundo. Son mas de 1200 los embalses de mas de 1hm^3 de capacidad que hay repartidos por el pais. No es de extranyar el numero debido a la geografia y clima del pais que favorece la creacion de estas estructuras. \n");
+		break;
+	case 2:
+		printf("\n \n-La presa de Kuibuyshev, en Rusia, es la presa mas grande de Europa, con una capacidad de 58km^3.\n");
+		break;
+	case 3:
+		printf("\n \n-El nivel de los embalses depende principalmente del balance entre el agua que reciben (principalmente de la lluvia y el deshielo) y la que se extrae para riego, consumo y otros usos. Las precipitaciones y las sequias tienen un impacto directo, mucho mas que otros factores como la altitud o la densidad poblacional.\n");
+		break;
+	case 4:
+		printf("\n \n-El embalse mas antiguo de Espanya se encuentra en la Comunidad Autonoma de Extremadura, mas concretamente en Merida. Es el embalse de Proserpina, fue construido por los romanos entre el I y II d.C y todavia sigue en uso (con fines recreativos). \n");
+		break;
+	case 5:
+		printf("\n \n-El anyo con mas acumulacion fue el 2013, con 63.000 hm^3 acumulados, lo que representaba sobre la media un 111/100. \n");
+		break;
+	}
+}
 
-		if (correcta) {
-			printf("\n \t \t!!Respuesta correcta!!\n");
-			printf("\n\t \t \t        X\n");
-			printf("\t \t \t       X\n");
-			printf("\t \t \t      X \n");
-			printf("\t \t \tX   X\n");
-			printf("\t \t \t X X\n");
-			printf("\t \t \t  X \n");
+void tabla_errores(int correcta, int i) {
+	printf("\n \t \t ***************");
+	if (correcta) {
+		printf("\n \t \t *PREGUNTA %d*SI*", i + 1);
+	}
+	else {
+		printf("\n \t \t *PREGUNTA %d*NO*", i + 1);
+	}
+}
+
+void premios_concurso(int numero_aciertos) {
+	printf("\n \nTu numero de aciertos es %d", numero_aciertos);
+
+	switch (numero_aciertos) {
+	case 0:
+
+		printf("\n !!Felicidades!! ");
+		printf("\n   _______\n  |       |\n  |  X_X  |  ¡Has conseguido no acertar nada! \n  |_______|\n");
+
+		break;
+
+	case 1:
+	case 2:
+		printf("\n Bueno, al menos lo has intentado ?no?. \n");
+		printf("\n    .-\"      \"-.\n   /   O    O   \ \n  |      /\\      |     Poco a poco\n  |     ====     |     Sigue aprendiendo.\n   \\            /\n      '-.__.-'\n");
+
+		break;
+
+	case 3:
+	case 4:
+		printf("\n !Buen intento! Vas mejorando. ");
+		printf("\n"
+			"    .-\"      \"-. \n"
+			"   /   O    O   \\ \n"
+			"  |      /\\      |     !Ya estas cerca! \n"
+			"  |     ====     |     En nada lo tienes. \n"
+			"   \\            / \n"
+			"    '-.______.–' \n");
+
+		break;
+
+	case 5:
+		printf("\n !Casi perfecto! ");
+		printf("\n     _______\n    /       \\\n   |  _____  |\n   | |     | |\n   | |_____| |  Te mereces una medalla\n    \\_______/\n     \\_____/\n");
+
+		break;
+
+	case 6:
+		printf("\n !Eres un maestro de embalses!");
+		printf("\n      ___________\n     '._==_==_=_.' \n     .-\\:      /-.\n    | (|:.     |) |   Aqui tienes tu trofeo. \n     '-|:.     |-'\n       \\::.    /\n        '::. .'\n          ) (\n        _.' '._\n       \"\"\"\"\"\"\"\n");
+
+		break;
+	}
+}
+
+
+int cuestionario() {
+
+	printf("\nOimos, vemos y hablamos sobre los embalses cotidianamente, nos abastecen de agua para el consumo y la agricultura y tienen un impacto en el dia a dia del que el ciudadano promedio no es consciente. Dicho esto, ??sabras lo suficiente como para llevarte el premio al que mas sabe de embalses??");
+
+	int valor_pregunta = pregunta_inicial(), respuestas[6], respuestas_correctas[6] = { 3,4,2,4,1,3 };
+
+	if (valor_pregunta == 1) {
+		printf("\t \t \t*********************************\n");
+		printf("\t \t \t*    CUESTIONARIO DE EMBALSES   *\n");
+		printf("\t \t \t*********************************\n");
+
+		for (int i = 0;i < 6;i++) {
+			respuestas[i] = preguntas_cuestionario(i);
+			mostrar_resultado(respuestas[i] == respuestas_correctas[i], i);
+			informacion_respuestas(i);
 		}
-		else {
-			printf("\n \t \t!!Respuesta incorrecta!!: La respuesta era la ");
-			switch (i) {
-			case 0: printf("C-Africa"); break;
-			case 1: printf("D-Espanya"); break;
-			case 2: printf("B-Ucrania"); break;
-			case 3: printf("D-Precipitaciones y sequias"); break;
-			case 4: printf("A-Extremadura"); break;
-			case 5: printf("C-2013"); break;
+
+		int numero_aciertos = 0;
+		for (int i = 0;i < 6;i++) {
+			tabla_errores(respuestas[i] == respuestas_correctas[i], i);
+			if (respuestas[i] == respuestas_correctas[i]) {
+				numero_aciertos++;
 			}
-			printf("\n \n\t \t \tX   X\n");
-			printf("\t \t \t X X\n");
-			printf("\t \t \t  X\n");
-			printf("\t \t \t X X\n");
-			printf("\t \t \tX   X\n");
 		}
-	}
 
-	void informacion_respuestas(int i) {
-		switch (i) {
-		case 0:
-			printf("\n \n-En Africa se encuentra el embalse y lago artifical mas grande del mundo, el lago Kariba en la fronterea entre Zimbawe y Zambia: Este posee un  volumen de 130 km^3 y desemboca en el Oceano Indico.\n");
-			break;
-		case 1:
-			printf("\n \n-Espanya es el pais de Europa con mas embalses y uno de los que mas tiene en todo el mundo. Son mas de 1200 los embalses de mas de 1hm^3 de capacidad que hay repartidos por el pais. No es de extranyar el numero debido a la geografia y clima del pais que favorece la creacion de estas estructuras. \n");
-			break;
-		case 2:
-			printf("\n \n-La presa de Kuibuyshev, en Rusia, es la presa mas grande de Europa, con una capacidad de 58km^3.\n");
-			break;
-		case 3:
-			printf("\n \n-El nivel de los embalses depende principalmente del balance entre el agua que reciben (principalmente de la lluvia y el deshielo) y la que se extrae para riego, consumo y otros usos. Las precipitaciones y las sequias tienen un impacto directo, mucho mas que otros factores como la altitud o la densidad poblacional.\n");
-			break;
-		case 4:
-			printf("\n \n-El embalse mas antiguo de Espanya se encuentra en la Comunidad Autonoma de Extremadura, mas concretamente en Merida. Es el embalse de Proserpina, fue construido por los romanos entre el I y II d.C y todavia sigue en uso (con fines recreativos). \n");
-			break;
-		case 5:
-			printf("\n \n-El anyo con mas acumulacion fue el 2013, con 63.000 hm^3 acumulados, lo que representaba sobre la media un 111/100. \n");
-			break;
-		}
-	}
-
-	void tabla_errores(int correcta, int i) {
 		printf("\n \t \t ***************");
-		if (correcta) {
-			printf("\n \t \t *PREGUNTA %d*SI*", i + 1);
-		}
-		else {
-			printf("\n \t \t *PREGUNTA %d*NO*", i + 1);
-		}
+		premios_concurso(numero_aciertos);
+
 	}
-
-	void premios_concurso(int numero_aciertos) {
-		printf("\n \nTu número de aciertos es %d", numero_aciertos);
-
-		switch (numero_aciertos) {
-		case 0:
-
-			printf("\n !!Felicidades!! ");
-			printf("\n   _______\n  |       |\n  |  X_X  |  !Has conseguido no acertar nada! \n  |_______|\n");
-
-			break;
-
-		case 1:
-		case 2:
-			printf("\n Bueno, al menos lo has intentado ¿no?. ");
-			printf("\n    .-\"      \"-.\\n   /   O    O   \\\\n  |      /\\      |     Poco a poco\\n  |     ====     |     Sigue aprendiendo.\\n   \\            /\\n    '-.______.–'\\n");
-
-			break;
-
-		case 3:
-		case 4:
-			printf("\n ¡Buen intento! Vas mejorando. ");
-			printf("\n    .-\"      \"-. \n   /   O    O   \\ \n  |      /\\      |     !Ya estas cerca! \n  |     ====     |     En nada lo tienes. \n   \\            / \n    '-.______.–' \n");
-
-			break;
-
-		case 5:
-			printf("\n !Casi perfecto! ");
-			printf("\n     _______\n    /       \\\n   |  _____  |\n   | |     | |\n   | |_____| |  Te mereces una medalla\n    \\_______/\n     \\_____/\n");
-
-			break;
-
-		case 6:
-			printf("\n !Eres un maestro de embalses!");
-			printf("\n      ___________\n     '._==_==_=_.' \n     .-\\:      /-.\n    | (|:.     |) |   Aqui tienes tu trofeo. \n     '-|:.     |-'\n       \\::.    /\n        '::. .'\n          ) (\n        _.' '._\n       \"\"\"\"\"\"\"\n");
-
-			break;
-		}
-	}
-
-	int cuestionario() {
-
-		printf("\nOimos, vemos y hablamos sobre los embalses cotidianamente, nos abastecen de agua para el consumo y la agricultura y tienen un impacto en el dia a dia del que el ciudadano promedio no es consciente. Dicho esto, ??sabras lo suficiente como para llevarte el premio al que mas sabe de embalses??");
-
-		int valor_pregunta = pregunta_inicial(), respuestas[6], respuestas_correctas[6] = { 3,4,2,4,1,3 };
-
-		if (valor_pregunta == 1) {
-			printf("\t \t \t*********************************\n");
-			printf("\t \t \t*    CUESTIONARIO DE EMBALSES   *\n");
-			printf("\t \t \t*********************************\n");
-
-			for (int i = 0;i < 6;i++) {
-				respuestas[i] = preguntas_cuestionario(i);
-				mostrar_resultado(respuestas[i] == respuestas_correctas[i], i);
-				informacion_respuestas(i);
-			}
-
-			int numero_aciertos = 0;
-			for (int i = 0;i < 6;i++) {
-				tabla_errores(respuestas[i] == respuestas_correctas[i], i);
-				if (respuestas[i] == respuestas_correctas[i]) {
-					numero_aciertos++;
-				}
-			}
-
-			printf("\n \t \t ***************");
-			premios_concurso(numero_aciertos);
-
-		}
-		else if (valor_pregunta == 2) {
-			printf("\njoe :(");
-			return 0;
-		}
+	else if (valor_pregunta == 2) {
+		printf("\njoe :(");
 		return 0;
 	}
-	//Final funciones del cuestionario
+	return 0;
+}
+//Final funciones del cuestionario
